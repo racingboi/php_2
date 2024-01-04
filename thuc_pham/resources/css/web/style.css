@@ -2489,19 +2489,19 @@ a.button.view-all {
 }
 .product-tabs li.active a {
     background: none repeat scroll 0 0 #da2c2a;
-    border-bottom: 2px solid ##da2c2a;
+    border-bottom: 2px solid #da2c2a;
     color: #fff;
     font-family: "Montserrat", sans-serif;
     font-weight: bold;
     height: 42px;
 }
 .product-tabs li.active a:hover {
-    background: none repeat scroll 0 0 ##da2c2a;
+    background: none repeat scroll 0 0 #da2c2a;
     color: #fff;
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
     border: none;
-    border-bottom: 2px solid ##da2c2a;
+    border-bottom: 2px solid #da2c2a;
 }
 .nav-tabs.product-tabs > li > a {
     margin-right: 0px;
@@ -2525,8 +2525,8 @@ a.button.view-all {
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
     border: none;
-    border-bottom: 2px solid ##da2c2a;
-    background: none repeat scroll 0 0 ##da2c2a;
+    border-bottom: 2px solid #da2c2a;
+    background: none repeat scroll 0 0 #da2c2a;
     color: #fff;
     background-color: #da2c2a;
 }
@@ -4378,7 +4378,7 @@ ul#add-slideshow {
     text-transform: uppercase;
 }
 .side-nav-categories .block-title:before {
-    content: "\f0c9";
+    /* content: "\f0c9"; */
     font-family: FontAwesome;
     font-size: 14px;
     margin-right: 3px;
@@ -4419,10 +4419,10 @@ ul#add-slideshow {
     opacity: 0.9;
 }
 .box-category .subDropdown.plus {
-    background-image: url("../images/plus.png");
+    background-image: url("./img/plus.png");
 }
 .box-category .subDropdown.minus {
-    background-image: url("../images/minus.png");
+    background-image: url("./img/minus.png");
 }
 .box-category ul li a {
     display: block;
@@ -4480,7 +4480,7 @@ ul#add-slideshow {
         background-position 300ms ease-in-out 0s;
 }
 .box-category > ul > li ul > li > a:before {
-    content: "\f105";
+    /* content: "\f105"; */
     font-family: FontAwesome;
     font-size: 12px;
     padding-right: 6px;
@@ -5497,7 +5497,7 @@ ol#compare-items li.last {
     opacity: 0;
     transition: all 0.3s ease 0s;
     transform: scale(0.5) rotateY(180deg);
-    background-image: url("../images/plus-img.png");
+    background-image: url("./img/plus-img.png");
     background-repeat: no-repeat;
     background-position: center;
     background-color: #666;

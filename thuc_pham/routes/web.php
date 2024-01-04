@@ -30,5 +30,5 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 Route::get('/a', function () {
-    return view('web.shop');
+    return view('layouts.admin');
 });

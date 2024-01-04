@@ -1,3 +1,4 @@
+/* @import "./admin.css"; */
 @import "./old.css";
 @import "./web/animate.css";
 @import "./web/bootstrap.min.css";
@@ -8,3 +9,4 @@
 @import "./web/style.css";
 @import "./web/jquery.mobile-menu.css";
 @import "./web/fancybox.css";
+/* @import "./dashboard/style.css"; */
