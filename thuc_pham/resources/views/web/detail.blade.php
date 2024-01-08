@@ -1,5 +1,5 @@
 @extends('layouts.web')
-@section('title', 'Phụ tùng ôtô - Trang chủ ')
+@section('title', 'GRYFFINDOR - Trang detail')
 @section('content')
     <div class="breadcrumbs">
         <div class="container">

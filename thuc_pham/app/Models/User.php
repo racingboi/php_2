@@ -21,6 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'phone',
+        'address',
+        'remember_token',
+        'email_verified_at'
     ];
 
     /**
@@ -42,4 +47,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    //add user
+    protected $timestamp = true;
 }
