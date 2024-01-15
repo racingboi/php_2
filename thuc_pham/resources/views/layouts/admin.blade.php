@@ -9,9 +9,9 @@
         content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern,  html5, responsive">
     <meta name="author" content="Dreamguys - Bootstrap Admin Template">
     <meta name="robots" content="noindex, nofollow">
-    <title>Dreams Pos admin template</title>
+    <title>@yield('title')</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/dashboard/img/favicon.png') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/dashboard/css/bootstrap.min.css') }}">
 
@@ -23,6 +23,11 @@
     <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/fontawesome/css/all.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/dashboard/css/style.css') }}">
+
+    <!-- Example: Include Bootstrap CSS from a CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @vite(['resources/css/admin.css', 'resources/js/admin.js'])
 </head>
 
@@ -68,39 +73,54 @@
                                     src="{{ asset('assets/dashboard/img/icons/product.svg') }}" alt="img"><span>
                                     Product</span> <span class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="productlist.html">Product List</a></li>
-                                <li><a href="addproduct.html">Add Product</a></li>
-                                <li><a href="categorylist.html">Category List</a></li>
-                                <li><a href="addcategory.html">Add Category</a></li>
-                                <li><a href="subcategorylist.html">Sub Category List</a></li>
-                                <li><a href="subaddcategory.html">Add Sub Category</a></li>
-                                <li><a href="brandlist.html">Brand List</a></li>
-                                <li><a href="addbrand.html">Add Brand</a></li>
-                                <li><a href="importproduct.html">Import Products</a></li>
-                                <li><a href="barcode.html">Print Barcode</a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><img
-                                    src="{{ asset('assets/dashboard/img/icons/sales1.svg') }}" alt="img"><span>
-                                    Sales</span> <span class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="saleslist.html">Sales List</a></li>
-                                <li><a href="pos.html">POS</a></li>
-                                <li><a href="pos.html">New Sales</a></li>
-                                <li><a href="salesreturnlists.html">Sales Return List</a></li>
-                                <li><a href="createsalesreturns.html">New Sales Return</a></li>
+                                <li><a href="{{ route('admin.products.list') }}">Product List</a></li>
+                                <li><a href="{{ route('admin.products.create') }}">Add Product</a></li>
                             </ul>
                         </li>
                         <li class="submenu">
                             <a href="javascript:void(0);"><img
                                     src="{{ asset('assets/dashboard/img/icons/places.svg') }}" alt="img"><span>
-                                    Places</span> <span class="menu-arrow"></span></a>
+                                    Category</span> <span class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="newcountry.html">New Country</a></li>
-                                <li><a href="countrieslist.html">Countries list</a></li>
-                                <li><a href="newstate.html">New State </a></li>
-                                <li><a href="statelist.html">State list</a></li>
+                                <li><a href="{{ route('admin.categories.list') }}">Category List</a></li>
+                                <li><a href="{{ route('admin.categories.create') }}">Add Category </a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><img
+                                    src="{{ asset('assets/dashboard/img/icons/places.svg') }}" alt="img"><span>
+                                    Sub Category</span> <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="{{ route('admin.subcategories.list') }}">Sub Category List</a></li>
+                                <li><a href="{{ route('admin.subcategories.create') }}">Add Sub Category </a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><img
+                                    src="{{ asset('assets/dashboard/img/icons/purchase1.svg') }}" alt="img"><span>
+                                    Posts</span> <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="{{ route('admin.posts.list') }}">Posts List</a></li>
+                                <li><a href="{{ route('admin.posts.create') }}">Add Posts</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><img
+                                    src="{{ asset('assets/dashboard/img/icons/sales1.svg') }}" alt="img"><span>
+                                    Coupons</span> <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="{{ route('admin.coupons.list') }}">Coupons List</a></li>
+                                <li><a href="{{ route('admin.coupons.create') }}">Add Coupons</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><img
+                                    src="{{ asset('assets/dashboard/img/icons/quotation1.svg') }}"
+                                    alt="img"><span>
+                                    Orders</span> <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="quotationList.html">Quotation List</a></li>
+                                <li><a href="addquotation.html">Add Quotation</a></li>
                             </ul>
                         </li>
                         <li class="submenu">
@@ -108,14 +128,15 @@
                                     src="{{ asset('assets/dashboard/img/icons/users1.svg') }}" alt="img"><span>
                                     Users</span> <span class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="newuser.html">New User </a></li>
-                                <li><a href="userlists.html">Users List</a></li>
+                                <li><a href="{{ route('admin.users.list') }}">Users List</a></li>
+                                <li><a href="{{ route('admin.users.create') }}">Add Users</a></li>
                             </ul>
                         </li>
                         <li class="submenu">
                             <a href="javascript:void(0);"><img
-                                    src="{{ asset('assets/dashboard/img/icons/settings.svg') }}" alt="img"><span>
-                                    Settings</span> <span class="menu-arrow"></span></a>
+                                    src="{{ asset('assets/dashboard/img/icons/settings.svg') }}"
+                                    alt="img"><span>
+                                    website</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="generalsettings.html">General Settings</a></li>
                                 <li><a href="emailsettings.html">Email Settings</a></li>
@@ -133,8 +154,6 @@
             @yield('content')
         </div>
     </div>
-
-
     <script src="{{ asset('assets/dashboard/js/jquery-3.6.0.min.js') }} "></script>
     <script src="{{ asset('assets/dashboard/js/feather.min.js') }}"></script>
     <script src="{{ asset('assets/dashboard/js/jquery.slimscroll.min.js') }}"></script>

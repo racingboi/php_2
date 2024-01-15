@@ -1,5 +1,5 @@
 @extends('layouts.web')
-@section('title', 'Phụ tùng ôtô - Trang chủ ')
+@section('title', 'GRYFFINDOR - Trang shop ')
 @section('content')
     <section class="main-container col2-left-layout">
         <div class="main container">
