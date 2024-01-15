@@ -5,13 +5,13 @@
         <div class="content">
             <div class="page-header">
                 <div class="page-title">
-                    <h4>Danh sách chuyên mục</h4>
-                    <h6>Xem/Tìm kiếm danh mục</h6>
+                    <h4>Sub Category list</h4>
+                    <h6>View/Search Sub Category</h6>
                 </div>
                 <div class="page-btn">
                     <a href="{{ route('admin.categories.create') }}" class="btn btn-added">
-                        <img src="{{ asset('assets/dashboard/img/icons/plus.svg') }} " class="me-1" alt="img" />Thêm
-                        danh mục
+                        <img src="{{ asset('assets/dashboard/img/icons/plus.svg') }} " class="me-1" alt="img" />Add
+                        Sub Category
                     </a>
                 </div>
             </div>
@@ -33,7 +33,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-top">
-                        <form action="{{ route('admin.categories.search') }}" method="POST">
+                        <form action="{{ route('admin.subcategories.search') }}" method="POST">
                             @csrf
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Bạn muốn tìm kiếm gì?"
@@ -81,7 +81,7 @@
                         </thead>
                         <tbody>
 
-                            @forelse ($categories as $category)
+                            @forelse ($subcategories as $subcategory)
                                 <tr>
                                     <td>
                                         <label class="checkboxs">
@@ -90,23 +90,21 @@
                                         </label>
                                     </td>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $subcategory->name }}</td>
                                     <td>
-                                        <a class="text-dark"> {{ $category->name }}</a>
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('admin.categories.destroy', $category->id) }}"
+                                        <form action="{{ route('admin.subcategories.destroy', $subcategory->id) }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <a class="btn" data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="Edit this entry"
-                                                href="{{ route('admin.categories.edit', ['id' => $category->id]) }}">
+                                                href="{{ route('admin.subcategories.edit', ['id' => $subcategory->id]) }}">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
                                             <a class="btn">
                                                 <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title="Delete this item"
-                                                    onclick="return confirm('Are you sure you want to delete this category ?')">
+                                                    onclick="return confirm('Are you sure you want to delete this  sub category ?')">
                                                     <i class="bi bi-trash3"></i>
                                                 </button>
                                             </a>
@@ -114,7 +112,7 @@
                                     </td>
                                 @empty
                                     <td colspan="4">
-                                        Danh mục không tồn tại</td>
+                                        Danh mục phụ không tồn tại</td>
                             @endforelse
                             </tr>
 
@@ -124,7 +122,7 @@
                 </div>
             </div>
             <div class="col-md-12">
-                {{ $categories->links('pagination::bootstrap-5', ['showing' => __('pagination.showing')]) }}
+                {{ $subcategories->links('pagination::bootstrap-5') }}
             </div>
         </div>
     @endsection

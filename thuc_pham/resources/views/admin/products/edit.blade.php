@@ -37,13 +37,15 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.products.update', ['id' => $products->id]) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
+                        @method('put')
                         <div class="row">
                             <div class="col-lg-4 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>tên sản phẩm</label>
-                                    <input type="text" name="name">
+                                    <label>Tên sản phẩm</label>
+                                    <input type="text" name="name" value="{{ $products->name }}">
                                 </div>
                                 @error('name')
                                     <small class="text-danger">{{ $message }}</small>
@@ -54,8 +56,8 @@
                                     <label>Danh mục</label>
                                     <select class="form-select" name="category_id">
                                         <option>Chọn danh mục</option>
-                                        @foreach ($Category as $category)
-                                            <option value={{ $category->id }}>{{ $category->name }}</option>
+                                        @foreach ($category as $categori)
+                                            <option value={{ $categori->id }}>{{ $categori->name }}</option>
                                         @endforeach
                                         @error('category_id')
                                             <small class="text-danger">{{ $message }}</small>
@@ -69,7 +71,7 @@
                                     <label>Danh mục phụ</label>
                                     <select class="form-select" name="subcategory_id">
                                         <option>Chọn danh mục</option>
-                                        @foreach ($Subcategory as $category)
+                                        @foreach ($subcategory as $category)
                                             <option value={{ $category->id }}>{{ $category->name }}</option>
                                         @endforeach
                                         @error('category_id')
@@ -84,7 +86,7 @@
                             <div class="col-lg-4 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Số lượng</label>
-                                    <input type="text" name="quantity">
+                                    <input type="text" name="quantity" value="{{ $products->quantity }}">
                                 </div>
                                 @error('quantity')
                                     <small class="text-danger">{{ $message }}</small>
@@ -93,7 +95,7 @@
                             <div class="col-lg-4 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Đơn vị</label>
-                                    <input type="text" name="unit">
+                                    <input type="text" name="unit" value="{{ $products->unit }}">
                                 </div>
                                 @error('unit')
                                     <small class="text-danger">{{ $message }}</small>
@@ -102,7 +104,7 @@
                             <div class="col-lg-4 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Giá</label>
-                                    <input type="text" name="price">
+                                    <input type="text" name="price" value="{{ $products->price }}">
                                 </div>
                                 @error('price')
                                     <small class="text-danger">{{ $message }}</small>
@@ -111,7 +113,9 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label>Sự miêu tả</label>
-                                    <textarea name="description" class="form-control"></textarea>
+                                    <textarea name="description" class="form-control">
+                                      {{ $products->description }}
+                                    </textarea>
                                 </div>
                                 @error('decription')
                                     <small class="text-danger">{{ $message }}</small>
@@ -122,37 +126,70 @@
                                     <div class = "upload-wrapper">
                                         <div class = "upload-info">
                                             <p>
-                                                <span class = "upload-info-value">0</span>(các) tệp đã được tải lên.
+                                                <span class = "upload-info-value">{{ count($existingImagePaths) }}</span>
+                                                file(s) uploaded.
                                             </p>
                                         </div>
                                         <div class = "upload-area">
                                             <div class = "upload-area-img">
                                                 <img src = "{{ asset('assets/dashboard/img/upload.png') }}" alt = "">
                                             </div>
-                                            <p class = "upload-area-text">Chọn hình ảnh hoặc <span>duyệt qua</span>.</p>
+                                            <p class = "upload-area-text">Select images or <span>browse</span>.</p>
                                         </div>
-                                        <input type="file" class ="visually-hidden" id ="upload-input" name="images[]"
+                                        {{-- <input type="file" class ="visually-hidden" id ="upload-input" name="images[]"
                                             multiple>
+                                        @foreach ($products->image_features as $imageFeature)
+                                            <input type="hidden" name="existing_images[]"
+                                                value="{{ $imageFeature->url_img }}">
+                                        @endforeach --}}
+                                        <!-- Hiển thị đường dẫn ảnh cũ -->
+                                        @foreach ($existingImagePaths as $imagePath)
+                                            <input type="hidden" name="existing_images[]" value="{{ $imagePath }}">
+                                        @endforeach
+                                        <input type="file" class="visually-hidden" id="upload-input" name="images[]"
+                                            multiple>
+
                                     </div>
                                     @error('images')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class = "upload-img">
-                                    <!-- image here -->
+                                    {{-- @for ($i = 0; $i < $products->image_features->count(); $i++)
+                                        <img src="{{ $products->image_features[$i]->url_img }}">
+                                    @endfor --}}
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12">
-                            <input type="submit" class="btn btn-submit me-2" value="Gửi">
-                            <a href="userlist.html" class="btn btn-cancel">Hủy</a>
-                        </div>
-                    </form>
                 </div>
+                <div class="col-lg-12">
+                    <input type="submit" class="btn btn-submit me-2" value="Gửi">
+                    <a href="userlist.html" class="btn btn-cancel">Hủy</a>
+                </div>
+                </form>
             </div>
         </div>
+        </div>
     @endsection
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <script>
+        var existingImagePaths = [];
+        @foreach ($existingImagePaths as $imagePath)
+            existingImagePaths.push("{{ $imagePath }}");
+        @endforeach
+
+        // document.getElementById("upload-input").value = "";
+
+        // Hiển thị đường dẫn ảnh cũ trong input type file
+        existingImagePaths.forEach(function(imagePath) {
+            var input = document.createElement('input');
+            input.type = 'file';
+            input.name = 'images[]';
+            input.value = imagePath; // Bạn không thể đặt giá trị này, vì vấn đề bảo mật
+            document.querySelector('.upload-wrapper').appendChild(input);
+        });
+    </script>
 </body>
 
 </html>

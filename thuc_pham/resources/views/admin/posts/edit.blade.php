@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @section('title', 'Admin - posts - create')
-    <script src="https://cdn.tiny.cloud/1/cz7tbij09p7p6b14bz3fbocnnvm5nztqcmy95npx6f4srsdh/tinymce/6/tinymce.min.js"
+    @section('title', 'Admin - Posts - create')
+    <script src="https://cdn.tiny.cloud/1/rw1556z5vgoik9fmr5u44kck2kqrsou9fmbylvglsyjovwur/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
     <script type="text/javascript">
         tinymce.init({
@@ -29,7 +29,7 @@
                 </div>
                 <div class="page-btn">
                     <a href="{{ Route('admin.posts.list') }}" class="btn btn-added">
-                        <i class="bi bi-list">Danh sách bài viết</i>
+                        <i class="bi bi-card-list"> Danh sách Bài Viết</i>
                     </a>
                 </div>
             </div>
@@ -40,30 +40,31 @@
             @endif
 
             <div class="card">
-                <form action="{{ route('admin.posts.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.posts.update', ['id' => $posts->id]) }}" method="post">
                     @csrf
+                    @method('PUT')
                     <div class="card-body">
                         <div class="row">
 
                             <div class="form-group">
-                                <label>Tiêu đề bài viết</label>
-                                <input type="text" name="title">
+                                <label>Tiêu Đề Bài Viết</label>
+                                <input type="text" name="title" value="{{ $posts->title }}">
                                 @error('title')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
 
                             <div class="form-group">
-                                <label>Mô tả bài viết</label>
-                                <input type="text" name="content">
+                                <label>MÔ tả bài viết</label>
+                                <input type="text" name="content" value="{{ $posts->content }}">
                                 @error('content')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Nội dung</label>
+                                <label>Nội Dung</label>
                                 <textarea name="body">
-
+                                    {{ $posts->body }}
                                     </textarea>
                                 @error('body')
                                     <small class="text-danger">{{ $message }}</small>
@@ -71,7 +72,8 @@
                             </div>
 
                             <div class="col-lg-12">
-                                <input type="submit" value="Thêm mới" class="btn btn-added">
+                                <input type="submit" value="cập nhật" class="btn btn-added">
+                                <a href="{{ route('admin.categories.list') }}" class="btn btn-danger">Hủy</a>
                             </div>
                         </div>
                 </form>
@@ -79,6 +81,7 @@
             </div>
         </div>
     @endsection
+
 
 </body>
 

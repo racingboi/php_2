@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(5);
         return view('admin.users.list', compact('users'));
     }
 
@@ -160,7 +160,7 @@ class UserController extends Controller
     public function search(Request $request)
     {
         $searchTerm = $request->input('search');
-        $users = User::where('name', 'LIKE', '%' . $searchTerm . '%')->get();
+        $users = User::where('name', 'LIKE', '%' . $searchTerm . '%')->paginate(5);
         return view("admin.users.list", compact("users"));
     }
 }

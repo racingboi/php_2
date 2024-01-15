@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\User;
 
 class PostsController extends Controller
 {
@@ -12,7 +14,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('admin.posts.list');
+        $posts = Post::with('user')->paginate(3);
+        return view('admin.posts.list', compact('posts'));
     }
 
     /**
@@ -28,7 +31,27 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'title' => "required|min:5",
+                'content' => "required|min:10",
+                'body' => "required|min:10"
+            ],
+            [
+                'required' => ':attribute không được để trống',
+                'min' => ':attribute không ít hơn :min'
+            ],
+            [
+                'title' => 'Tiêu đề bài viết',
+                'content' => 'Mô tả ngắn',
+                'body' => 'Nội dung bài viết'
+            ]
+        );
+        $input = $request->all();
+        $user = auth()->user();
+        $input['user_id'] = $user->id;
+        $posts = Post::create($input);
+        return redirect()->route("admin.posts.create")->with('success', 'Thêm mới thành công!');
     }
 
     /**
@@ -44,7 +67,8 @@ class PostsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $posts = Post::findOrFail($id);
+        return view('admin.posts.edit', compact('posts'));
     }
 
     /**
@@ -52,7 +76,30 @@ class PostsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate(
+            [
+                'title' => "required|min:5",
+                'content' => "required|min:10",
+                'body' => "required|min:10"
+            ],
+            [
+                'required' => ':attribute không được để trống',
+                'min' => ':attribute không ít hơn :min'
+            ],
+            [
+                'title' => 'Tiêu đề bài viết',
+                'content' => 'Mô tả ngắn',
+                'body' => 'Nội dung bài viết'
+            ]
+        );
+
+        $user = auth()->user();
+        $input = $request->all();
+        $post = Post::findOrFail($id);
+        $post->update($input);
+        $post->user_id = $user->id;
+        $post->save();
+        return redirect()->route('admin.posts.list')->with('success', 'cập nhật thàng cồn thành công!');
     }
 
     /**
@@ -60,6 +107,20 @@ class PostsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $posts = Post::find($id);
+
+
+        if ($posts->delete($id)) {
+            return redirect()->route('admin.posts.list')
+                ->with('success', 'Xóa thành công thành công');
+        } else {
+            return redirect()->route('admin.posts.list',)->with('error', 'Lỗi');
+        }
+    }
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+        $categories = Post::where('name', 'LIKE', '%' . $searchTerm . '%')->paginate(3);
+        return view("admin.posts.list", compact("categories"));
     }
 }

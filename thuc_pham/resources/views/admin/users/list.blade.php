@@ -23,8 +23,7 @@
                     <form action="{{ route('admin.users.search') }}" method="POST">
                         @csrf
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="What do you want to search?"
-                                name="search">
+                            <input type="text" class="form-control" placeholder="Bạn muốn tìm kiếm gì?" name="search">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit">
                                     <img src="{{ asset('assets/dashboard/img/icons/search.svg') }}" alt="">
@@ -59,11 +58,11 @@
                                     <span class="checkmarks"></span>
                                 </label>
                             </th>
-                            <th>Slot</th>
+                            {{-- <th>Slot</th> --}}
                             <th>Users name</th>
-                            <th>Phone</th>
+                            {{-- <th>Phone</th> --}}
                             <th>Email</th>
-                            <th>Address</th>
+                            {{-- <th>Address</th> --}}
                             <th>Role</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -78,11 +77,11 @@
                                         <span class="checkmarks"></span>
                                     </label>
                                 </td>
-                                <td>{{ $loop->iteration }}</td>
+                                {{-- <td>{{ $loop->iteration }}</td> --}}
                                 <td>{{ $user->name ?? 'N/A' }}</td>
-                                <td>{{ $user->phone ?? 'N/A' }}</td>
+                                {{-- <td>{{ $user->phone ?? 'N/A' }}</td> --}}
                                 <td>{{ $user->email ?? 'N/A' }}</td>
-                                <td>{{ $user->address ?? 'N/A' }}</td>
+                                {{-- <td>{{ $user->address ?? 'N/A' }}</td> --}}
                                 <td>{{ $user->role == 0 ? 'admin' : 'user' }}</td>
                                 <td style="color: {{ $user->status == 0 ? 'green' : 'red' }}">
                                     {{ $user->status == 0 ? 'active' : 'banned' }}
@@ -118,12 +117,15 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="8">Không có dữ liệu</td>
+                                <td colspan="8">không có người dùng nào</td>
                             </tr>
                         @endforelse
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="col-md-12">
+            {{ $users->links('pagination::bootstrap-5') }}
         </div>
     </div>
 @endsection

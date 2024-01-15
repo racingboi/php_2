@@ -8,6 +8,9 @@ use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\PostsController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\CouponsController;
+use App\Http\Controllers\admin\SubcategoryController;
+use App\Http\Controllers\admin\crawl_data;
+use  App\Http\Controllers\web\index;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,6 +64,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('delete/{id}', [CategoriesController::class, 'destroy'])->name('destroy');
         Route::post('list', [CategoriesController::class, 'search'])->name('search');
     });
+    //Routing sub Categories
+    Route::prefix('subcategories')->name('subcategories.')->group(function () {
+        Route::get('list', [SubcategoryController::class, 'index'])->name('list');
+        Route::get('create', [SubcategoryController::class, 'create'])->name('create');
+        Route::post('/', [SubcategoryController::class, 'store'])->name('store');
+        // Route::get('{id}', [SubcategoryController::class, 'show'])->name('show');
+        Route::get('{id}/edit', [SubcategoryController::class, 'edit'])->name('edit');
+        Route::put('update/{id}', [SubcategoryController::class, 'update'])->name('update');
+        Route::delete('delete/{id}', [SubcategoryController::class, 'destroy'])->name('destroy');
+        Route::post('list', [SubcategoryController::class, 'search'])->name('search');
+    });
     //Routing Coupons
     Route::prefix('coupons')->name('coupons.')->group(function () {
         Route::get('list', [CouponsController::class, 'index'])->name('list');
@@ -70,10 +84,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('{id}/edit', [CouponsController::class, 'edit'])->name('edit');
         Route::put('update/{id}', [CouponsController::class, 'update'])->name('update');
         Route::delete('delete/{id}', [CouponsController::class, 'destroy'])->name('destroy');
-        Route::post(
-            'list',
-            [CategoriesController::class, 'search']
-        )->name('search');
+        Route::post('list', [CategoriesController::class, 'search'])->name('search');
     });
     //Routing orders
     Route::prefix('orders')->name('orders.')->group(function () {
@@ -110,3 +121,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('list', [UserController::class, 'search'])->name('search');
     });
 });
+Route::get('crawlDataProducts', [crawl_data::class, 'crawlDataProducts']);
+Route::get('crawlDataCategory', [crawl_data::class, 'crawlDataCategory']);
+Route::get('home', [index::class, 'home']);
+Route::get('detail/{id}', [index::class, 'detail'])->name('detail');
+// Route::get('text', function () {
+//     return view('layouts.web');
+// });

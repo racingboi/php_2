@@ -118,336 +118,66 @@
                             <div id="best-seller-slider" class="product-flexslider hidden-buttons">
                                 <div class="slider-items slider-width-col4">
                                     <!-- Item -->
-                                    <div class="item">
-                                        <div class="product-block">
-                                            <div class="product-image">
-                                                <a href="product_detail.html">
-                                                    <figure class="product-display">
-                                                        <div class="sale-label sale-top-left">Sale</div>
-                                                        <img src="{{ asset('assets/web/products-images/product1.jpg') }}"
-                                                            class="product-mainpic" alt="Sample Product" />
-                                                        <img class="product-secondpic" alt="Sample Product"
-                                                            src="{{ asset('assets/web/products-images/product1.jpg') }}" />
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <div class="product-meta">
-                                                <div class="product-action">
-                                                    <a class="addcart" href="shopping_cart.html">
-                                                        <i class="bi bi-cart3"></i> Add to
-                                                        cart
-                                                    </a>
-                                                    <a href="quick_view.html" class="quickview">
-                                                        <i class="bi bi-search"></i></i> Quick view</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <a href="product_detail.html" title="Sample Product">
-                                                        Sample Product
+                                    @foreach ($products as $product)
+                                        <div class="item">
+                                            <div class="product-block">
+                                                <div class="product-image">
+                                                    <a href="{{ route('detail', ['id' => $product->id]) }}">
+                                                        <figure class="product-display">
+                                                            <div class="sale-label sale-top-left">Sale</div>
+                                                            <img src="{{ asset($product->image_features->first()->url_img) }}"
+                                                                class="product-mainpic" alt="Sample Product" />
+                                                            <img class="product-secondpic" alt="Sample Product"
+                                                                src="{{ asset($product->image_features->first()->url_img) }}" />
+                                                        </figure>
                                                     </a>
                                                 </div>
-                                                <div class="item-content">
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <span class="regular-price">
-                                                                <span class="price">$125.00</span>
-                                                            </span>
-                                                        </div>
+                                                <div class="product-meta">
+                                                    <div class="product-action">
+                                                        <a class="addcart" href="shopping_cart.html">
+                                                            <i class="bi bi-cart3"></i> Add to
+                                                            cart
+                                                        </a>
+                                                        <a href="quick_view.html" class="quickview">
+                                                            <i class="bi bi-search"></i></i> Quick view</a>
                                                     </div>
-                                                    <div class="rating">
-                                                        <div class="ratings">
-                                                            <div class="rating-box">
-                                                                <div class="rating" style="width: 80%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="item-info">
+                                                <div class="info-inner">
+                                                    <div class="item-title">
+                                                        {{-- {{ route('detail', ['id' => $product->id]) }} --}}
+                                                        <a href="" title="Sample Product">
+                                                            {{ $product->name }}
+                                                        </a>
+                                                    </div>
+                                                    <div class="item-content">
+                                                        <div class="item-price">
+                                                            <div class="price-box">
+                                                                <span class="regular-price">
+                                                                    <span
+                                                                        class="price">{{ number_format($product->price, 2, '.', ',') }}
+                                                                        VND
+                                                                    </span>
                                                             </div>
-                                                            <p class="rating-links">
-                                                                <a href="#">1 Review(s)</a>
-                                                                <span class="separator">|</span>
-                                                                <a href="#">Add Review</a>
-                                                            </p>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{-- <div class="item h-50">
-                                        <div class="product-block">
-                                            <div class="product-image">
-                                                <a href="product_detail.html">
-                                                    <figure class="product-display">
-                                                        <div class="sale-label sale-top-left">Sale</div>
-                                                        <img src="{{ asset('assets/web/products-images/product1.jpg') }}"
-                                                            class="product-mainpic" alt="Sample Product" />
-                                                        <img class="product-secondpic" alt="Sample Product"
-                                                            src="{{ asset('assets/web/products-images/product1.jpg') }}" />
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <div class="product-meta">
-                                                <div class="product-action">
-                                                    <a class="addcart" href="shopping_cart.html">
-                                                        <i class="bi bi-cart3"></i> Add to
-                                                        cart
-                                                    </a>
-                                                    <a href="quick_view.html" class="quickview">
-                                                        <i class="bi bi-search"></i></i> Quick view</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <a href="product_detail.html" title="Sample Product">
-                                                        Sample Product
-                                                    </a>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <span class="regular-price">
-                                                                <span class="price">$125.00</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <div class="ratings">
-                                                            <div class="rating-box">
-                                                                <div class="rating" style="width: 80%"></div>
+                                                        <div class="rating">
+                                                            <div class="ratings">
+                                                                <div class="rating-box">
+                                                                    <div class="rating" style="width: 80%"></div>
+                                                                </div>
+                                                                <p class="rating-links">
+                                                                    <a href="#">1 Review(s)</a>
+                                                                    <span class="separator">|</span>
+                                                                    <a href="#">Add Review</a>
+                                                                </p>
                                                             </div>
-                                                            <p class="rating-links">
-                                                                <a href="#">1 Review(s)</a>
-                                                                <span class="separator">|</span>
-                                                                <a href="#">Add Review</a>
-                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="item h-50">
-                                        <div class="product-block">
-                                            <div class="product-image">
-                                                <a href="product_detail.html">
-                                                    <figure class="product-display">
-                                                        <div class="sale-label sale-top-left">Sale</div>
-                                                        <img src="{{ asset('assets/web/products-images/product1.jpg') }}"
-                                                            class="product-mainpic" alt="Sample Product" />
-                                                        <img class="product-secondpic" alt="Sample Product"
-                                                            src="{{ asset('assets/web/products-images/product1.jpg') }}" />
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <div class="product-meta">
-                                                <div class="product-action">
-                                                    <a class="addcart" href="shopping_cart.html">
-                                                        <i class="bi bi-cart3"></i> Add to
-                                                        cart
-                                                    </a>
-                                                    <a href="quick_view.html" class="quickview">
-                                                        <i class="bi bi-search"></i></i> Quick view</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <a href="product_detail.html" title="Sample Product">
-                                                        Sample Product
-                                                    </a>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <span class="regular-price">
-                                                                <span class="price">$125.00</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <div class="ratings">
-                                                            <div class="rating-box">
-                                                                <div class="rating" style="width: 80%"></div>
-                                                            </div>
-                                                            <p class="rating-links">
-                                                                <a href="#">1 Review(s)</a>
-                                                                <span class="separator">|</span>
-                                                                <a href="#">Add Review</a>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item h-50">
-                                        <div class="product-block">
-                                            <div class="product-image">
-                                                <a href="product_detail.html">
-                                                    <figure class="product-display">
-                                                        <div class="sale-label sale-top-left">Sale</div>
-                                                        <img src="{{ asset('assets/web/products-images/product1.jpg') }}"
-                                                            class="product-mainpic" alt="Sample Product" />
-                                                        <img class="product-secondpic" alt="Sample Product"
-                                                            src="{{ asset('assets/web/products-images/product1.jpg') }}" />
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <div class="product-meta">
-                                                <div class="product-action">
-                                                    <a class="addcart" href="shopping_cart.html">
-                                                        <i class="bi bi-cart3"></i> Add to
-                                                        cart
-                                                    </a>
-                                                    <a href="quick_view.html" class="quickview">
-                                                        <i class="bi bi-search"></i></i> Quick view</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <a href="product_detail.html" title="Sample Product">
-                                                        Sample Product
-                                                    </a>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <span class="regular-price">
-                                                                <span class="price">$125.00</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <div class="ratings">
-                                                            <div class="rating-box">
-                                                                <div class="rating" style="width: 80%"></div>
-                                                            </div>
-                                                            <p class="rating-links">
-                                                                <a href="#">1 Review(s)</a>
-                                                                <span class="separator">|</span>
-                                                                <a href="#">Add Review</a>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item h-50">
-                                        <div class="product-block">
-                                            <div class="product-image">
-                                                <a href="product_detail.html">
-                                                    <figure class="product-display">
-                                                        <div class="sale-label sale-top-left">Sale</div>
-                                                        <img src="{{ asset('assets/web/products-images/product1.jpg') }}"
-                                                            class="product-mainpic" alt="Sample Product" />
-                                                        <img class="product-secondpic" alt="Sample Product"
-                                                            src="{{ asset('assets/web/products-images/product1.jpg') }}" />
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <div class="product-meta">
-                                                <div class="product-action">
-                                                    <a class="addcart" href="shopping_cart.html">
-                                                        <i class="bi bi-cart3"></i> Add to
-                                                        cart
-                                                    </a>
-                                                    <a href="quick_view.html" class="quickview">
-                                                        <i class="bi bi-search"></i></i> Quick view</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <a href="product_detail.html" title="Sample Product">
-                                                        Sample Product
-                                                    </a>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <span class="regular-price">
-                                                                <span class="price">$125.00</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <div class="ratings">
-                                                            <div class="rating-box">
-                                                                <div class="rating" style="width: 80%"></div>
-                                                            </div>
-                                                            <p class="rating-links">
-                                                                <a href="#">1 Review(s)</a>
-                                                                <span class="separator">|</span>
-                                                                <a href="#">Add Review</a>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item h-50">
-                                        <div class="product-block">
-                                            <div class="product-image">
-                                                <a href="product_detail.html">
-                                                    <figure class="product-display">
-                                                        <div class="sale-label sale-top-left">Sale</div>
-                                                        <img src="{{ asset('assets/web/products-images/product1.jpg') }}"
-                                                            class="product-mainpic" alt="Sample Product" />
-                                                        <img class="product-secondpic" alt="Sample Product"
-                                                            src="{{ asset('assets/web/products-images/product1.jpg') }}" />
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <div class="product-meta">
-                                                <div class="product-action">
-                                                    <a class="addcart" href="shopping_cart.html">
-                                                        <i class="bi bi-cart3"></i> Add to
-                                                        cart
-                                                    </a>
-                                                    <a href="quick_view.html" class="quickview">
-                                                        <i class="bi bi-search"></i></i> Quick view</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <a href="product_detail.html" title="Sample Product">
-                                                        Sample Product
-                                                    </a>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <span class="regular-price">
-                                                                <span class="price">$125.00</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <div class="ratings">
-                                                            <div class="rating-box">
-                                                                <div class="rating" style="width: 80%"></div>
-                                                            </div>
-                                                            <p class="rating-links">
-                                                                <a href="#">1 Review(s)</a>
-                                                                <span class="separator">|</span>
-                                                                <a href="#">Add Review</a>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -468,324 +198,69 @@
                         <div id="featured-slider" class="product-flexslider hidden-buttons">
                             <div class="slider-items slider-width-col4">
                                 <!-- Item -->
-                                <div class="item">
-                                    <div class="product-block">
-                                        <div class="product-image">
-                                            <a href="product_detail.html">
-                                                <figure class="product-display">
-                                                    <div class="sale-label sale-top-left">Sale</div>
-                                                    <img src="{{ asset('assets/web/products-images/product11.jpg') }}"
-                                                        class="product-mainpic" alt="Sample Product" />
-                                                    <img class="product-secondpic" alt="Sample Product"
-                                                        src="{{ asset('assets/web/products-images/product11.jpg') }}" />
-                                                </figure>
-                                            </a>
-                                        </div>
-                                        <div class="product-meta">
-                                            <div class="product-action">
-                                                <a class="addcart" href="shopping_cart.html">
-                                                    <i class="bi bi-cart3"></i> Add to cart
-                                                </a>
-                                                <a href="quick_view.html" class="quickview">
-                                                    <i class="bi bi-search"></i></i> Quick view</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-info">
-                                        <div class="info-inner">
-                                            <div class="item-title">
-                                                <a href="product_detail.html" title="Sample Product">Sample Product
+                                @php
+                                    $totalProducts = $products->count();
+                                    $middleIndex = floor($totalProducts / 2);
+                                    $middleProducts = $products->slice($middleIndex);
+                                @endphp
+
+                                @foreach ($middleProducts as $product)
+                                    <div class="item">
+                                        <div class="product-block">
+                                            <div class="product-image">
+                                                <a href="{{ route('detail', ['id' => $product->id]) }}">
+                                                    <figure class="product-display">
+                                                        <div class="sale-label sale-top-left">Sale</div>
+                                                        <img src="{{ asset($product->image_features->first()->url_img) }}"
+                                                            class="product-mainpic" alt="Sample Product" />
+                                                        <img class="product-secondpic" alt="Sample Product"
+                                                            src="{{ asset($product->image_features->first()->url_img) }}" />
+                                                    </figure>
                                                 </a>
                                             </div>
-                                            <div class="item-content">
-                                                <div class="item-price">
-                                                    <div class="price-box">
-                                                        <span class="regular-price">
-                                                            <span class="price">$125.00</span>
-                                                        </span>
-                                                    </div>
+                                            <div class="product-meta">
+                                                <div class="product-action">
+                                                    <a class="addcart" href="shopping_cart.html">
+                                                        <i class="bi bi-cart3"></i> Add to cart
+                                                    </a>
+                                                    <a href="quick_view.html" class="quickview">
+                                                        <i class="bi bi-search"></i></i> Quick view</a>
                                                 </div>
-                                                <div class="rating">
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <div class="rating" style="width: 80%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="info-inner">
+                                                <div class="item-title">
+                                                    <a href="product_detail.html"
+                                                        title="Sample Product">{{ $product->name }}
+                                                    </a>
+                                                </div>
+                                                <div class="item-content">
+                                                    <div class="item-price">
+                                                        <div class="price-box">
+                                                            <span class="regular-price">
+                                                                <span
+                                                                    class="price">{{ number_format($product->price, 2, '.', ',') }}
+                                                                    VND</span>
                                                         </div>
-                                                        <p class="rating-links">
-                                                            <a href="#">1 Review(s)</a>
-                                                            <span class="separator">|</span>
-                                                            <a href="#">Add Review</a>
-                                                        </p>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="product-block">
-                                        <div class="product-image">
-                                            <a href="product_detail.html">
-                                                <figure class="product-display">
-                                                    <div class="sale-label sale-top-left">Sale</div>
-                                                    <img src="{{ asset('assets/web/products-images/product11.jpg') }}"
-                                                        class="product-mainpic" alt="Sample Product" />
-                                                    <img class="product-secondpic" alt="Sample Product"
-                                                        src="{{ asset('assets/web/products-images/product11.jpg') }}" />
-                                                </figure>
-                                            </a>
-                                        </div>
-                                        <div class="product-meta">
-                                            <div class="product-action">
-                                                <a class="addcart" href="shopping_cart.html">
-                                                    <i class="bi bi-cart3"></i> Add to cart
-                                                </a>
-                                                <a href="quick_view.html" class="quickview">
-                                                    <i class="bi bi-search"></i></i> Quick view</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-info">
-                                        <div class="info-inner">
-                                            <div class="item-title">
-                                                <a href="product_detail.html" title="Sample Product">Sample Product
-                                                </a>
-                                            </div>
-                                            <div class="item-content">
-                                                <div class="item-price">
-                                                    <div class="price-box">
-                                                        <span class="regular-price">
-                                                            <span class="price">$125.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="rating">
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <div class="rating" style="width: 80%"></div>
+                                                    <div class="rating">
+                                                        <div class="ratings">
+                                                            <div class="rating-box">
+                                                                <div class="rating" style="width: 80%"></div>
+                                                            </div>
+                                                            <p class="rating-links">
+                                                                <a href="#">1 Review(s)</a>
+                                                                <span class="separator">|</span>
+                                                                <a href="#">Add Review</a>
+                                                            </p>
                                                         </div>
-                                                        <p class="rating-links">
-                                                            <a href="#">1 Review(s)</a>
-                                                            <span class="separator">|</span>
-                                                            <a href="#">Add Review</a>
-                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="item">
-                                    <div class="product-block">
-                                        <div class="product-image">
-                                            <a href="product_detail.html">
-                                                <figure class="product-display">
-                                                    <div class="sale-label sale-top-left">Sale</div>
-                                                    <img src="{{ asset('assets/web/products-images/product11.jpg') }}"
-                                                        class="product-mainpic" alt="Sample Product" />
-                                                    <img class="product-secondpic" alt="Sample Product"
-                                                        src="{{ asset('assets/web/products-images/product11.jpg') }}" />
-                                                </figure>
-                                            </a>
-                                        </div>
-                                        <div class="product-meta">
-                                            <div class="product-action">
-                                                <a class="addcart" href="shopping_cart.html">
-                                                    <i class="bi bi-cart3"></i> Add to cart
-                                                </a>
-                                                <a href="quick_view.html" class="quickview">
-                                                    <i class="bi bi-search"></i></i> Quick view</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-info">
-                                        <div class="info-inner">
-                                            <div class="item-title">
-                                                <a href="product_detail.html" title="Sample Product">Sample Product
-                                                </a>
-                                            </div>
-                                            <div class="item-content">
-                                                <div class="item-price">
-                                                    <div class="price-box">
-                                                        <span class="regular-price">
-                                                            <span class="price">$125.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="rating">
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <div class="rating" style="width: 80%"></div>
-                                                        </div>
-                                                        <p class="rating-links">
-                                                            <a href="#">1 Review(s)</a>
-                                                            <span class="separator">|</span>
-                                                            <a href="#">Add Review</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="product-block">
-                                        <div class="product-image">
-                                            <a href="product_detail.html">
-                                                <figure class="product-display">
-                                                    <div class="sale-label sale-top-left">Sale</div>
-                                                    <img src="{{ asset('assets/web/products-images/product11.jpg') }}"
-                                                        class="product-mainpic" alt="Sample Product" />
-                                                    <img class="product-secondpic" alt="Sample Product"
-                                                        src="{{ asset('assets/web/products-images/product11.jpg') }}" />
-                                                </figure>
-                                            </a>
-                                        </div>
-                                        <div class="product-meta">
-                                            <div class="product-action">
-                                                <a class="addcart" href="shopping_cart.html">
-                                                    <i class="bi bi-cart3"></i> Add to cart
-                                                </a>
-                                                <a href="quick_view.html" class="quickview">
-                                                    <i class="bi bi-search"></i></i> Quick view</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-info">
-                                        <div class="info-inner">
-                                            <div class="item-title">
-                                                <a href="product_detail.html" title="Sample Product">Sample Product
-                                                </a>
-                                            </div>
-                                            <div class="item-content">
-                                                <div class="item-price">
-                                                    <div class="price-box">
-                                                        <span class="regular-price">
-                                                            <span class="price">$125.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="rating">
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <div class="rating" style="width: 80%"></div>
-                                                        </div>
-                                                        <p class="rating-links">
-                                                            <a href="#">1 Review(s)</a>
-                                                            <span class="separator">|</span>
-                                                            <a href="#">Add Review</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="product-block">
-                                        <div class="product-image">
-                                            <a href="product_detail.html">
-                                                <figure class="product-display">
-                                                    <div class="sale-label sale-top-left">Sale</div>
-                                                    <img src="{{ asset('assets/web/products-images/product11.jpg') }}"
-                                                        class="product-mainpic" alt="Sample Product" />
-                                                    <img class="product-secondpic" alt="Sample Product"
-                                                        src="{{ asset('assets/web/products-images/product11.jpg') }}" />
-                                                </figure>
-                                            </a>
-                                        </div>
-                                        <div class="product-meta">
-                                            <div class="product-action">
-                                                <a class="addcart" href="shopping_cart.html">
-                                                    <i class="bi bi-cart3"></i> Add to cart
-                                                </a>
-                                                <a href="quick_view.html" class="quickview">
-                                                    <i class="bi bi-search"></i></i> Quick view</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-info">
-                                        <div class="info-inner">
-                                            <div class="item-title">
-                                                <a href="product_detail.html" title="Sample Product">Sample Product
-                                                </a>
-                                            </div>
-                                            <div class="item-content">
-                                                <div class="item-price">
-                                                    <div class="price-box">
-                                                        <span class="regular-price">
-                                                            <span class="price">$125.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="rating">
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <div class="rating" style="width: 80%"></div>
-                                                        </div>
-                                                        <p class="rating-links">
-                                                            <a href="#">1 Review(s)</a>
-                                                            <span class="separator">|</span>
-                                                            <a href="#">Add Review</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="product-block">
-                                        <div class="product-image">
-                                            <a href="product_detail.html">
-                                                <figure class="product-display">
-                                                    <div class="sale-label sale-top-left">Sale</div>
-                                                    <img src="{{ asset('assets/web/products-images/product11.jpg') }}"
-                                                        class="product-mainpic" alt="Sample Product" />
-                                                    <img class="product-secondpic" alt="Sample Product"
-                                                        src="{{ asset('assets/web/products-images/product11.jpg') }}" />
-                                                </figure>
-                                            </a>
-                                        </div>
-                                        <div class="product-meta">
-                                            <div class="product-action">
-                                                <a class="addcart" href="shopping_cart.html">
-                                                    <i class="bi bi-cart3"></i> Add to cart
-                                                </a>
-                                                <a href="quick_view.html" class="quickview">
-                                                    <i class="bi bi-search"></i></i> Quick view</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-info">
-                                        <div class="info-inner">
-                                            <div class="item-title">
-                                                <a href="product_detail.html" title="Sample Product">Sample Product
-                                                </a>
-                                            </div>
-                                            <div class="item-content">
-                                                <div class="item-price">
-                                                    <div class="price-box">
-                                                        <span class="regular-price">
-                                                            <span class="price">$125.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="rating">
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <div class="rating" style="width: 80%"></div>
-                                                        </div>
-                                                        <p class="rating-links">
-                                                            <a href="#">1 Review(s)</a>
-                                                            <span class="separator">|</span>
-                                                            <a href="#">Add Review</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -876,419 +351,71 @@
                             <div id="bag-seller-slider" class="product-flexslider hidden-buttons">
                                 <div class="slider-items slider-width-col3">
                                     <!-- Item -->
-                                    <div class="item">
-                                        <div class="product-block">
-                                            <div class="product-image">
-                                                <a href="product_detail.html">
-                                                    <figure class="product-display">
-                                                        <div class="new-label new-top-left">New</div>
-                                                        <img src="{{ asset('assets/web/products-images/product21.jpg') }}"
-                                                            class="product-mainpic" alt="Sample Product" />
-                                                        <img class="product-secondpic" alt="Sample Product"
-                                                            src="{{ asset('assets/web/products-images/product21.jpg') }}" />
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <div class="product-meta">
-                                                <div class="product-action">
-                                                    <a class="addcart" href="javascript:;">
-                                                        <i class="bi bi-cart3"></i>
-                                                    </a>
-                                                    <a href="quick_view.html" class="quickview">
-                                                        <i class="bi bi-search"></i></i>
+                                    @foreach ($products->reverse() as $product)
+                                        <div class="item">
+                                            <div class="product-block">
+                                                <div class="product-image">
+                                                    <a href="{{ route('detail', ['id' => $product->id]) }}">
+                                                        <figure class="product-display">
+                                                            <div class="new-label new-top-left">New</div>
+                                                            <img src="{{ asset($product->image_features->first()->url_img) }}"
+                                                                class="product-mainpic" alt="Sample Product" />
+                                                            <img class="product-secondpic" alt="Sample Product"
+                                                                src="{{ asset($product->image_features->first()->url_img) }}" />
+                                                        </figure>
                                                     </a>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <a href="product_detail.html" title="Sample Product">Sample
-                                                        Product</a>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <p class="old-price">
-                                                                <span class="price-label">Regular Price:</span>
-                                                                <span class="price"> $100.00 </span>
-                                                            </p>
-                                                            <p class="special-price">
-                                                                <span class="price-label">Special Price</span>
-                                                                <span class="price"> $90.00 </span>
-                                                            </p>
-                                                        </div>
+                                                <div class="product-meta">
+                                                    <div class="product-action">
+                                                        <a class="addcart" href="javascript:;">
+                                                            <i class="bi bi-cart3"></i>
+                                                        </a>
+                                                        <a href="quick_view.html" class="quickview">
+                                                            <i class="bi bi-search"></i></i>
+                                                        </a>
                                                     </div>
-                                                    <div class="rating">
-                                                        <div class="ratings">
-                                                            <div class="rating-box">
-                                                                <div class="rating" style="width: 0%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="item-info">
+                                                <div class="info-inner">
+                                                    <div class="item-title">
+                                                        <a href="product_detail.html"
+                                                            title="Sample Product">{{ $product->name }}</a>
+                                                    </div>
+                                                    <div class="item-content">
+                                                        <div class="item-price">
+                                                            <div class="price-box">
+                                                                {{-- <p class="old-price">
+                                                                    <span class="price-label">Regular Price:</span>
+                                                                    <span
+                                                                        class="price">{{ number_format($product->price, 2, '.', ',') }}
+                                                                        VND </span>
+                                                                </p> --}}
+                                                                <p class="special-price">
+                                                                    <span class="price-label">Special Price</span>
+                                                                    <span
+                                                                        class="price">{{ number_format($product->price, 2, '.', ',') }}
+                                                                        VND </span>
+                                                                </p>
                                                             </div>
-                                                            <p class="rating-links">
-                                                                <a href="#">1 Review(s)</a>
-                                                                <span class="separator">|</span>
-                                                                <a href="#">Add Review</a>
-                                                            </p>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product-block">
-                                            <div class="product-image">
-                                                <a href="product_detail.html">
-                                                    <figure class="product-display">
-                                                        <div class="new-label new-top-left">New</div>
-                                                        <img src="{{ asset('assets/web/products-images/product21.jpg') }}"
-                                                            class="product-mainpic" alt="Sample Product" />
-                                                        <img class="product-secondpic" alt="Sample Product"
-                                                            src="{{ asset('assets/web/products-images/product21.jpg') }}" />
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <div class="product-meta">
-                                                <div class="product-action">
-                                                    <a class="addcart" href="javascript:;">
-                                                        <i class="bi bi-cart3"></i>
-                                                    </a>
-                                                    <a href="quick_view.html" class="quickview">
-                                                        <i class="bi bi-search"></i></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <a href="product_detail.html" title="Sample Product">Sample
-                                                        Product</a>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <p class="old-price">
-                                                                <span class="price-label">Regular Price:</span>
-                                                                <span class="price"> $100.00 </span>
-                                                            </p>
-                                                            <p class="special-price">
-                                                                <span class="price-label">Special Price</span>
-                                                                <span class="price"> $90.00 </span>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <div class="ratings">
-                                                            <div class="rating-box">
-                                                                <div class="rating" style="width: 0%"></div>
+                                                        <div class="rating">
+                                                            <div class="ratings">
+                                                                <div class="rating-box">
+                                                                    <div class="rating" style="width: 0%"></div>
+                                                                </div>
+                                                                <p class="rating-links">
+                                                                    <a href="#">1 Review(s)</a>
+                                                                    <span class="separator">|</span>
+                                                                    <a href="#">Add Review</a>
+                                                                </p>
                                                             </div>
-                                                            <p class="rating-links">
-                                                                <a href="#">1 Review(s)</a>
-                                                                <span class="separator">|</span>
-                                                                <a href="#">Add Review</a>
-                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product-block">
-                                            <div class="product-image">
-                                                <a href="product_detail.html">
-                                                    <figure class="product-display">
-                                                        <div class="new-label new-top-left">New</div>
-                                                        <img src="{{ asset('assets/web/products-images/product21.jpg') }}"
-                                                            class="product-mainpic" alt="Sample Product" />
-                                                        <img class="product-secondpic" alt="Sample Product"
-                                                            src="{{ asset('assets/web/products-images/product21.jpg') }}" />
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <div class="product-meta">
-                                                <div class="product-action">
-                                                    <a class="addcart" href="javascript:;">
-                                                        <i class="bi bi-cart3"></i>
-                                                    </a>
-                                                    <a href="quick_view.html" class="quickview">
-                                                        <i class="bi bi-search"></i></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <a href="product_detail.html" title="Sample Product">Sample
-                                                        Product</a>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <p class="old-price">
-                                                                <span class="price-label">Regular Price:</span>
-                                                                <span class="price"> $100.00 </span>
-                                                            </p>
-                                                            <p class="special-price">
-                                                                <span class="price-label">Special Price</span>
-                                                                <span class="price"> $90.00 </span>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <div class="ratings">
-                                                            <div class="rating-box">
-                                                                <div class="rating" style="width: 0%"></div>
-                                                            </div>
-                                                            <p class="rating-links">
-                                                                <a href="#">1 Review(s)</a>
-                                                                <span class="separator">|</span>
-                                                                <a href="#">Add Review</a>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product-block">
-                                            <div class="product-image">
-                                                <a href="product_detail.html">
-                                                    <figure class="product-display">
-                                                        <div class="new-label new-top-left">New</div>
-                                                        <img src="{{ asset('assets/web/products-images/product21.jpg') }}"
-                                                            class="product-mainpic" alt="Sample Product" />
-                                                        <img class="product-secondpic" alt="Sample Product"
-                                                            src="{{ asset('assets/web/products-images/product21.jpg') }}" />
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <div class="product-meta">
-                                                <div class="product-action">
-                                                    <a class="addcart" href="javascript:;">
-                                                        <i class="bi bi-cart3"></i>
-                                                    </a>
-                                                    <a href="quick_view.html" class="quickview">
-                                                        <i class="bi bi-search"></i></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <a href="product_detail.html" title="Sample Product">Sample
-                                                        Product</a>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <p class="old-price">
-                                                                <span class="price-label">Regular Price:</span>
-                                                                <span class="price"> $100.00 </span>
-                                                            </p>
-                                                            <p class="special-price">
-                                                                <span class="price-label">Special Price</span>
-                                                                <span class="price"> $90.00 </span>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <div class="ratings">
-                                                            <div class="rating-box">
-                                                                <div class="rating" style="width: 0%"></div>
-                                                            </div>
-                                                            <p class="rating-links">
-                                                                <a href="#">1 Review(s)</a>
-                                                                <span class="separator">|</span>
-                                                                <a href="#">Add Review</a>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product-block">
-                                            <div class="product-image">
-                                                <a href="product_detail.html">
-                                                    <figure class="product-display">
-                                                        <div class="new-label new-top-left">New</div>
-                                                        <img src="{{ asset('assets/web/products-images/product21.jpg') }}"
-                                                            class="product-mainpic" alt="Sample Product" />
-                                                        <img class="product-secondpic" alt="Sample Product"
-                                                            src="{{ asset('assets/web/products-images/product21.jpg') }}" />
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <div class="product-meta">
-                                                <div class="product-action">
-                                                    <a class="addcart" href="javascript:;">
-                                                        <i class="bi bi-cart3"></i>
-                                                    </a>
-                                                    <a href="quick_view.html" class="quickview">
-                                                        <i class="bi bi-search"></i></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <a href="product_detail.html" title="Sample Product">Sample
-                                                        Product</a>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <p class="old-price">
-                                                                <span class="price-label">Regular Price:</span>
-                                                                <span class="price"> $100.00 </span>
-                                                            </p>
-                                                            <p class="special-price">
-                                                                <span class="price-label">Special Price</span>
-                                                                <span class="price"> $90.00 </span>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <div class="ratings">
-                                                            <div class="rating-box">
-                                                                <div class="rating" style="width: 0%"></div>
-                                                            </div>
-                                                            <p class="rating-links">
-                                                                <a href="#">1 Review(s)</a>
-                                                                <span class="separator">|</span>
-                                                                <a href="#">Add Review</a>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product-block">
-                                            <div class="product-image">
-                                                <a href="product_detail.html">
-                                                    <figure class="product-display">
-                                                        <div class="new-label new-top-left">New</div>
-                                                        <img src="{{ asset('assets/web/products-images/product21.jpg') }}"
-                                                            class="product-mainpic" alt="Sample Product" />
-                                                        <img class="product-secondpic" alt="Sample Product"
-                                                            src="{{ asset('assets/web/products-images/product21.jpg') }}" />
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <div class="product-meta">
-                                                <div class="product-action">
-                                                    <a class="addcart" href="javascript:;">
-                                                        <i class="bi bi-cart3"></i>
-                                                    </a>
-                                                    <a href="quick_view.html" class="quickview">
-                                                        <i class="bi bi-search"></i></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <a href="product_detail.html" title="Sample Product">Sample
-                                                        Product</a>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <p class="old-price">
-                                                                <span class="price-label">Regular Price:</span>
-                                                                <span class="price"> $100.00 </span>
-                                                            </p>
-                                                            <p class="special-price">
-                                                                <span class="price-label">Special Price</span>
-                                                                <span class="price"> $90.00 </span>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <div class="ratings">
-                                                            <div class="rating-box">
-                                                                <div class="rating" style="width: 0%"></div>
-                                                            </div>
-                                                            <p class="rating-links">
-                                                                <a href="#">1 Review(s)</a>
-                                                                <span class="separator">|</span>
-                                                                <a href="#">Add Review</a>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product-block">
-                                            <div class="product-image">
-                                                <a href="product_detail.html">
-                                                    <figure class="product-display">
-                                                        <div class="new-label new-top-left">New</div>
-                                                        <img src="{{ asset('assets/web/products-images/product21.jpg') }}"
-                                                            class="product-mainpic" alt="Sample Product" />
-                                                        <img class="product-secondpic" alt="Sample Product"
-                                                            src="{{ asset('assets/web/products-images/product21.jpg') }}" />
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <div class="product-meta">
-                                                <div class="product-action">
-                                                    <a class="addcart" href="javascript:;">
-                                                        <i class="bi bi-cart3"></i>
-                                                    </a>
-                                                    <a href="quick_view.html" class="quickview">
-                                                        <i class="bi bi-search"></i></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <a href="product_detail.html" title="Sample Product">Sample
-                                                        Product</a>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <p class="old-price">
-                                                                <span class="price-label">Regular Price:</span>
-                                                                <span class="price"> $100.00 </span>
-                                                            </p>
-                                                            <p class="special-price">
-                                                                <span class="price-label">Special Price</span>
-                                                                <span class="price"> $90.00 </span>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <div class="ratings">
-                                                            <div class="rating-box">
-                                                                <div class="rating" style="width: 0%"></div>
-                                                            </div>
-                                                            <p class="rating-links">
-                                                                <a href="#">1 Review(s)</a>
-                                                                <span class="separator">|</span>
-                                                                <a href="#">Add Review</a>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

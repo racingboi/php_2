@@ -1,4 +1,5 @@
 import "./bootstrap";
+import "./dashboard/upload";
 // import "./dashboard/script";
 import Alpine from "alpinejs";
 

@@ -30,10 +30,10 @@
             <div class="assetBlock">
                 <div style="height: 20px; overflow: hidden" id="slideshow">
                     <p style="display: block">
-                        Super Market! - <span>50%</span> OFF on fresh Vegetables &gt;
+                        Siêu thị! - <span>50%</span> TẮT rau tươi &gt;
                     </p>
                     <p style="display: none">
-                        <span>15%</span> Discount! - on Ayurvedic Foods &gt;
+                        <span>15%</span> Giảm giá! - về thực phẩm Ayurvedic &gt;
                     </p>
                 </div>
             </div>
@@ -46,10 +46,10 @@
                         <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">
                             <div class="phone hidden-xs">
                                 <div class="phone-box">
-                                    <strong>Call:</strong> <span>+(888) 123-4567 </span>
+                                    <strong>Gọi:</strong> <span>0706252156</span>
                                 </div>
                             </div>
-                            <div class="welcome-msg hidden-xs">Default welcome msg!</div>
+                            <div class="welcome-msg hidden-xs">Tin nhắn chào mừng mặc định!</div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
                             <div class="top-cart-contain">
@@ -65,7 +65,7 @@
                                     </div>
                                     <div>
                                         <div style="display: none" class="top-cart-content arrow_box">
-                                            <div class="block-subtitle">Recently added item(s)</div>
+                                            <div class="block-subtitle">(Các) mục được thêm gần đây</div>
                                             <ul id="cart-sidebar" class="mini-products-list">
                                                 <li class="item last odd">
                                                     <a class="product-image" href="product_detail.html"
@@ -75,9 +75,9 @@
                                                     <div class="detail-item">
                                                         <div class="product-details">
                                                             <a href="#" title="Remove This Item" onClick=""
-                                                                class="btn-remove1">Remove This Item</a>
-                                                            <a class="btn-edit" title="Edit item" href="#">Edit
-                                                                item</a>
+                                                                class="btn-remove1">Xóa mục này</a>
+                                                            <a class="btn-edit" title="Edit item" href="#">Chỉnh
+                                                                sửa mục</a>
                                                             <p class="product-name">
                                                                 <a href="product_detail.html"
                                                                     title=" Lucky Brand Janis ">Sample Product</a>
@@ -196,9 +196,9 @@
                         <div class="nav-inner">
                             <ul id="nav" class="">
                                 <li class="level0 parent drop-menu">
-                                    <a href="index.html" class="active"><span>Home</span> </a>
+                                    <a href="index.html" class=""><span>Trang chủ</span> </a>
                                 </li>
-                                <li class="level0 parent drop-menu">
+                                {{-- <li class="level0 parent drop-menu">
                                     <a href="#"><span>Pages</span> </a>
                                     <ul style="display: none" class="level1">
                                         <li class="level1 first">
@@ -268,292 +268,73 @@
                                             <a href="404error.html"> <span>404 Error Page</span></a>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> --}}
                                 <li class="level0 nav-5 level-top first">
                                     <a href="grid.html" class="level-top">
-                                        <span>Vegetables</span>
+                                        <span>Sản Phẩm</span>
                                     </a>
                                     <div style="display: none; left: 0px" class="level0-wrapper dropdown-6col">
                                         <div class="level0-wrapper2">
                                             <div class="nav-block nav-block-center grid12-8 itemgrid itemgrid-4col">
                                                 <ul class="level0">
-                                                    <li class="level1 nav-6-1 parent item">
-                                                        <a href="#.html" class=""><span>Cabbage</span></a>
-                                                        <!--sub sub category-->
 
-                                                        <ul class="level1">
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a href="product_detail.html"
-                                                                    class=""><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                        </ul>
-                                                        <!--level1-->
-
-                                                        <!--sub sub category-->
-                                                    </li>
-                                                    <li class="level1 nav-6-1 parent item">
-                                                        <a href="#/dresses.html"
-                                                            class=""><span>Carrot</span></a>
-                                                        <!--sub sub category-->
-
-                                                        <ul class="level1">
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                        </ul>
-                                                        <!--level1-->
-
-                                                        <!--sub sub category-->
-                                                    </li>
-                                                    <li class="level1 nav-6-1 parent item">
-                                                        <a href="#/styliest-bag.html"><span>Papaw</span></a>
-                                                        <!--sub sub category-->
-                                                        <ul class="level1">
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                        </ul>
-                                                        <!--level1-->
-                                                        <!--sub sub category-->
-                                                    </li>
-                                                    <!--level1 nav-6-1 parent item-->
-                                                    <li class="level1 nav-6-1 parent item">
-                                                        <a href="#/material-bag.html"><span>Potato</span></a>
-                                                        <!--sub sub category-->
-                                                        <ul class="level1">
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                        </ul>
-                                                        <!--level1-->
-                                                        <!--sub sub category-->
-                                                    </li>
-                                                    <!--level1 nav-6-1 parent item-->
-                                                    <li class="level1 nav-6-1 parent item">
-                                                        <a href="#/shoes.html"><span>Nuts</span></a>
-                                                        <!--sub sub category-->
-                                                        <ul class="level1">
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                        </ul>
-                                                        <!--level1-->
-                                                        <!--sub sub category-->
-                                                    </li>
-                                                    <!--level1 nav-6-1 parent item-->
-                                                    <li class="level1 nav-6-1 parent item">
-                                                        <a href="#/jwellery.html"><span>Pineapple</span></a>
-                                                        <!--sub sub category-->
-                                                        <ul class="level1">
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail-2.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                        </ul>
-                                                        <!--level1-->
-                                                        <!--sub sub category-->
-                                                    </li>
-                                                    <!--level1 nav-6-1 parent item-->
-                                                    <li class="level1 nav-6-1 parent item">
-                                                        <a href="#/swimwear.html"><span>Mango</span></a>
-                                                        <!--sub sub category-->
-                                                        <ul class="level1">
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                        </ul>
-                                                        <!--level1-->
-                                                        <!--sub sub category-->
-                                                    </li>
-                                                    <!--level1 nav-6-1 parent item-->
-                                                    <!--level1 nav-6-1 parent item-->
-                                                    <li class="level1 nav-6-1 parent item">
-                                                        <a href="#/swimwear.html"><span>Carrot</span></a>
-                                                        <!--sub sub category-->
-                                                        <ul class="level1">
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                            <li class="level2 nav-6-1-1">
-                                                                <a
-                                                                    href="product_detail.html"><span>Subcategory</span></a>
-                                                            </li>
-                                                            <!--level2 nav-6-1-1-->
-                                                        </ul>
-                                                        <!--level1-->
-                                                        <!--sub sub category-->
-                                                    </li>
-                                                    <!--level1 nav-6-1 parent item-->
+                                                    @foreach ($category as $a)
+                                                        <li class="level1 nav-6-1 parent item">
+                                                            <a href=""
+                                                                class=""><span>{{ $a->name }}</span></a>
+                                                            <!--sub sub category-->
+                                                            <ul class="">
+                                                                @foreach ($a->subcategories as $sub)
+                                                                    <li class="level2 nav-6-1-1">
+                                                                        <a href="product_detail.html"
+                                                                            class=""><span>{{ $sub->name }}</span></a>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </li>
+                                                    @endforeach
                                                 </ul>
                                                 <!--level0-->
                                             </div>
                                             <div class="nav-block nav-block-right std grid12-4">
-                                                <div class="cat_pr_info">
-                                                    <div class="cat_img">
-                                                        <img alt="Sample Product"
-                                                            src="../products-images/product25.jpg" width="175" />
+                                                @foreach ($products as $a)
+                                                    <div class="cat_pr_info">
+                                                        <div class="cat_img">
+                                                            <img alt="Sample Product"
+                                                                src="{{ asset($a->image_features->first()->url_img) }}"
+                                                                width="175" />
+                                                        </div>
+                                                        <div class="products-info">
+                                                            <div class="pr-title">
+                                                                {{ $a->name }}
+                                                            </div>
+                                                            <div class="price-box">
+                                                                <p class="special-price">
+                                                                    <span class="price-label">Special Price</span>
+                                                                    <span class="price"> {{ $a->price }} </span>
+                                                                </p>
+                                                            </div>
+                                                            <div class="push_text">
+                                                                {{ Illuminate\Support\Str::limit($a->description, 100) }}
+
+                                                            </div>
+                                                            <div class="cat-bnt">
+                                                                <button type="button" title="Add to Cart"
+                                                                    class="button btn-cart">
+                                                                    <span>MUA NGAY</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="products-info">
-                                                        <div class="pr-title">
-                                                            Lorem Ipsum is simply dummy
-                                                        </div>
-                                                        <div class="price-box">
-                                                            <p class="old-price">
-                                                                <span class="price-label">Regular Price:</span>
-                                                                <span class="price"> $567.00 </span>
-                                                            </p>
-                                                            <p class="special-price">
-                                                                <span class="price-label">Special Price</span>
-                                                                <span class="price"> $456.00 </span>
-                                                            </p>
-                                                        </div>
-                                                        <div class="push_text">
-                                                            Lorem Ipsum is simply dummy text of the printing
-                                                        </div>
-                                                        <div class="cat-bnt">
-                                                            <button type="button" title="Add to Cart"
-                                                                class="button btn-cart">
-                                                                <span>BUY IT NOW</span>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                @break
+                                            @endforeach
                                         </div>
                                     </div>
-                                </li>
-                                <li class="level0 nav-7 level-top parent">
+                                </div>
+                            </li>
+                            {{-- <li class="level0 nav-7 level-top parent">
                                     <a href="#/electronics.html" class="level-top">
-                                        <span>Fruits</span>
+                                        <span>trái cây</span>
                                     </a>
                                     <div style="display: none; left: 0px" class="level0-wrapper dropdown-6col">
                                         <div class="level0-wrapper2">
@@ -750,13 +531,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                </li>
-                                <li class="level0 parent drop-menu">
+                                </li> --}}
+                            {{-- <li class="level0 parent drop-menu">
                                     <a href="#"><span>Dairy</span>
                                         <!--<span class="category-label-hot">Hot</span> -->
                                     </a>
-                                </li>
-                                <li class="level0 nav-6 level-top parent">
+                                </li> --}}
+                            {{-- <li class="level0 nav-6 level-top parent">
                                     <a href="#/fashion.html" class="level-top">
                                         <span>Salad</span>
                                     </a>
@@ -926,297 +707,296 @@
                                             </div>
                                         </div>
                                     </div>
-                                </li>
-                                <li class="level0 nav-7 level-top parent">
-                                    <a class="level-top" href="#/electronics.html">
-                                        <span>Snacks</span>
-                                    </a>
-                                </li>
-                                <li class="nav-custom-link level0 level-top parent">
-                                    <a class="level-top" href="#"><span>Custom</span></a>
-                                </li>
-                            </ul>
-                        </div>
+                                </li> --}}
+                            <li class="level0 nav-7 level-top parent">
+                                <a class="level-top" href="#/electronics.html">
+                                    <span>Snacks</span>
+                                </a>
+                            </li>
+                            <li class="nav-custom-link level0 level-top parent">
+                                <a class="level-top" href="#"><span>Custom</span></a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </nav>
-        <!-- end nav -->
-        <!-- Slider -->
-        @yield('content')
-        <!-- End middle slider -->
+        </div>
+    </nav>
+    <!-- end nav -->
+    <!-- Slider -->
+    @yield('content')
+    <!-- End middle slider -->
 
-        <!-- End Latest Blog -->
-        @yield('footer')
-        <div class="our-features-box">
+    <!-- End Latest Blog -->
+    @yield('footer')
+    <div class="our-features-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-xs-12 col-sm-4">
+                    <div class="feature-box">
+                        <i class="fas fa-truck"></i>
+                        <div class="content">Miễn phí vận chuyển</div>
+                        <span>Việc chăm sóc bệnh nhân, theo dõi sự trưởng thành của bệnh nhân là rất quan trọng
+                            nhưng nó được thực hiện giống như công việc.</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12 col-sm-4">
+                    <div class="feature-box">
+                        <i class="fas fa-heart"></i>
+                        <div class="content">Hỗ trợ khách hàng</div>
+                        <span>Việc chăm sóc bệnh nhân, theo dõi sự trưởng thành của bệnh nhân là rất quan trọng
+                            nhưng nó được thực hiện giống như công việc.</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12 col-sm-4">
+                    <div class="feature-box">
+                        <i class="fas fa-arrow-left"></i>
+                        <div class="content">30 ngày hoàn tiền</div>
+                        <span>Việc chăm sóc bệnh nhân, theo dõi sự trưởng thành của bệnh nhân là rất quan trọng
+                            nhưng nó được thực hiện giống như công việc.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="newsletter-wrap">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4 col-xs-12 col-sm-4">
-                        <div class="feature-box">
-                            <i class="fas fa-truck"></i>
-                            <div class="content">Free Shipping</div>
-                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                do eiusmod tempor incididunt ut labore.</span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-xs-12 col-sm-4">
-                        <div class="feature-box">
-                            <i class="fas fa-heart"></i>
-                            <div class="content">Customer Support</div>
-                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                do eiusmod tempor incididunt ut labore.</span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-xs-12 col-sm-4">
-                        <div class="feature-box">
-                            <i class="fas fa-arrow-left"></i>
-                            <div class="content">30 days money back</div>
-                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                do eiusmod tempor incididunt ut labore.</span>
+                    <div class="col-xs-12">
+                        <div class="newsletter">
+                            <form>
+                                <h4><span>Đăng ký nhận ưu đãi</span></h4>
+                                <p>
+                                    Điều rất quan trọng là khách hàng phải chú ý đến quá trình hấp thụ. Nếu điều đó
+                                    xảy ra, chúng tôi buộc tội anh ấy đã phải chịu đựng rắc rối trong quá trình tập
+                                    luyện.
+                                </p>
+                                <input type="text" placeholder="Enter your email address"
+                                    class="input-text required-entry validate-email"
+                                    title="Sign up for our newsletter" id="newsletter1" name="email" />
+                                <button class="subscribe" title="Subscribe" type="submit">
+                                    <span>Đặt mua</span>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <footer class="footer">
-            <div class="newsletter-wrap">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="newsletter">
-                                <form>
-                                    <h4><span>Subscribe for offers</span></h4>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Eveniet cumque, perferendis accusamus porro illo
-                                        exercitationem molestias.
-                                    </p>
-                                    <input type="text" placeholder="Enter your email address"
-                                        class="input-text required-entry validate-email"
-                                        title="Sign up for our newsletter" id="newsletter1" name="email" />
-                                    <button class="subscribe" title="Subscribe" type="submit">
-                                        <span>Subscribe</span>
-                                    </button>
-                                </form>
+        <!--newsletter-->
+
+        <div class="footer-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-4">
+                        <div class="footer-logo">
+                            <a href="#" title="Logo"><img
+                                    src="{{ asset('assets/web/images/footer-logo.png') }}" alt="Logo" /></a>
+                        </div>
+                        <p>
+                            Khách hàng rất quan trọng, khách hàng sẽ được khách hàng theo đuổi. Đó là một đội xe
+                            hơi, xe hơi và xe hơi. Nói một cách nhẹ nhàng thì không cần phải lo lắng.
+                        </p>
+                    </div>
+                    <div class="col-md-2 col-sm-4">
+                        <h4>Dịch vụ khách hàng</h4>
+                        <ul class="links">
+                            <li class="first">
+                                <a href="#" title="Contact us">Tài khoản của tôi</a>
+                            </li>
+                            <li><a href="#" title="About us">lịch sử đơn hàng</a></li>
+                            <li><a href="#" title="faq">Câu hỏi thường gặp</a></li>
+                            <li><a href="#" title="Popular Searches">Khuyến mãi</a></li>
+                            <li class="last">
+                                <a href="#" title="Where is my order?">Trung tâm trợ giúp</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 col-sm-4">
+                        <h4>Tập đoàn</h4>
+                        <ul class="links">
+                            <li class="first">
+                                <a title="Your Account" href="#">Về chúng tôi</a>
+                            </li>
+                            <li><a title="Information" href="#">Dịch vụ khách hàng</a></li>
+                            <li><a title="Addresses" href="#">Công ty</a></li>
+                            <li><a title="Addresses" href="#">Quan hệ đầu tư</a></li>
+                            <li class="last">
+                                <a title="Orders History" href="#">tìm kiếm nâng cao</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 col-sm-4">
+                        <h4>tại sao chọn chúng tôi</h4>
+                        <ul class="links">
+                            <li>
+                                <a href="#">Hướng dẫn mua sắm</a>
+                            </li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Công ty</a></li>
+                            <li>
+                                <a href="#">Quan hệ đầu tư</a>
+                            </li>
+                            <li class="last">
+                                <a href="contact-us.html">Liên hệ chúng tôi</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-4">
+                        <h4>Liên hệ chúng tôi</h4>
+                        <div class="contacts-info">
+                            <address>
+                                160 ymoan
+                                <br />BMT
+                            </address>
+                            <div class="phone-footer">
+                                0706252156
+                            </div>
+                            <div class="email-footer">
+
+                                <a href="mailto:support@magikcommerce.com">nexus@themesground.com</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--newsletter-->
-
-            <div class="footer-middle">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-4">
-                            <div class="footer-logo">
-                                <a href="#" title="Logo"><img
-                                        src="{{ asset('assets/web/images/footer-logo.png') }}" alt="Logo" /></a>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Phasellus diam arcu, placerat ut odio vel, ultrices vehicula
-                                erat. Ut mauris diam, egestas nec lacus sit amet.
-                            </p>
+        </div>
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="payment-accept d-flex">
+                            <img src="{{ asset('assets/web/images/payment-1.png') }}" alt="" />
+                            <img src="{{ asset('assets/web/images/payment-2.png') }}" alt="" />
+                            <img src="{{ asset('assets/web/images/payment-3.png') }}" alt="" />
+                            <img src="{{ asset('assets/web/images/payment-4.png') }}" alt="" />
                         </div>
-                        <div class="col-md-2 col-sm-4">
-                            <h4>Customer Service</h4>
-                            <ul class="links">
-                                <li class="first">
-                                    <a href="#" title="Contact us">My Account</a>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="social">
+                            <ul>
+                                <li class="fb">
+                                    <a href="#">
+                                        <i class="fb fab fa-facebook-f"></i>
+                                    </a>
                                 </li>
-                                <li><a href="#" title="About us">Order History</a></li>
-                                <li><a href="#" title="faq">FAQ</a></li>
-                                <li><a href="#" title="Popular Searches">Specials</a></li>
-                                <li class="last">
-                                    <a href="#" title="Where is my order?">Help Center</a>
+                                <li class="tw">
+                                    <a href="#">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
                                 </li>
+                                <li class="googleplus">
+                                    <a href="#">
+                                        <i class="fab fa-google-plus-g"></i>
+                                    </a>
+                                </li>
+                                <li class="rss"><a href="#"><i class="fas fa-rss"></i></a></li>
+                                <li class="pinterest"><a href="#"><i class="fab fa-pinterest"></i></a>
+                                </li>
+                                <li class="linkedin"><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                </li>
+                                <li class="youtube"><a href="#"><i class="fab fa-youtube"></i></a></li>
+
                             </ul>
                         </div>
-                        <div class="col-md-2 col-sm-4">
-                            <h4>Corporation</h4>
-                            <ul class="links">
-                                <li class="first">
-                                    <a title="Your Account" href="#">About us</a>
-                                </li>
-                                <li><a title="Information" href="#">Customer Service</a></li>
-                                <li><a title="Addresses" href="#">Company</a></li>
-                                <li><a title="Addresses" href="#">Investor Relations</a></li>
-                                <li class="last">
-                                    <a title="Orders History" href="#">Advanced Search</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-2 col-sm-4">
-                            <h4>Why Choose Us</h4>
-                            <ul class="links">
-                                <li>
-                                    <a href="#">Shopping Guide</a>
-                                </li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Company</a></li>
-                                <li>
-                                    <a href="#">Investor Relations</a>
-                                </li>
-                                <li class="last">
-                                    <a href="contact-us.html">Contact Us</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-3 col-sm-4">
-                            <h4>Contact us</h4>
-                            <div class="contacts-info">
-                                <address>
-                                    ThemesGround, 789 Main rd,
-                                    <br />Anytown, CA 12345 USA
-                                </address>
-                                <div class="phone-footer">
-                                    +(888) 123-4567
-                                </div>
-                                <div class="email-footer">
-
-                                    <a href="mailto:support@magikcommerce.com">nexus@themesground.com</a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-            <div class="footer-top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6">
-                            <div class="payment-accept d-flex">
-                                <img src="{{ asset('assets/web/images/payment-1.png') }}" alt="" />
-                                <img src="{{ asset('assets/web/images/payment-2.png') }}" alt="" />
-                                <img src="{{ asset('assets/web/images/payment-3.png') }}" alt="" />
-                                <img src="{{ asset('assets/web/images/payment-4.png') }}" alt="" />
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6">
-                            <div class="social">
-                                <ul>
-                                    <li class="fb">
-                                        <a href="#">
-                                            <i class="fb fab fa-facebook-f"></i>
-                                        </a>
-                                    </li>
-                                    <li class="tw">
-                                        <a href="#">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li class="googleplus">
-                                        <a href="#">
-                                            <i class="fab fa-google-plus-g"></i>
-                                        </a>
-                                    </li>
-                                    <li class="rss"><a href="#"><i class="fas fa-rss"></i></a></li>
-                                    <li class="pinterest"><a href="#"><i class="fab fa-pinterest"></i></a>
-                                    </li>
-                                    <li class="linkedin"><a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                    </li>
-                                    <li class="youtube"><a href="#"><i class="fab fa-youtube"></i></a></li>
-
-                                </ul>
-                            </div>
-                        </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12 coppyright">
+                        &copy; DUCPRO
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12 col-xs-12 coppyright">
-                            &copy; 2016 Themesground. All Rights Reserved.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- End Footer -->
-    </div>
-    <!-- JavaScript -->
-    <script type="text/javascript" src="{{ asset('assets/web/js/jquery.min.js') }} "></script>
-    <script type="text/javascript" src="{{ asset('assets/web/js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/web/js/parallax.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/web/js/common.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/web/js/revslider.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/web/js/jquery.mobile-menu.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/web/js/owl.carousel.min.js') }}"></script>
+        </div>
+    </footer>
+    <!-- End Footer -->
+</div>
+<!-- JavaScript -->
+<script type="text/javascript" src="{{ asset('assets/web/js/jquery.min.js') }} "></script>
+<script type="text/javascript" src="{{ asset('assets/web/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/web/js/parallax.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/web/js/common.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/web/js/revslider.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/web/js/jquery.mobile-menu.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/web/js/owl.carousel.min.js') }}"></script>
 
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            jQuery("#rev_slider_4").show().revolution({
-                dottedOverlay: "none",
-                delay: 5000,
-                startwidth: 1000,
-                startheight: 900,
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery("#rev_slider_4").show().revolution({
+            dottedOverlay: "none",
+            delay: 5000,
+            startwidth: 1000,
+            startheight: 900,
 
-                hideThumbs: 200,
-                thumbWidth: 200,
-                thumbHeight: 50,
-                thumbAmount: 2,
+            hideThumbs: 200,
+            thumbWidth: 200,
+            thumbHeight: 50,
+            thumbAmount: 2,
 
-                navigationType: "thumb",
-                navigationArrows: "solo",
-                navigationStyle: "round",
+            navigationType: "thumb",
+            navigationArrows: "solo",
+            navigationStyle: "round",
 
-                touchenabled: "on",
-                onHoverStop: "on",
+            touchenabled: "on",
+            onHoverStop: "on",
 
-                swipe_velocity: 0.7,
-                swipe_min_touches: 1,
-                swipe_max_touches: 1,
-                drag_block_vertical: false,
+            swipe_velocity: 0.7,
+            swipe_min_touches: 1,
+            swipe_max_touches: 1,
+            drag_block_vertical: false,
 
-                spinner: "spinner0",
-                keyboardNavigation: "off",
+            spinner: "spinner0",
+            keyboardNavigation: "off",
 
-                navigationHAlign: "center",
-                navigationVAlign: "bottom",
-                navigationHOffset: 0,
-                navigationVOffset: 20,
+            navigationHAlign: "center",
+            navigationVAlign: "bottom",
+            navigationHOffset: 0,
+            navigationVOffset: 20,
 
-                soloArrowLeftHalign: "left",
-                soloArrowLeftValign: "center",
-                soloArrowLeftHOffset: 20,
-                soloArrowLeftVOffset: 0,
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 20,
+            soloArrowLeftVOffset: 0,
 
-                soloArrowRightHalign: "right",
-                soloArrowRightValign: "center",
-                soloArrowRightHOffset: 20,
-                soloArrowRightVOffset: 0,
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 20,
+            soloArrowRightVOffset: 0,
 
-                shadow: 0,
-                fullWidth: "on",
-                fullScreen: "off",
+            shadow: 0,
+            fullWidth: "on",
+            fullScreen: "off",
 
-                stopLoop: "off",
-                stopAfterLoops: -1,
-                stopAtSlide: -1,
+            stopLoop: "off",
+            stopAfterLoops: -1,
+            stopAtSlide: -1,
 
-                shuffle: "off",
+            shuffle: "off",
 
-                autoHeight: "off",
-                forceFullWidth: "on",
-                fullScreenAlignForce: "off",
-                minFullScreenHeight: 0,
-                hideNavDelayOnMobile: 1500,
+            autoHeight: "off",
+            forceFullWidth: "on",
+            fullScreenAlignForce: "off",
+            minFullScreenHeight: 0,
+            hideNavDelayOnMobile: 1500,
 
-                hideThumbsOnMobile: "off",
-                hideBulletsOnMobile: "off",
-                hideArrowsOnMobile: "off",
-                hideThumbsUnderResolution: 0,
+            hideThumbsOnMobile: "off",
+            hideBulletsOnMobile: "off",
+            hideArrowsOnMobile: "off",
+            hideThumbsUnderResolution: 0,
 
-                hideSliderAtLimit: 0,
-                hideCaptionAtLimit: 0,
-                hideAllCaptionAtLilmit: 0,
-                startWithSlide: 0,
-                fullScreenOffsetContainer: "",
-            });
+            hideSliderAtLimit: 0,
+            hideCaptionAtLimit: 0,
+            hideAllCaptionAtLilmit: 0,
+            startWithSlide: 0,
+            fullScreenOffsetContainer: "",
         });
-    </script>
+    });
+</script>
 </body>
 
 </html>

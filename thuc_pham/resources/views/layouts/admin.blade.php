@@ -24,6 +24,9 @@
 
     <link rel="stylesheet" href="{{ asset('assets/dashboard/css/style.css') }}">
 
+    <!-- Example: Include Bootstrap CSS from a CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @vite(['resources/css/admin.css', 'resources/js/admin.js'])
 </head>
@@ -81,6 +84,15 @@
                             <ul>
                                 <li><a href="{{ route('admin.categories.list') }}">Category List</a></li>
                                 <li><a href="{{ route('admin.categories.create') }}">Add Category </a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><img
+                                    src="{{ asset('assets/dashboard/img/icons/places.svg') }}" alt="img"><span>
+                                    Sub Category</span> <span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="{{ route('admin.subcategories.list') }}">Sub Category List</a></li>
+                                <li><a href="{{ route('admin.subcategories.create') }}">Add Sub Category </a></li>
                             </ul>
                         </li>
                         <li class="submenu">

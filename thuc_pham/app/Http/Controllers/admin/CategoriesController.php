@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return view('admin.category.list');
+        $categories = Category::paginate(5);
+        return view('admin.category.list', compact('categories'));
     }
 
     /**
@@ -28,8 +30,26 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => "required|min:3|max:100|string",
+        ], [
+            'required' => 'This field cannot be left blank',
+            'min' => ':attribute must be at least :min characters',
+            'max' => ':attribute must not exceed :max characters',
+        ], [
+            'name' => 'Category',
+        ]);
+
+        $category = new Category;
+        $category->name = $request->name;
+
+        if ($category->save()) {
+            return redirect()->route('admin.categories.create')->with('success', 'New category added successfully');
+        } else {
+            return redirect()->route('admin.categories.create')->with('error', 'Failed to add category')->withInput();
+        }
     }
+
 
     /**
      * Display the specified resource.
@@ -44,7 +64,8 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $categories = Category::findOrFail($id);
+        return view('admin.category.edit', compact('categories'));
     }
 
     /**
@@ -52,7 +73,25 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => "required|min:3|max:100|string",
+        ], [
+            'required' => 'This field cannot be left blank',
+            'min' => ':attribute must be at least :min characters',
+            'max' => ':attribute must not exceed :max characters',
+        ], [
+            'name' => 'Category',
+        ]);
+        $category = Category::findOrFail($id);
+        $category->name = $request->name;
+        // Cập nhật các thuộc tính khác của danh mục tại đây
+
+        if ($category->save()) {
+            return redirect()->route('admin.categories.create')
+                ->with('success', 'Cập nhật thành công thành công');
+        } else {
+            return redirect()->route('admin.categories.edit');
+        }
     }
 
     /**
@@ -60,6 +99,18 @@ class CategoriesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::find($id);
+        if ($category->delete($id)) {
+            return redirect()->route('admin.categories.list')
+                ->with('success', 'Deleted successfully');
+        } else {
+            return redirect()->route('admin.categories.list',)->with('error', 'Lỗi');
+        }
+    }
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+        $categories = Category::where('name', 'LIKE', '%' . $searchTerm . '%')->paginate(5);
+        return view("admin.category.list", compact("categories"));
     }
 }

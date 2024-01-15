@@ -7,6 +7,11 @@
                 <h4>User Details</h4>
                 <h6>Full details of a users</h6>
             </div>
+            <div class="page-btn">
+                <a href="{{ Route('admin.users.list') }}" class="btn btn-added">
+                    <i class="bi bi-list"> List Users</i>
+                </a>
+            </div>
         </div>
 
         <div class="row">

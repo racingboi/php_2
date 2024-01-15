@@ -23,6 +23,7 @@
             <div class="card-body">
                 <form action="{{ route('admin.users.store') }}" method="POST">
                     @csrf
+                    @method('POST')
                     <div class="row">
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
