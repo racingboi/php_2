@@ -12,6 +12,8 @@ use Illuminate\View\View;
 use App\Models\Products;
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Models\Order;
+use App\Models\OrderDetail;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -24,7 +26,14 @@ class AuthenticatedSessionController extends Controller
             $query->where('number', 0);
         }])->get();
         $category = Category::with(['subcategories'])->get();
-        return view('web.login', compact('products', 'category'));
+        $user_id = auth()->id();
+        $cart = OrderDetail::whereHas('order', function ($query) use ($user_id) {
+            $query->where('users_id', $user_id);
+        })
+            ->with(['order.orderDetails', 'product.image_features'])
+            ->get();
+        $groupedCart = $cart->groupBy('product.id');
+        return view('web.login', compact('products', 'category', 'groupedCart'));
     }
 
     /**

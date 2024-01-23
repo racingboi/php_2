@@ -49,7 +49,9 @@
                                     <strong>Gọi: </strong> <span> 0706252156</span>
                                 </div>
                             </div>
-                            <div class="welcome-msg hidden-xs">Tin nhắn chào mừng mặc định!</div>
+                            <div class="welcome-msg hidden-xs">
+                                Tin nhắn chào mừng mặc định!
+                            </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
                             <div class="top-cart-contain">
@@ -59,7 +61,10 @@
                                             {{-- <i class="fa fa-shopping-bag"></i> --}}
                                             <i class="bi bi-bag"></i>
                                             <div class="cart-box">
-                                                <span id="cart-total">2</span>
+                                                @php
+                                                    $totalProductsInCart = count($groupedCart);
+                                                @endphp
+                                                <span id="cart-total">{{ $totalProductsInCart }}</span>
                                             </div>
                                         </a>
                                     </div>
@@ -67,49 +72,62 @@
                                         <div style="display: none" class="top-cart-content arrow_box">
                                             <div class="block-subtitle">(Các) mục được thêm gần đây</div>
                                             <ul id="cart-sidebar" class="mini-products-list">
-                                                <li class="item last odd">
-                                                    <a class="product-image" href="product_detail.html"
-                                                        title=" Lucky Brand Janis "><img alt="Sample Product"
-                                                            src="{{ asset('assets/web/products-images/product2.jpg') }}"
-                                                            width="80" /></a>
-                                                    <div class="detail-item">
-                                                        <div class="product-details">
-                                                            <a href="#" title="Remove This Item" onClick=""
-                                                                class="btn-remove1">Xóa mục này</a>
-                                                            <a class="btn-edit" title="Edit item" href="#">Chỉnh
-                                                                sửa mục</a>
-                                                            <p class="product-name">
-                                                                <a href="product_detail.html"
-                                                                    title=" Lucky Brand Janis ">Sample Product</a>
-                                                            </p>
+                                                @php
+                                                    $total = 0;
+                                                @endphp
+                                                @forelse($groupedCart as $productId => $items)
+                                                    <li class="item last odd">
+                                                        @php
+                                                            $orderDetail = $items->first();
+                                                            $totalQuantity = $items->sum('quantity');
+                                                            // $inputId = 'cartInput_' . $productId;
+                                                            $total += $totalQuantity * $orderDetail->product->price;
+                                                            // $id_oders[] = $orderDetail->id;
+                                                        @endphp
+                                                        <a class="product-image" href="product_detail.html"
+                                                            title=" Lucky Brand Janis "><img alt="Sample Product"
+                                                                src="{{ asset($orderDetail->product->image_features->first()->url_img) }}"
+                                                                width="80" /></a>
+                                                        <div class="detail-item">
+                                                            <div class="product-details d-flex">
+                                                                <p class="product-name">
+                                                                    <a href="product_detail.html"
+                                                                        title=" Lucky Brand Janis ">{{ $orderDetail->product->name }}</a>
+                                                                </p>
+                                                                <form
+                                                                    action="{{ route('cart.delete', ['id' => $orderDetail->id]) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <input class="btn-remov" type="submit"
+                                                                        value="xóa">
+                                                                </form>
+                                                            </div>
+
+                                                            <div class="product-details-bottom">
+                                                                <span
+                                                                    class="price">{{ number_format($orderDetail->product->price, 2, '.', ',') }}
+                                                                    VNĐ</span>
+                                                                <span class="title-desc">Qty:</span>
+                                                                <strong>{{ $totalQuantity }}</strong>
+                                                            </div>
                                                         </div>
-                                                        <div class="product-details-bottom">
-                                                            <span class="price">$320.00</span>
-
-                                                            <!--p-->
-                                                            <span class="title-desc">Qty:</span>
-                                                            <strong>2</strong>
-                                                            <!--/p-->
-
-                                                            <!--p-->
-
-                                                            <!--p-->
-                                                        </div>
-                                                    </div>
-
-                                                    <!--div class="edit-remove"></div-->
+                                                    @empty
+                                                        giỏ hàng đang trỗng
+                                                @endforelse
                                                 </li>
                                             </ul>
                                             <div class="top-subtotal">
-                                                Subtotal: <span class="price">$480.00</span>
+                                                Subtotal: <span class="price">{{ number_format($total, 2, '.', ',') }}
+                                                    VNĐ</span>
                                             </div>
                                             <div class="actions">
                                                 <button class="btn-checkout" type="button">
                                                     <span>Checkout</span>
                                                 </button>
-                                                <button class="view-cart" type="button">
+                                                <a href="{{ route('cart.list') }}" class="view-cart" type="button">
                                                     <span>View Cart</span>
-                                                </button>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -125,6 +143,9 @@
                             <!-- Header Top Links -->
                             <div class="toplinks">
                                 <div class="links">
+                                    {{-- <div class="ten">
+                                        {{ Auth::user()->name }}
+                                    </div> --}}
                                     <div class="login">
                                         <a title="Login" href="{{ route('login') }}">
                                             {{-- <span class="hidden-xs"> --}}
@@ -139,6 +160,7 @@
                                                 <span class="wishlist-items">0</span>
                                             </span>
                                         </a>
+
                                     </div>
                                     <div class="search">
                                         <a href="#">
@@ -149,35 +171,9 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- End Header Currency -->
-
-                            {{-- <div class="collapse navbar-collapse">
-                                <form class="navbar-form" role="search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search" />
-                                        <span class="input-group-btn">
-                                            <button type="reset" class="btn btn-default">
-                                                <i class="bi bi-x"></i>
-                                                <span class="sr-only">Close</span>
-                                            </button>
-                                            <button type="submit" class="btn btn-default">
-                                                <i class="bi bi-search"></i>
-                                                <span class="sr-only">Search</span>
-                                            </button>
-                                        </span>
-                                    </div>
-                                </form>
-                            </div> --}}
-
                         </div>
                     </div>
-                </div>
-            </div>
         </header>
-        <!-- end header -->
-
-        <!-- Navbar -->
         @yield('nav')
         <nav>
             <div class="header container">
@@ -722,12 +718,7 @@
             </div>
         </div>
     </nav>
-    <!-- end nav -->
-    <!-- Slider -->
     @yield('content')
-    <!-- End middle slider -->
-
-    <!-- End Latest Blog -->
     @yield('footer')
     <div class="our-features-box">
         <div class="container">

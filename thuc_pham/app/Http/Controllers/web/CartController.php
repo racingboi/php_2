@@ -53,7 +53,7 @@ class CartController extends Controller
             'total' => $product->price * $quantity,
         ]);
 
-        return redirect()->route('cart.list')->with('success', 'Thêm sản phẩm thành công');
+        return redirect()->route('home')->with('success', 'Thêm sản phẩm thành công');
     }
     public function deleteCartItem($orderDetailId)
     {

@@ -10,6 +10,8 @@ use Illuminate\View\View;
 use App\Models\Products;
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Models\Order;
+use App\Models\OrderDetail;
 
 class PasswordResetLinkController extends Controller
 {
@@ -22,7 +24,14 @@ class PasswordResetLinkController extends Controller
             $query->where('number', 0);
         }])->get();
         $category = Category::with(['subcategories'])->get();
-        return view('web.forgot-password', compact('products', 'category'));
+        $user_id = auth()->id();
+        $cart = OrderDetail::whereHas('order', function ($query) use ($user_id) {
+            $query->where('users_id', $user_id);
+        })
+            ->with(['order.orderDetails', 'product.image_features'])
+            ->get();
+        $groupedCart = $cart->groupBy('product.id');
+        return view('web.forgot-password', compact('products', 'category', 'groupedCart'));
     }
 
     /**
