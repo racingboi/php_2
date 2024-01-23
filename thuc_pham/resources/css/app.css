@@ -1,12 +1,3 @@
 /* @import "./admin.css"; */
 @import "./old.css";
-@import "./web/animate.css";
-@import "./web/bootstrap.min.css";
-@import "./web/revslider.css";
-@import "./web/owl.carousel.css";
-@import "./web/owl.theme.css";
-@import "./web/font-awesome.css";
-@import "./web/style.css";
-@import "./web/jquery.mobile-menu.css";
-@import "./web/fancybox.css";
-/* @import "./dashboard/style.css"; */
+@import "./web.css";

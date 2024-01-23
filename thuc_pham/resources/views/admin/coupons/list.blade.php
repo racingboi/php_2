@@ -1,17 +1,17 @@
 @extends('layouts.admin')
-@section('title', 'Admin - categories - List')
+@section('title', 'Admin - coupons - List')
 <div class="page-wrapper">
     @section('content')
         <div class="content">
             <div class="page-header">
                 <div class="page-title">
-                    <h4>Coupons list</h4>
-                    <h6>View/Search Coupons</h6>
+                    <h4>Danh sách phiếu giảm giá</h4>
+                    <h6>Xem/Tìm kiếm phiếu giảm giá</h6>
                 </div>
                 <div class="page-btn">
-                    <a href="{{ route('admin.categories.create') }}" class="btn btn-added">
-                        <img src="{{ asset('assets/dashboard/img/icons/plus.svg') }} " class="me-1" alt="img" />Add
-                        Coupons
+                    <a href="{{ route('admin.coupons.create') }}" class="btn btn-added">
+                        <img src="{{ asset('assets/dashboard/img/icons/plus.svg') }} " class="me-1" alt="img" />Thêm
+                        phiếu giảm giá
                     </a>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                         <form action="{{ route('admin.coupons.search') }}" method="POST">
                             @csrf
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="What do you want to search?"
+                                <input type="text" class="form-control" placeholder="Bạn muốn tìm kiếm gì?"
                                     name="search">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">
@@ -65,7 +65,7 @@
                         </div>
                     </div>
 
-                    <table class="table">
+                    <table class="table text-center">
                         <thead>
                             <tr>
                                 <th>
@@ -74,16 +74,14 @@
                                         <span class="checkmarks"></span>
                                     </label>
                                 </th>
-                                <th>Slot</th>
-                                <th>Category name</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                                <th>Action</th>
+                                <th> Tên phiếu giảm giá</th>
+                                <th>Ngày bắt đầu</th>
+                                <th>Ngày cuối</th>
+                                <th>Hoạt động</th>
                             </tr>
                         </thead>
                         <tbody>
-
-                            {{-- @forelse ($categories as $category)
+                            @forelse ($coupons as $coupon)
                                 <tr>
                                     <td>
                                         <label class="checkboxs">
@@ -91,24 +89,23 @@
                                             <span class="checkmarks"></span>
                                         </label>
                                     </td>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td class="productimgname">
-                                        <a href="javascript:void(0);" class="text-dark"> {{ $category->name }}</a>
 
+                                    <td class="productimgname">
+                                        <a href="" class="text-dark"> {{ $coupon->name }}</a>
                                     </td>
+                                    <td>{{ $coupon->start_date }}</td>
+                                    <td>{{ $coupon->expiry_date }}</td>
 
                                     <td>
-                                        <form action="{{ route('admin.categories.destroy', $category->id) }}"
-                                            method="POST">
+                                        <form action="{{ route('admin.coupons.destroy', $coupon->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <a class="btn btn-success" style="background: green; padding:0.5rem"
-                                                href="{{ route('admin.categories.edit', ['id' => $category->id]) }}"
+                                            <a class="btn"
+                                                href="{{ route('admin.coupons.edit', ['id' => $coupon->id]) }}"
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa mục này">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
-                                            <button type="submit" class="btn btn-danger"
-                                                style="background: red; padding:0.5rem"
+                                            <button type="submit" class="btn "
                                                 onclick="return confirm('Bạn có muốn xóa danh mục này không?')"
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa mục này">
                                                 <i class="bi
@@ -119,12 +116,15 @@
                                     </td>
                                 </tr>
                             @empty
-                                Danh mục không tồn tại
-                            @endforelse --}}
-
+                                <tr>
+                                    <td colspan="5">Danh mục không tồn tại</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
-
+                </div>
+                <div class="col-md-12">
+                    {{ $coupons->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>

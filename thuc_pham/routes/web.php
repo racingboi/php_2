@@ -10,7 +10,10 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\CouponsController;
 use App\Http\Controllers\admin\SubcategoryController;
 use App\Http\Controllers\admin\crawl_data;
+use App\Http\Controllers\admin\DashbardController;
 use  App\Http\Controllers\web\index;
+use  App\Http\Controllers\web\CartController;
+use  App\Http\Controllers\GHNController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,13 +25,12 @@ use  App\Http\Controllers\web\index;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -37,11 +39,10 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
-Route::get('/a', function () {
-    return view('admin.users.show');
-});
 // route dashboard
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'CheckAdminRole'])->group(function () {
+    Route::get('dashboard', [DashbardController::class, 'index'])->middleware(['auth', 'verified'])
+        ->name('dashboard');
     // Routing product
     Route::prefix('products')->name('products.')->group(function () {
         Route::get('list', [ProductController::class, 'index'])->name('list');
@@ -84,7 +85,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('{id}/edit', [CouponsController::class, 'edit'])->name('edit');
         Route::put('update/{id}', [CouponsController::class, 'update'])->name('update');
         Route::delete('delete/{id}', [CouponsController::class, 'destroy'])->name('destroy');
-        Route::post('list', [CategoriesController::class, 'search'])->name('search');
+        Route::post('list', [CouponsController::class, 'search'])->name('search');
     });
     //Routing orders
     Route::prefix('orders')->name('orders.')->group(function () {
@@ -123,8 +124,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 Route::get('crawlDataProducts', [crawl_data::class, 'crawlDataProducts']);
 Route::get('crawlDataCategory', [crawl_data::class, 'crawlDataCategory']);
-Route::get('home', [index::class, 'home']);
+Route::get('/', [index::class, 'home'])->name('home');
+// Route::match(['get', 'post'], 'detail/{id}', [index::class, 'detail'])->name('detail');
 Route::get('detail/{id}', [index::class, 'detail'])->name('detail');
-// Route::get('text', function () {
-//     return view('layouts.web');
-// });
+
+// cart
+Route::prefix('cart')->middleware('auth')->name('cart.')->group(function () {
+    Route::get('/', [CartController::class, 'cart'])->name('list');
+    Route::delete('delete/{id}', [CartController::class, 'deleteCartItem'])->name('delete');
+    Route::post('deleteTC', [CartController::class, 'deleteTC'])->name('deleteTC');
+    Route::post('{productId}/{quantity}', [CartController::class, 'addCart'])->name('add');
+    Route::post('add', [CartController::class, 'detail_add'])->name('detail_add');
+    Route::post('update', [CartController::class, 'updateCartItem'])->name('update');
+});
+// Route::get('cart', [CartController::class, 'cart'])->name('list');
+route::get('api', [GHNController::class, 'createShippingOrder']);

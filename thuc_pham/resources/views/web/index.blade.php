@@ -17,14 +17,14 @@
                                 data-endspeed="1000" data-speed="1000" data-start="0" data-easing="Linear.easeNone"
                                 data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
                                 style="z-index: 3; white-space: nowrap">
-                                Fresh Vegetables
+                                Rau sạch
                             </div>
 
                             <div class="tp-caption sfb tp-resizeme" data-x="45" data-y="470" data-endspeed="500"
                                 data-speed="500" data-start="1500" data-easing="Linear.easeNone" data-splitin="none"
                                 data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
                                 style="z-index: 4; white-space: nowrap">
-                                <a href="#" class="buy-btn">Buy Now</a>
+                                <a href="#" class="buy-btn">Mua ngay</a>
                             </div>
                             <div class="tp-caption Title sft tp-resizeme" data-x="45" data-y="390" data-endspeed="500"
                                 data-speed="500" data-start="1500" data-easing="Power2.easeInOut" data-splitin="none"
@@ -42,13 +42,13 @@
                                 data-endspeed="500" data-speed="500" data-start="1300" data-easing="Linear.easeNone"
                                 data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
                                 style="z-index: 3; white-space: nowrap">
-                                Organic Products
+                                Sản phẩm hữu cơ
                             </div>
                             <div class="tp-caption sfb tp-resizeme" data-x="45" data-y="470" data-endspeed="500"
                                 data-speed="500" data-start="1500" data-easing="Linear.easeNone" data-splitin="none"
                                 data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
                                 style="z-index: 4; white-space: nowrap">
-                                <a href="#" class="buy-btn">Buy Now</a>
+                                <a href="#" class="buy-btn">Mua ngay</a>
                             </div>
                             <div class="tp-caption Title sft tp-resizeme" data-x="45" data-y="390" data-endspeed="500"
                                 data-speed="500" data-start="1500" data-easing="Power2.easeInOut" data-splitin="none"
@@ -113,7 +113,7 @@
                     <div class="best-seller-pro">
                         <div class="slider-items-products">
                             <div class="new_title center">
-                                <h2>Best Seller</h2>
+                                <h2>Hàng giảm giá</h2>
                             </div>
                             <div id="best-seller-slider" class="product-flexslider hidden-buttons">
                                 <div class="slider-items slider-width-col4">
@@ -134,10 +134,16 @@
                                                 </div>
                                                 <div class="product-meta">
                                                     <div class="product-action">
-                                                        <a class="addcart" href="shopping_cart.html">
-                                                            <i class="bi bi-cart3"></i> Add to
-                                                            cart
-                                                        </a>
+                                                        <form id="addToCartForm"
+                                                            action="{{ route('cart.add', ['productId' => $product->id, 'quantity' => 1]) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <!-- Add any hidden input fields as needed -->
+                                                            <a class="addcart">
+                                                                <input type="submit" value="Add to cart">
+                                                            </a>
+                                                        </form>
+
                                                         <a href="quick_view.html" class="quickview">
                                                             <i class="bi bi-search"></i></i> Quick view</a>
                                                     </div>
@@ -193,7 +199,7 @@
                 <div class="featured-pro">
                     <div class="slider-items-products">
                         <div class="new_title center">
-                            <h2>Featured Products</h2>
+                            <h2>Sản phẩm nổi bật</h2>
                         </div>
                         <div id="featured-slider" class="product-flexslider hidden-buttons">
                             <div class="slider-items slider-width-col4">
@@ -220,9 +226,15 @@
                                             </div>
                                             <div class="product-meta">
                                                 <div class="product-action">
-                                                    <a class="addcart" href="shopping_cart.html">
-                                                        <i class="bi bi-cart3"></i> Add to cart
-                                                    </a>
+                                                    <form id="addToCartForm"
+                                                        action="{{ route('cart.add', ['productId' => $product->id, 'quantity' => 1]) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        <!-- Add any hidden input fields as needed -->
+                                                        <a class="addcart">
+                                                            <input type="submit" value="Add to cart">
+                                                        </a>
+                                                    </form>
                                                     <a href="quick_view.html" class="quickview">
                                                         <i class="bi bi-search"></i></i> Quick view</a>
                                                 </div>
@@ -346,7 +358,7 @@
                     <div class="bag-product-slider small-pr-slider">
                         <div class="slider-items-products">
                             <div class="new_title center">
-                                <h2>New Products</h2>
+                                <h2>Sản phẩm mới</h2>
                             </div>
                             <div id="bag-seller-slider" class="product-flexslider hidden-buttons">
                                 <div class="slider-items slider-width-col3">
@@ -367,9 +379,15 @@
                                                 </div>
                                                 <div class="product-meta">
                                                     <div class="product-action">
-                                                        <a class="addcart" href="javascript:;">
-                                                            <i class="bi bi-cart3"></i>
-                                                        </a>
+                                                        <form id="addToCartForm"
+                                                            action="{{ route('cart.add', ['productId' => $product->id, 'quantity' => 1]) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <!-- Add any hidden input fields as needed -->
+                                                            <a class="addcart">
+                                                                <input type="submit" value="Add to cart">
+                                                            </a>
+                                                        </form>
                                                         <a href="quick_view.html" class="quickview">
                                                             <i class="bi bi-search"></i></i>
                                                         </a>
