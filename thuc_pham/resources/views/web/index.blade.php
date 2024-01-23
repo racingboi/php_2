@@ -134,10 +134,16 @@
                                                 </div>
                                                 <div class="product-meta">
                                                     <div class="product-action">
-                                                        <a class="addcart" href="shopping_cart.html">
-                                                            <i class="bi bi-cart3"></i> Add to
-                                                            cart
-                                                        </a>
+                                                        <form id="addToCartForm"
+                                                            action="{{ route('cart.add', ['productId' => $product->id, 'quantity' => 1]) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <!-- Add any hidden input fields as needed -->
+                                                            <a class="addcart">
+                                                                <input type="submit" value="Add to cart">
+                                                            </a>
+                                                        </form>
+
                                                         <a href="quick_view.html" class="quickview">
                                                             <i class="bi bi-search"></i></i> Quick view</a>
                                                     </div>
@@ -220,9 +226,15 @@
                                             </div>
                                             <div class="product-meta">
                                                 <div class="product-action">
-                                                    <a class="addcart" href="shopping_cart.html">
-                                                        <i class="bi bi-cart3"></i> Add to cart
-                                                    </a>
+                                                    <form id="addToCartForm"
+                                                        action="{{ route('cart.add', ['productId' => $product->id, 'quantity' => 1]) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        <!-- Add any hidden input fields as needed -->
+                                                        <a class="addcart">
+                                                            <input type="submit" value="Add to cart">
+                                                        </a>
+                                                    </form>
                                                     <a href="quick_view.html" class="quickview">
                                                         <i class="bi bi-search"></i></i> Quick view</a>
                                                 </div>
@@ -367,9 +379,15 @@
                                                 </div>
                                                 <div class="product-meta">
                                                     <div class="product-action">
-                                                        <a class="addcart" href="javascript:;">
-                                                            <i class="bi bi-cart3"></i>
-                                                        </a>
+                                                        <form id="addToCartForm"
+                                                            action="{{ route('cart.add', ['productId' => $product->id, 'quantity' => 1]) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <!-- Add any hidden input fields as needed -->
+                                                            <a class="addcart">
+                                                                <input type="submit" value="Add to cart">
+                                                            </a>
+                                                        </form>
                                                         <a href="quick_view.html" class="quickview">
                                                             <i class="bi bi-search"></i></i>
                                                         </a>

@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Products;
+use App\Models\Category;
+use App\Models\Subcategory;
 
 class RegisteredUserController extends Controller
 {
@@ -20,7 +23,11 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $products = Products::with(['category', 'subcategory', 'image_features' => function ($query) {
+            $query->where('number', 0);
+        }])->get();
+        $category = Category::with(['subcategories'])->get();
+        return view('web.register', compact('products', 'category'));
     }
 
     /**
@@ -32,7 +39,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 

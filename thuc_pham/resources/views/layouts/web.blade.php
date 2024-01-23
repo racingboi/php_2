@@ -46,7 +46,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">
                             <div class="phone hidden-xs">
                                 <div class="phone-box">
-                                    <strong>Gọi:</strong> <span>0706252156</span>
+                                    <strong>Gọi: </strong> <span> 0706252156</span>
                                 </div>
                             </div>
                             <div class="welcome-msg hidden-xs">Tin nhắn chào mừng mặc định!</div>
@@ -126,7 +126,7 @@
                             <div class="toplinks">
                                 <div class="links">
                                     <div class="login">
-                                        <a title="Login" href="login.html">
+                                        <a title="Login" href="{{ route('login') }}">
                                             {{-- <span class="hidden-xs"> --}}
                                             <i class="bi bi-box-arrow-in-right"></i>
                                             {{-- </span> --}}
@@ -189,14 +189,14 @@
                             </div>
                         </div>
                         <!-- Header Logo -->
-                        <a class="logo" title="Magento Commerce" href="index.html"><img alt="Magento Commerce"
-                                src="{{ asset('assets/web/images/logo.png') }}" /></a>
+                        <a class="logo" title="Magento Commerce" href="{{ route('home') }}"><img
+                                alt="Magento Commerce" src="{{ asset('assets/web/images/logo.png') }}" /></a>
                         <!-- End Header Logo -->
 
                         <div class="nav-inner">
                             <ul id="nav" class="">
                                 <li class="level0 parent drop-menu">
-                                    <a href="index.html" class=""><span>Trang chủ</span> </a>
+                                    <a href="{{ route('home') }}" class=""><span>Trang chủ</span> </a>
                                 </li>
                                 {{-- <li class="level0 parent drop-menu">
                                     <a href="#"><span>Pages</span> </a>

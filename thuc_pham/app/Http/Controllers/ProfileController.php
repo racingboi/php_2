@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Products;
+use App\Models\Category;
+use App\Models\Subcategory;
 
 class ProfileController extends Controller
 {
@@ -16,7 +19,11 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        $products = Products::with(['category', 'subcategory', 'image_features' => function ($query) {
+            $query->where('number', 0);
+        }])->get();
+        $category = Category::with(['subcategories'])->get();
+        return view('profile.edit', compact('products', 'category'), [
             'user' => $request->user(),
         ]);
     }

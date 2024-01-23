@@ -37,10 +37,10 @@
         <div class="header">
 
             <div class="header-left active">
-                <a href="index.html" class="logo">
+                <a href="{{ route('admin.dashboard') }}" class="logo">
                     <img src="{{ asset('assets/dashboard/img/logo.png') }}" alt="">
                 </a>
-                <a href="index.html" class="logo-small">
+                <a href="{{ route('admin.dashboard') }}" class="logo-small">
                     <img src="{{ asset('assets/dashboard/img/logo-small.png') }}" alt="">
                 </a>
                 <a id="toggle_btn" href="javascript:void(0);">
@@ -64,8 +64,8 @@
                 <div id="sidebar-menu" class="sidebar-menu">
                     <ul>
                         <li class="active">
-                            <a href="index.html"><img src="{{ asset('assets/dashboard/img/icons/dashboard.svg') }}"
-                                    alt="img"><span>
+                            <a href="{{ route('admin.dashboard') }}"><img
+                                    src="{{ asset('assets/dashboard/img/icons/dashboard.svg') }}" alt="img"><span>
                                     Dashboard</span> </a>
                         </li>
                         <li class="submenu">
@@ -162,7 +162,8 @@
     <script src="{{ asset('assets/dashboard/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/dashboard/plugins/apexchart/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/dashboard/plugins/apexchart/chart-data.js') }}"></script>
-    <script src="{{ asset('assets/dashboard/js/script.js') }}"></script>
+    {{-- <script src="{{ asset('assets/dashboard/js/script.js') }}"></script> --}}
+
 </body>
 
 </html>

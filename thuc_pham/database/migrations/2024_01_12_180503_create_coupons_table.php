@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->double('value');
             $table->string('type');
+            $table->date('start_date');
             $table->timestamp('expiry_date');
             $table->timestamps();
         });

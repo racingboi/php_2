@@ -24,8 +24,8 @@
         <div class="content">
             <div class="page-header">
                 <div class="page-title">
-                    <h4>Thêm phiếu giảm giá</h4>
-                    <h6>Tạo phiếu giảm giá mới</h6>
+                    <h4>Sửa phiếu giảm giá</h4>
+                    <h6>Sửa phiếu giảm giá mới</h6>
                 </div>
                 <div class="page-btn">
                     <a href="{{ Route('admin.coupons.list') }}" class="btn btn-added">
@@ -40,13 +40,14 @@
             @endif
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.coupons.store') }}" method="POST">
+                    <form action="{{ route('admin.coupons.update', ['id' => $coupons->id]) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Tên phiếu giảm giá</label>
-                                    <input type="text" name="name" />
+                                    <input type="text" name="name" value="{{ $coupons->name }}" />
                                 </div>
                                 @error('name')
                                     <small class="text-danger">{{ $message }}</small>
@@ -55,7 +56,8 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Số lượng</label>
-                                    <input type="text" class="form-control" name="value" />
+                                    <input type="text" class="form-control" name="value"
+                                        value="{{ $coupons->value }}" />
                                 </div>
                                 @error('value')
                                     <small class="text-danger">{{ $message }}</small>
@@ -64,7 +66,8 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label> Ngày bắt dầu </label>
-                                    <input type="date" class="form-control" name="start_date" />
+                                    <input type="date" class="form-control" name="start_date"
+                                        value="{{ $coupons->start_date }}" />
                                 </div>
                                 @error('start_date')
                                     <small class="text-danger">{{ $message }}</small>
@@ -73,7 +76,8 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label> Ngày kết thúc </label>
-                                    <input type="date" class="form-control" name="expiry_date" />
+                                    <input type="date" class="form-control" name="expiry_date"
+                                        value="{{ $coupons->expiry_date }}" />
                                 </div>
                                 @error('expiry_date')
                                     <small class="text-danger">{{ $message }}</small>
@@ -82,7 +86,9 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label>Sự miêu tả</label>
-                                    <textarea class="form-control" name="type"></textarea>
+                                    <textarea class="form-control" name="type">
+                                        {{ $coupons->type }}
+                                    </textarea>
                                 </div>
                                 @error('type')
                                     <small class="text-danger">{{ $message }}</small>

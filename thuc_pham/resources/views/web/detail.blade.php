@@ -23,95 +23,121 @@
                                 < </a> --}}
                         </div>
                         <div class="product-essential">
-                            <form action="#" method="post" id="product_addtocart_form">
-                                <input name="form_key" value="6UbXroakyQlbfQzK" type="hidden">
-                                <div class="product-img-box col-lg-5 col-sm-5 col-md-5 col-xs-12">
-                                    <div class="new-label new-top-left"> New </div>
-                                    <div class="product-image">
-                                        <div class="large-image">
+                            {{-- <form action="#" method="post" id="product_addtocart_form"> --}}
+                            <input name="form_key" value="6UbXroakyQlbfQzK" type="hidden">
+                            <div class="product-img-box col-lg-5 col-sm-5 col-md-5 col-xs-12">
+                                <div class="new-label new-top-left"> New </div>
+                                <div class="product-image">
+                                    <div class="large-image">
 
-                                            <a href="{{ asset($product->image_features->first()->url_img) }}"
-                                                class="cloud-zoom" id="zoom1"
-                                                rel="useWrapper: false, adjustY:0, adjustX:20"> <img
-                                                    src="{{ asset($product->image_features->first()->url_img) }}"
-                                                    alt="">
-                                            </a>
+                                        <a href="{{ asset($product->image_features->first()->url_img) }}" class="cloud-zoom"
+                                            id="zoom1" rel="useWrapper: false, adjustY:0, adjustX:20"> <img
+                                                src="{{ asset($product->image_features->first()->url_img) }}"
+                                                alt="">
+                                        </a>
 
-                                        </div>
-                                        <div class="flexslider flexslider-thumb">
-                                            <ul class="previews-list slides">
-                                                @for ($i = 0; $i < $product->image_features->count(); $i++)
-                                                    <li><a href='{{ asset($product->image_features[$i]->url_img) }}'
-                                                            class='cloud-zoom-gallery'
-                                                            rel="useZoom: 'zoom1', smallImage: '{{ asset($product->image_features[$i]->url_img) }}' "><img
-                                                                src="{{ asset($product->image_features[$i]->url_img) }}"
-                                                                alt = "Thumbnail 1" /></a>
-                                                    </li>
-                                                @endfor
-                                            </ul>
-                                        </div>
                                     </div>
-
-                                    <!-- end: more-images -->
-
-                                    <div class="clear"></div>
+                                    <div class="flexslider flexslider-thumb">
+                                        <ul class="previews-list slides">
+                                            @for ($i = 0; $i < $product->image_features->count(); $i++)
+                                                <li><a href='{{ asset($product->image_features[$i]->url_img) }}'
+                                                        class='cloud-zoom-gallery'
+                                                        rel="useZoom: 'zoom1', smallImage: '{{ asset($product->image_features[$i]->url_img) }}' "><img
+                                                            src="{{ asset($product->image_features[$i]->url_img) }}"
+                                                            alt = "Thumbnail 1" /></a>
+                                                </li>
+                                            @endfor
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="product-shop col-lg-7 col-sm-7 col-md-7 col-xs-12">
-                                    <div class="product-name">
-                                        <h1>{{ $product->name }}</h1>
-                                    </div>
-                                    {{-- <div class="ratings">
+
+                                <!-- end: more-images -->
+
+                                <div class="clear"></div>
+                            </div>
+                            <div class="product-shop col-lg-7 col-sm-7 col-md-7 col-xs-12">
+                                <div class="product-name">
+                                    <h1>{{ $product->name }}</h1>
+                                </div>
+                                {{-- <div class="ratings">
                                         <div class="rating-box">
                                             <div style="width:60%" class="rating"></div>
                                         </div>
                                         <p class="rating-links"> <a href="#">1 Review(s)</a> <span
                                                 class="separator">|</span> <a href="#">Add Your Review</a> </p>
                                     </div> --}}
-                                    {{-- <p class="availability in-stock"><span>In Stock</span></p> --}}
-                                    <div class="price-block">
-                                        <div class="price-box">
-                                            <p class="special-price"> <span class="price-label">Special Price</span> <span
-                                                    id="product-price-48" class="price">{{ $product->price }} </span> </p>
-                                        </div>
-                                    </div>
-                                    <div class="short-description">
-                                        <h2>Quick Overview</h2>
-                                        <p>
-                                            {{ $product->description }}
-                                        </p>
-                                    </div>
-                                    <div class="add-to-box">
-                                        <div class="add-to-cart">
-                                            <label for="qty">Quantity:</label>
-                                            <div class="pull-left">
-                                                <div class="custom pull-left">
-                                                    <button
-                                                        onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) result.value--;return false;"
-                                                        class="reduced items-count" type="button">
-                                                        <i class="bi bi-dash-lg"></i>
-                                                    </button>
-                                                    <input type="text" class="input-text qty" title="Qty"
-                                                        value="1" maxlength="12" id="qty" name="qty">
-                                                    <button
-                                                        onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;"
-                                                        class="increase items-count" type="button">
-                                                        <i class="bi bi-plus-lg"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="custom pull-left">
-                                                    <h5 class="m-3">{{ $product->unit }} </h5>
-                                                </div>
-                                            </div>
-
-                                            <div class="pull-left">
-                                                <button onClick="productAddToCartForm.submit(this)" class="button btn-cart"
-                                                    title="Add to Cart" type="button"><span><i class="icon-basket"></i>
-                                                        Add to Cart</span></button>
-                                            </div>
-                                        </div>
+                                {{-- <p class="availability in-stock"><span>In Stock</span></p> --}}
+                                <div class="price-block">
+                                    <div class="price-box">
+                                        <p class="special-price"> <span class="price-label">Special Price</span> <span
+                                                id="product-price-48" class="price">{{ $product->price }} </span> </p>
                                     </div>
                                 </div>
-                            </form>
+                                <div class="short-description">
+                                    <h2>Quick Overview</h2>
+                                    <p>
+                                        {{ $product->description }}
+                                    </p>
+                                </div>
+                                <div class="add-to-box">
+                                    <div class="add-to-cart">
+                                        <form action="{{ route('cart.detail_add') }}" method="POST" id="cartForm">
+                                            @csrf
+                                            <input type="hidden" name="productId" value="{{ $product->id }}">
+                                            <label for="quantityInput">Quantity:</label>
+                                            <div class="custom pull-left">
+                                                <button onclick="decreaseQuantity()" class="reduced items-count"
+                                                    type="button">
+                                                    <i class="bi bi-dash-lg"></i>
+                                                </button>
+                                                <input type="number" class="input-text qty" title="Qty" value="1"
+                                                    maxlength="12" id="quantityInput" name="quantity">
+                                                <button onclick="increaseQuantity()" class="increase items-count"
+                                                    type="button">
+                                                    <i class="bi bi-plus-lg"></i>
+                                                </button>
+                                            </div>
+                                            <div class="pull-left">
+                                                <div class="custom pull-left">
+                                                    <h5 class="m-3">{{ $product->unit }}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="pull-left">
+                                                <input class="button btn-cart" title="Add to Cart" type="submit"
+                                                    value="Thêm vào giỏ hàng">
+                                            </div>
+                                        </form>
+                                        <script>
+                                            function decreaseQuantity() {
+                                                var result = document.getElementById('quantityInput');
+                                                var qty = parseInt(result.value);
+                                                if (!isNaN(qty) && qty > 1) {
+                                                    result.value = qty - 1;
+
+                                                }
+                                            }
+
+                                            function increaseQuantity() {
+                                                var result = document.getElementById('quantityInput');
+                                                var qty = parseInt(result.value);
+                                                if (!isNaN(qty)) {
+                                                    result.value = qty + 1;
+
+                                                }
+                                            }
+
+                                            function updateFormAction() {
+                                                var quantityValue = document.getElementById('quantityInput').value;
+                                                var formAction = "{{ route('cart.add', ['productId' => $product->id, 'quantity' => ':quantity']) }}";
+                                                formAction = formAction.replace(':quantity', quantityValue);
+                                                document.getElementById('cartForm').action = formAction;
+                                            }
+                                        </script>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- </form> --}}
                         </div>
                     </div>
                     <div class="col-sm-12 h-50">
