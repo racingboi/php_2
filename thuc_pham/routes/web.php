@@ -138,4 +138,5 @@ Route::prefix('cart')->middleware('auth')->name('cart.')->group(function () {
     Route::post('update', [CartController::class, 'updateCartItem'])->name('update');
 });
 // Route::get('cart', [CartController::class, 'cart'])->name('list');
-route::get('api', [GHNController::class, 'createShippingOrder']);
+route::get('api/{provinceIds}', [GHNController::class, 'getDistricts']);
+route::get('apis', [GHNController::class, 'getProvinces']);
