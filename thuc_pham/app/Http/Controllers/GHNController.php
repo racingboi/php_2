@@ -42,27 +42,61 @@ class GHNController extends Controller
 
     public function getProvinces()
     {
-
         $apiUrl = "https://online-gateway.ghn.vn/shiip/public-api/master-data/province";
-
         $apiKey = env('API_GHN');
         $client = new Client();
+
         try {
             $response = $client->get($apiUrl, [
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'Token' => $apiKey,
                 ],
-                [
-                    'json' => [
-                        'district_id' => 1,
-                    ],
-                ]
             ]);
 
             $data = json_decode($response->getBody(), true);
-            dd($data);
+
             // Handle the data here
+            if (isset($data['data']) && is_array($data['data'])) {
+                $provinceIds = [];
+
+                foreach ($data['data'] as $item) {
+                    if (isset($item['ProvinceID']) && is_numeric($item['ProvinceID'])) {
+                        $provinceIds[] = (int)$item['ProvinceID'];
+                    }
+                }
+            }
+
+            // Pass $provinceIds to the next method
+            return $this->getDistricts($provinceIds);
+        } catch (\Exception $e) {
+            // Handle errors
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function getDistricts($provinceIds)
+    {
+        $apiUrl = "https://online-gateway.ghn.vn/shiip/public-api/master-data/district";
+        $apiKey = env('API_GHN');
+        $client = new Client();
+
+        try {
+            // Assuming you want to query for districts of all provinces
+            $response = $client->get($apiUrl, [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Token' => $apiKey,
+                ],
+                'query' => [
+                    'province_id' =>  $provinceIds
+                ],
+
+            ]);
+
+            $data = json_decode($response->getBody(), true);
+
+            // Handle the district data here
             return response()->json($data);
         } catch (\Exception $e) {
             // Handle errors

@@ -157,33 +157,33 @@
                                                 <li>
                                                     <label class="required" for="country"><em>*</em>chọn Tỉnh</label>
                                                     <div class="input-box">
-                                                        <select title="Country" class="validate-select" id="province"
-                                                            name="">
+                                                        <select title="Country" value="" class="validate-select"
+                                                            id="province" name="">
                                                         </select>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <label for="district">chọn quận</label>
                                                     <div class="input-box">
-                                                        <select style="" title="State/Province" id="district"
-                                                            id="region_id" defaultvalue=""
+                                                        <select style="" name="" title="State/Province"
+                                                            id="district" value=""
                                                             class="required-entry validate-select">
                                                         </select>
-                                                        <input type="text" style="display:none;"
+                                                        {{-- <input type="text" style="display:none;"
                                                             class="input-text required-entry" title="State/Province"
-                                                            value="" name="region" id="region">
+                                                            value="" name="region" id="region"> --}}
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <label for="ward">chọn phường</label>
                                                     <div class="input-box">
-                                                        <select style="" title="State/Province" id="ward"
-                                                            id="region_id" defaultvalue=""
+                                                        <select style="" name="" title="State/Province"
+                                                            id="ward" value=""
                                                             class="required-entry validate-select">
                                                         </select>
-                                                        <input type="text" style="display:none;"
+                                                        {{-- <input type="text" style="display:none;"
                                                             class="input-text required-entry" title="State/Province"
-                                                            value="" name="region" id="region">
+                                                            value="" name="region" id="region"> --}}
                                                     </div>
                                                 </li>
                                                 <li>
@@ -373,9 +373,6 @@
                 });
         }
     </script>
-
-
-
 </body>
 
 </html>
