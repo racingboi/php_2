@@ -266,14 +266,13 @@
                                     </ul>
                                 </li> --}}
                                 <li class="level0 nav-5 level-top first">
-                                    <a href="grid.html" class="level-top">
+                                    <a href="{{ route('shop') }}" class="level-top">
                                         <span>Sản Phẩm</span>
                                     </a>
                                     <div style="display: none; left: 0px" class="level0-wrapper dropdown-6col">
                                         <div class="level0-wrapper2">
                                             <div class="nav-block nav-block-center grid12-8 itemgrid itemgrid-4col">
                                                 <ul class="level0">
-
                                                     @foreach ($category as $a)
                                                         <li class="level1 nav-6-1 parent item">
                                                             <a href=""

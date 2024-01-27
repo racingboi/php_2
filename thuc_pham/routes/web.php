@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\SubcategoryController;
 use App\Http\Controllers\admin\crawl_data;
 use App\Http\Controllers\admin\DashbardController;
 use  App\Http\Controllers\web\index;
+use  App\Http\Controllers\web\ShopController;
 use  App\Http\Controllers\web\CartController;
 use  App\Http\Controllers\GHNController;
 /*
@@ -125,9 +126,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'CheckAdminRole'])->
 Route::get('crawlDataProducts', [crawl_data::class, 'crawlDataProducts']);
 Route::get('crawlDataCategory', [crawl_data::class, 'crawlDataCategory']);
 Route::get('/', [index::class, 'home'])->name('home');
-// Route::match(['get', 'post'], 'detail/{id}', [index::class, 'detail'])->name('detail');
 Route::get('detail/{id}', [index::class, 'detail'])->name('detail');
-
+// shop
+Route::get('shop', [ShopController::class, 'index'])->name('shop');
+route::post('shop/show', [ShopController::class, 'LocSp'])->name('LocSp');
 // cart
 Route::prefix('cart')->middleware('auth')->name('cart.')->group(function () {
     Route::get('/', [CartController::class, 'cart'])->name('list');
@@ -138,5 +140,5 @@ Route::prefix('cart')->middleware('auth')->name('cart.')->group(function () {
     Route::post('update', [CartController::class, 'updateCartItem'])->name('update');
 });
 // Route::get('cart', [CartController::class, 'cart'])->name('list');
-route::get('api/{provinceIds}', [GHNController::class, 'getDistricts']);
+route::post('{provinceIds}', [GHNController::class, 'getDistricts'])->name('tinh');
 route::get('apis', [GHNController::class, 'getProvinces']);

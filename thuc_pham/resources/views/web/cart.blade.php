@@ -159,15 +159,17 @@
                                                     <div class="input-box">
                                                         <select title="Country" value="" class="validate-select"
                                                             id="province" name="">
+                                                            <option value="" selected>--chọn tỉnh--</option>
                                                         </select>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <label for="district">chọn quận</label>
                                                     <div class="input-box">
-                                                        <select style="" name="" title="State/Province"
-                                                            id="district" value=""
+                                                        <select style="" name="" title="districts"
+                                                            id="districts" value=""
                                                             class="required-entry validate-select">
+                                                            <option value="" selected>--chọn quận/huyện--</option>
                                                         </select>
                                                         {{-- <input type="text" style="display:none;"
                                                             class="input-text required-entry" title="State/Province"
@@ -177,26 +179,20 @@
                                                 <li>
                                                     <label for="ward">chọn phường</label>
                                                     <div class="input-box">
-                                                        <select style="" name="" title="State/Province"
+                                                        <select style="" name="" title="ward"
                                                             id="ward" value=""
                                                             class="required-entry validate-select">
+                                                            <option value="" selected>--chọn phường/xã--</option>
                                                         </select>
                                                         {{-- <input type="text" style="display:none;"
                                                             class="input-text required-entry" title="State/Province"
                                                             value="" name="region" id="region"> --}}
                                                     </div>
                                                 </li>
-                                                <li>
-                                                    <label for="postcode">Mã Zip/Bưu Chính</label>
-                                                    <div class="input-box">
-                                                        <input type="text" value="" name="estimate_postcode"
-                                                            id="postcode" class="input-text validate-postcode">
-                                                    </div>
-                                                </li>
                                             </ul>
                                             <div class="buttons-set11">
-                                                <button class="button get-quote" onclick="coShippingMethodForm.submit()"
-                                                    title="Nhận báo giá" type="button"><span>Nhận báo giá</span></button>
+                                                <button class="button get-quote" id="baogia" title="Nhận báo giá"
+                                                    type="button"><span>Nhận báo giá</span></button>
                                             </div>
                                             <!--buttons-set11-->
                                         </form>
@@ -247,6 +243,12 @@
                                                         class="price">{{ number_format($total, 2, '.', ',') }}</span>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td colspan="1" class="a-left" style=""> Phi giao hang </td>
+                                                <td class="a-right" style=""><span class="price"
+                                                        id="GHNfee">0</span>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                     <ul class="checkout">
@@ -289,10 +291,16 @@
                                                         </figure>
                                                     </a> </div>
                                                 <div class="product-meta">
-                                                    <div class="product-action"> <a class="addcart"
-                                                            href="shopping_cart.html">
-                                                            <i class="bi bi-cart3"></i> Add to cart
-                                                        </a>
+                                                    <div class="product-action">
+                                                        <form id="addToCartForm"
+                                                            action="{{ route('cart.add', ['productId' => $product->id, 'quantity' => 1]) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <!-- Add any hidden input fields as needed -->
+                                                            <a class="addcart">
+                                                                <input type="submit" value="Add to cart">
+                                                            </a>
+                                                        </form>
                                                         <a href="quick_view.html" class="quickview">
                                                             <i class="bi bi-search"></i></i> Quick view</a>
                                                     </div>

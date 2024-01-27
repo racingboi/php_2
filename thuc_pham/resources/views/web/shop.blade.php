@@ -35,286 +35,141 @@
                     <div class="category-products">
                         <div class="toolbar">
                             <div class="sorter">
-                                <div class="view-mode"> <span title="Grid"
-                                        class="button button-active  button-grid">Grid</span>&nbsp;<a href="list.html"
-                                        title="List" class="button button-list">List</a>&nbsp; </div>
-
                             </div>
                             <div id="sort-by">
-                                <label class="left">Sort By: </label>
-                                <ul>
-                                    <li><a href="#">Position<span class="right-arrow"></span></a>
-                                        <ul>
-                                            <li><a href="#">Name</a></li>
-                                            <li><a href="#">Price</a></li>
-                                            <li><a href="#">Position</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <a class="button-asc left" href="#" title="Set Descending Direction"><span
-                                        style="color:#999;font-size:11px;" class="glyphicon glyphicon-arrow-up"></span></a>
+                                <div class="d-flex justify-content-evenly text-center">
+                                    <label class="left">Sắp xếp theo:</label>
+                                    <form class="d-flex justify-content" action="{{ route('LocSp') }}" method="POST">
+                                        @csrf
+                                        <div class="form-group">
+                                            <select class="form-control nice-select w-100" name="sorting_option">
+                                                <option selected value="1">Theo bảng chữ cái, A-Z</option>
+                                                <option value="2">Sắp xếp theo mức độ phổ biến</option>
+                                                <option value="3">Sắp xếp theo độ mới</option>
+                                                <option value="4">Sắp xếp theo giá: thấp đến cao</option>
+                                                <option value="5">Sắp xếp theo giá: cao xuống thấp</option>
+                                            </select>
+                                        </div>
+                                        <button class="btn btn-light text-center p-3 h-19" type="submit">Lọc</button>
+                                    </form>
+                                </div>
                             </div>
                             <div class="pager">
-                                <div id="limiter">
-                                    <label>View: </label>
-                                    <ul>
-                                        <li><a href="#">15<span class="right-arrow"></span></a>
-                                            <ul>
-                                                <li><a href="#">20</a></li>
-                                                <li><a href="#">30</a></li>
-                                                <li><a href="#">35</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
                                 <div class="pages">
                                     <label>Page:</label>
                                     <ul class="pagination">
-                                        <li><a href="#">&laquo;</a></li>
-                                        <li class="active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li><a href="#">&raquo;</a></li>
+                                        <!-- Previous Page Link -->
+                                        @if ($products->currentPage() > 1)
+                                            <li><a href="{{ $products->previousPageUrl() }}">&laquo;</a></li>
+                                        @else
+                                            <li class="disabled"><span>&laquo;</span></li>
+                                        @endif
+
+                                        <!-- Pagination Elements -->
+                                        @for ($i = 1; $i <= $products->lastPage(); $i++)
+                                            <li class="{{ $i == $products->currentPage() ? 'active' : '' }}">
+                                                <a href="{{ $products->url($i) }}">{{ $i }}</a>
+                                            </li>
+                                        @endfor
+
+                                        <!-- Next Page Link -->
+                                        @if ($products->hasMorePages())
+                                            <li><a href="{{ $products->nextPageUrl() }}">&raquo;</a></li>
+                                        @else
+                                            <li class="disabled"><span>&raquo;</span></li>
+                                        @endif
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <ul class="products-grid">
-                            <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                <div class="item-inner">
-                                    <div class="product-block">
-                                        <div class="product-image"> <a href="product_detail.html">
-                                                <figure class="product-display">
-                                                    <div class="sale-label sale-top-left">Sale</div>
-                                                    <img src="{{ asset('assets/web/products-images/product1.jpg') }}"
-                                                        class="lazyOwl product-mainpic" alt=""
-                                                        style="display: block;"> <img class="product-secondpic"
-                                                        alt=""
-                                                        src="{{ asset('assets/web/products-images/product1.jpg') }}"
-                                                        width="258">
-                                                </figure>
-                                            </a> </div>
-                                        <div class="product-meta">
-                                            <div class="product-action"> <a class="addcart" href="shopping_cart.html"> Add
-                                                    to cart </a> <a href="quick_view.html" class="quickview">Quick view</a>
+                            @foreach ($products as $product)
+                                <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="item-inner">
+                                        <div class="product-block">
+                                            <div class="product-image"> <a
+                                                    href="{{ route('detail', ['id' => $product->id]) }}">
+                                                    <figure class="product-display">
+                                                        <div class="sale-label sale-top-left">Sale</div>
+                                                        <img src="{{ asset($product->image_features->first()->url_img) }}"
+                                                            class="lazyOwl product-mainpic" alt=""
+                                                            style="display: block;"> <img class="product-secondpic"
+                                                            alt=""
+                                                            src="{{ asset($product->image_features->first()->url_img) }}"
+                                                            width="258">
+                                                    </figure>
+                                                </a> </div>
+                                            <div class="product-meta">
+                                                <div class="product-action">
+                                                    <form id="addToCartForm"
+                                                        action="{{ route('cart.add', ['productId' => $product->id, 'quantity' => 1]) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        <!-- Add any hidden input fields as needed -->
+                                                        <a class="addcart">
+                                                            <input type="submit" value="Add to cart">
+                                                        </a>
+                                                    </form>
+                                                    <a href="quick_view.html" class="quickview">Quick
+                                                        view</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="item-info">
-                                        <div class="info-inner">
-                                            <div class="item-title"> <a href="product_detail.html"
-                                                    title="Sample Product">Sample Product </a> </div>
-                                            <div class="item-content">
-                                                <div class="item-price">
-                                                    <div class="price-box"> <span class="regular-price"> <span
-                                                                class="price">$125.00</span> </span> </div>
-                                                </div>
-                                                <div class="rating">
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <div class="rating" style="width:80%"></div>
+                                        <div class="item-info">
+                                            <div class="info-inner">
+                                                <div class="item-title"> <a
+                                                        href="{{ route('detail', ['id' => $product->id]) }}"
+                                                        title="Sample Product"> {{ $product->name }}</a> </div>
+                                                <div class="item-content">
+                                                    <div class="item-price">
+                                                        <div class="price-box"> <span class="regular-price"> <span
+                                                                    class="price">{{ number_format($product->price, 2, '.', ',') }}
+                                                                    VND</span> </span> </div>
+                                                    </div>
+                                                    <div class="rating">
+                                                        <div class="ratings">
+                                                            <div class="rating-box">
+                                                                <div class="rating" style="width:80%"></div>
+                                                            </div>
+                                                            <p class="rating-links"> <a href="#">1 Review(s)</a>
+                                                                <span class="separator">|</span> <a href="#">Add
+                                                                    Review</a>
+                                                            </p>
                                                         </div>
-                                                        <p class="rating-links"> <a href="#">1 Review(s)</a> <span
-                                                                class="separator">|</span> <a href="#">Add Review</a>
-                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </section>
                 <aside class="col-left sidebar col-sm-3 col-xs-12 col-sm-pull-9 wow bounceInUp animated">
                     <div class="side-nav-categories">
-                        <div class="block-title"> Categories </div>
+                        <div class="block-title">Danh Mục</div>
                         <!--block-title-->
                         <!-- BEGIN BOX-CATEGORY -->
                         <div class="box-content box-category">
                             <ul>
-                                <li> <a class="active" href="#">Vegetables</a> <span
-                                        class="subDropdown minus"></span>
+                                <li> <a class="active" href="#">menu</a> <span class="subDropdown minus"></span>
                                     <ul class="level0_415" style="display:block">
-                                        <li> <a href="#"> Cabbage </a> <span class="subDropdown plus"></span>
-                                            <ul class="level1" style="display:none">
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <!--end for-each -->
-                                            </ul>
-                                            <!--level1-->
-                                        </li>
-                                        <!--level1-->
-                                        <li> <a href="#"> Apple </a> <span class="subDropdown plus"></span>
-                                            <ul class="level1" style="display:none">
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategorys </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <!--end for-each -->
-                                            </ul>
-                                            <!--level1-->
-                                        </li>
-                                        <!--level1-->
-                                        <li> <a href="#"> Cauliflower </a> <span class="subDropdown plus"></span>
-                                            <ul class="level1" style="display:none">
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <!--end for-each -->
-                                            </ul>
-                                            <!--level1-->
-                                        </li>
-                                        <!--level1-->
-                                        <li> <a href="#"> Graphs </a>
-                                            <ul class="level1" style="display:none">
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <!--end for-each -->
-                                            </ul>
-                                            <!--level1-->
-                                        </li>
-                                        <!--level1-->
-                                        <li> <a href="#"> Straberry </a> <span class="subDropdown plus"></span>
-                                            <ul class="level1" style="display:none">
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <!--end for-each -->
-                                            </ul>
-                                            <!--level1-->
-                                        </li>
-
-
-                                        <!--level1-->
-                                        <li> <a href="#"> Nuts </a> <span class="subDropdown plus"></span>
-                                            <ul class="level1" style="display:none">
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <!--end for-each -->
-                                            </ul>
-                                            <!--level1-->
-                                        </li>
-                                        <!--level1-->
+                                        @foreach ($category as $a)
+                                            <li>
+                                                <a href="#">{{ $a->name }}</a> <span class="subDropdown plus">
+                                                </span>
+                                                @foreach ($a->subcategories as $sub)
+                                                    <ul class="level1" style="display:none">
+                                                        <li> <a href="#"> {{ $sub->name }} </a> </li>
+                                                    </ul>
+                                                @endforeach
+                                            </li>
+                                        @endforeach
                                     </ul>
-                                    <!--level0-->
                                 </li>
-                                <!--level 0-->
-                                <li> <a href="#">Fruits</a> <span class="subDropdown plus"></span>
-                                    <ul class="level0_455" style="display:none">
-                                        <li> <a href="#"> Cabbage </a> <span class="subDropdown plus"></span>
-                                            <ul class="level1" style="display:none">
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <!--end for-each -->
-                                            </ul>
-                                            <!--level1-->
-                                        </li>
-                                        <!--level1-->
-                                        <li> <a href="#"> Pineapple </a> <span class="subDropdown plus"></span>
-                                            <ul class="level1" style="display:none">
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <!--end for-each -->
-                                            </ul>
-                                            <!--level1-->
-                                        </li>
-                                        <!--level1-->
-                                        <li> <a href="#"> Papaw </a> <span class="subDropdown plus"></span>
-                                            <ul class="level1" style="display:none">
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <!--end for-each -->
-                                            </ul>
-                                            <!--level1-->
-                                        </li>
-                                        <!--level1-->
-                                        <li> <a href="#"> Carrot </a> <span class="subDropdown plus"></span>
-                                            <ul class="level1" style="display:none">
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <!--end for-each -->
-                                            </ul>
-                                            <!--level1-->
-                                        </li>
-                                        <!--level1-->
-                                        <li> <a href="#"> Potato </a> <span class="subDropdown plus"></span>
-                                            <ul class="level1" style="display:none">
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <!--end for-each -->
-                                            </ul>
-                                            <!--level1-->
-                                        </li>
-                                        <!--level1-->
-                                    </ul>
-                                    <!--level0-->
-                                </li>
-                                <!--level 0-->
-                                <li> <a href="#">Dairy</a> <span class="subDropdown plus"></span>
-                                    <ul class="level0_482" style="display:none">
-                                        <li> <a href="#"> Fruits </a> <span class="subDropdown plus"></span>
-                                            <ul class="level1" style="display:none">
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <!--end for-each -->
-                                            </ul>
-                                            <!--level1-->
-                                        </li>
-                                        <!--level1-->
-                                        <li> <a href="#"> Mango </a> <span class="subDropdown plus"></span>
-                                            <ul class="level1" style="display:none">
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <!--end for-each -->
-                                            </ul>
-                                            <!--level1-->
-                                        </li>
-                                        <!--level1-->
-                                        <li> <a href="#"> Apple </a> <span class="subDropdown plus"></span>
-                                            <ul class="level1" style="display:none">
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <li> <a href="#"> Subcategory </a> </li>
-                                                <!--end for-each -->
-                                            </ul>
-                                            <!--level1-->
-                                        </li>
-                                        <!--level1-->
-                                    </ul>
-                                    <!--level0-->
-                                </li>
-                                <!--level 0-->
-                                <li> <a href="#">Salad</a> </li>
-                                <!--level 0-->
-                                <li class="last"> <a href="#">Snacks</a> </li>
-                                <!--level 0-->
                             </ul>
                         </div>
-                        <!--box-content box-category-->
                     </div>
                     <div class="block block-banner"><a href="#"><img
                                 src="{{ asset('assets/web/images/block-banner.png') }}" alt="block-banner"></a></div>
@@ -323,10 +178,10 @@
         </div>
     </section>
 @endsection
-<script type="text/javascript" src="{{ asset('assets/web/js/jquery.min.js') }}"></script>
+{{-- <script type="text/javascript" src="{{ asset('assets/web/js/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/web/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/web/js/parallax.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/web/js/common.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/web/js/revslider.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/web/js/jquery.mobile-menu.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/web/js/owl.carousel.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/web/js/owl.carousel.min.js') }}"></script> --}}

@@ -170,9 +170,15 @@
                                                             </div>
                                                             <div class="product-meta">
                                                                 <div class="product-action">
-                                                                    <a class="addcart" href="">
-                                                                        <i class="bi bi-cart3"></i>
-                                                                    </a>
+                                                                    <form id="addToCartForm"
+                                                                        action="{{ route('cart.add', ['productId' => $product->id, 'quantity' => 1]) }}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        <!-- Add any hidden input fields as needed -->
+                                                                        <a class="addcart">
+                                                                            <input type="submit" value="Add to cart">
+                                                                        </a>
+                                                                    </form>
                                                                     <a href="quick_view.html" class="quickview">
                                                                         <i class="bi bi-search"></i></i>
                                                                 </div>
@@ -181,21 +187,17 @@
                                                         <div class="item-info">
                                                             <div class="info-inner">
                                                                 <div class="item-title">
-                                                                    <a href="product_detail.html"
+                                                                    <a href="{{ route('detail', ['id' => $a->id]) }}"
                                                                         title="Sample Product">{{ $a->name }}</a>
                                                                 </div>
                                                                 <div class="item-content">
                                                                     <div class="item-price">
                                                                         <div class="price-box">
-                                                                            <p class="old-price">
-                                                                                <span class="price-label">Regular
-                                                                                    Price:</span>
-                                                                                <span class="price"> $100.00 </span>
-                                                                            </p>
                                                                             <p class="special-price">
                                                                                 <span class="price-label">Special
                                                                                     Price</span>
-                                                                                <span class="price"> $90.00 </span>
+                                                                                <span
+                                                                                    class="price">{{ number_format($a->price, 2, '.', ',') }}VND</span>
                                                                             </p>
                                                                         </div>
                                                                     </div>

@@ -46,33 +46,27 @@ class GHNController extends Controller
         $apiKey = env('API_GHN');
         $client = new Client();
 
-        try {
-            $response = $client->get($apiUrl, [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Token' => $apiKey,
-                ],
-            ]);
 
-            $data = json_decode($response->getBody(), true);
+        $response = $client->get($apiUrl, [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Token' => $apiKey,
+            ],
+        ]);
 
-            // Handle the data here
-            if (isset($data['data']) && is_array($data['data'])) {
-                $provinceIds = [];
+        $data = json_decode($response->getBody(), true);
+        // dd($data);
+        // Handle the data here
+        if (isset($data['data']) && is_array($data['data'])) {
+            $provinceIds = [];
 
-                foreach ($data['data'] as $item) {
-                    if (isset($item['ProvinceID']) && is_numeric($item['ProvinceID'])) {
-                        $provinceIds[] = (int)$item['ProvinceID'];
-                    }
+            foreach ($data['data'] as $item) {
+                if (isset($item['ProvinceID']) && is_numeric($item['ProvinceID'])) {
+                    $provinceIds[] = (int) $item['ProvinceID'];
                 }
             }
-
-            // Pass $provinceIds to the next method
-            return $this->getDistricts($provinceIds);
-        } catch (\Exception $e) {
-            // Handle errors
-            return response()->json(['error' => $e->getMessage()], 500);
         }
+        return view('text', compact('provinceIds', 'data'));
     }
 
     public function getDistricts($provinceIds)

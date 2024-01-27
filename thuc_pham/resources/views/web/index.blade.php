@@ -138,12 +138,10 @@
                                                             action="{{ route('cart.add', ['productId' => $product->id, 'quantity' => 1]) }}"
                                                             method="post">
                                                             @csrf
-                                                            <!-- Add any hidden input fields as needed -->
                                                             <a class="addcart">
                                                                 <input type="submit" value="Add to cart">
                                                             </a>
                                                         </form>
-
                                                         <a href="quick_view.html" class="quickview">
                                                             <i class="bi bi-search"></i></i> Quick view</a>
                                                     </div>

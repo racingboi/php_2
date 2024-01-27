@@ -54,6 +54,7 @@ class CartController extends Controller
         ]);
 
         return redirect()->route('home')->with('success', 'Thêm sản phẩm thành công');
+        // return response()->json(['success' => true]);
     }
     public function deleteCartItem($orderDetailId)
     {
