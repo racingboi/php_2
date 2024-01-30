@@ -1,6 +1,8 @@
 $(document).ready(function () {
     let ward = "";
     let district = "";
+    let service_id = "";
+    let service_type_id = "";
     function fetchProvinceData() {
         ward = "";
         var apiUrl =
@@ -47,7 +49,7 @@ $(document).ready(function () {
             },
         });
     }
-    function fetchFee(ward, district) {
+    function fetchFee(ward, district, serviceId) {
         var apiUrl =
             "https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee";
         var apiKey = "7293aab0-b9b0-11ee-b38e-f6f098158c7e"; // Replace with your actual API key
@@ -61,23 +63,23 @@ $(document).ready(function () {
                 Token: apiKey,
             },
             data: {
-                from_district_id: 1454,
-                from_ward_code: "21211",
-                service_id: 53319,
-                service_type_id: 1,
+                from_district_id: 1788,
+                // from_ward_code: "21211",
+                service_id: serviceId,
+                // service_type_id: null,
                 to_district_id: district,
-                to_ward_code: `"${ward}"`,
-                height: 50,
-                length: 20,
+                to_ward_code: ward,
+                " height": 50,
+                " length": 20,
                 weight: 200,
-                width: 20,
-                insurance_value: 10000,
-                cod_failed_amount: 2000,
-                coupon: null,
+                " width": 20,
+                insurance_value: 0,
+                // cod_failed_amount: 2000,
+                // coupon: null
             },
             success: function (data) {
                 renderFee(data.data.total);
-                console.log(data.data.total);
+                // console.log(data.data.total);
             },
             error: function (error) {
                 console.error("Error fetching ward data:", error);
@@ -137,14 +139,22 @@ $(document).ready(function () {
             }
         });
     }
-    function renderFee(fee) {
-        let feeHtml = $("#GHNfee");
-        var numberFormat = new Intl.NumberFormat("vi-VN");
+   function renderFee(fee) {
+       var feeHtml = $("#GHNfee");
+       var numberFormat = new Intl.NumberFormat("vi-VN", {
+           style: "currency",
+           currency: "VND",
+       });
+       var formattedValue = document.getElementById("firstTotal").innerText;
+       var firstTotalValue = parseFloat(formattedValue.replace(/,/g, ""));
+       var total = firstTotalValue + fee; // Sửa đổi dòng này để thêm fee vào firstTotalValue
+       console.log(total);
+       var formattedFee = numberFormat.format(fee);
+       feeHtml.text(formattedFee);
+       $(".total").text(numberFormat.format(total)); // Sửa đổi dòng này để đặt giá trị của total
+   }
 
-        // Format the feeValue using the format method
-        var formattedFee = numberFormat.format(fee);
-        feeHtml.text(formattedFee);
-    }
+
     function renderDistrictsDropdown(districtsData) {
         var selectDistricts = $("#districts");
         selectDistricts.empty();
@@ -197,13 +207,53 @@ $(document).ready(function () {
             ward = $(this).val();
         });
     }
+    function fetchService(districtId) {
+        service_id = "";
+        service_type_id= "";
+        var apiUrl =
+            "https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/available-services";
+        var apiKey = "7293aab0-b9b0-11ee-b38e-f6f098158c7e"; // Replace with your actual API key
+        // console.log(districtId);
+        $.ajax({
+            url: apiUrl,
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Token: apiKey,
+            },
+            data: {
+                shop_id: 4868495,
+                from_district: 1788,
+                to_district: districtId,
+            },
+           success: function(data) {
+                if (data.data && data.data.length > 0) {
+                    const firstService = data.data[0];
+                    console.log(firstService, ward, district);
+                    const retrievedServiceId = firstService.service_id;
+                     fetchFee(ward, district, retrievedServiceId);
+                } else {
+                    console.error("No available services found.");
+                    callback(null); // or handle the absence of services in another way
+                }
+            },
+          error: function(error) {
+                console.error("Error fetching service data:", error);
+                callback(null);
+            },
+        });
+    }
+
     let btnBaoGia = $("#baogia");
     btnBaoGia.on("click", () => {
         if (ward !== "") {
-            fetchFee(ward, district);
-        } else {
-            alert("Vui lòng chọn Phường/Xã!");
+            fetchService(district)
+            fetchFee(ward, district, serviceId);
+            console.log(ward, district, serviceId);
+
+            // Handle the case when serviceId is null or not available
         }
+
     });
 
     // Call the fetchProvinceData function to initiate the data fetching

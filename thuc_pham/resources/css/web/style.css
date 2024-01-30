@@ -362,8 +362,9 @@ a.block-currency {
     display: inline;
     text-align: right;
     float: left;
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    /* border-left: 1px solid rgba(255, 255, 255, 0.3); */
     position: relative;
+    cursor: pointer;
 }
 .toplinks div.links div a {
     color: black;
@@ -438,9 +439,9 @@ a.block-currency {
     right: 18%;
     top: -10px;
 }
-.toplinks .links div.wishlist {
+/* .toplinks .links div.wishlist {
     border-right: 1px solid rgba(255, 255, 255, 0.3);
-}
+} */
 /* search */
 .navbar-collapse form[role="search"] {
     position: absolute;

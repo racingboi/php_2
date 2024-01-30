@@ -1,68 +1,3 @@
-/*
-Theme Name: Nexus
-Author: ThemesGround
-Author URI: https://www.themesground.com/
-Description: Nexus HTML5 Template
-Version: 1.4
-License: GNU General Public License v2 or later
-Tags: two-columns, left-sidebar, fixed-layout, responsive-layout, custom-background, custom-colors, custom-header, custom-menu
-Text Domain: Nexus
-*/
-/* TABLE OF CONTENTS
-
-
-1.	Body
-
-2.	Layout 
-
-3.	Header
-
-4.	Navigation 
-
-5.  Product Details
-
-6.	Product Meta and Rating 
-
-7.	Price & Flip 3D
-
-8.	New & Sale Label 
-
-9.	Best Seller / Featured Products
-
-10.	Breadcrumbs 
-
-11.	Sliders
-
-12.	Blog-post
-
-13.	Sidebar
-
-14. Newsletter
-
-15.	Category Toolbar
-
-16.	Wishlist, Quick Access, Compare Links
-
-17.	Checkout
-
-18.	Product View Types
-
-19.	Account Login Page
-
-20.	404 Page Not Found
-
-21.	toTop
-
-22. Banners
-
-23.	Footer
-
-24.	Global Styles and Messages
-
-*/
-
-
-/*========== 1. Body ===========*/
 
 body {
 	color: #333;
@@ -1065,7 +1000,7 @@ ul#cart-sidebar {
 }
 /*================ 4. Navigation ==================*/
 
- 
+
 .mm-toggle-wrap {
 	display: none;
 }
@@ -1766,7 +1701,7 @@ a.btn-button-st:hover {
 	width: 165px;
 	text-align: left;
 	z-index: 1000;
-	
+
 }
 #nav > li.drop-menu ul li ul {
 	left: 160px;
@@ -4247,7 +4182,7 @@ ul#add-slideshow {
 	margin: 0;
 	padding: 15px 15px 05px 15px;
 	text-transform: uppercase;
-	
+
 }
 .side-nav-categories .block-title:before {
 	content: '\f0c9';
@@ -7622,7 +7557,7 @@ button.button.btn-proceed-checkout span {
 	opacity: 0.6;
 }
 /*=============== 23. Footer =================*/
-	
+
 .footer {
 	background: none repeat scroll 0 0 #171717;
 }

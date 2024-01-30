@@ -141,30 +141,25 @@
                                 </div>
                             </div>
                             <!-- Header Top Links -->
-                            <div class="toplinks">
+                            <div class="toplinks h-100">
                                 <div class="links">
-                                    {{-- <div class="ten">
-                                        {{ Auth::user()->name }}
-                                    </div> --}}
                                     <div class="login">
                                         <a title="Login" href="{{ route('login') }}">
-                                            {{-- <span class="hidden-xs"> --}}
                                             <i class="bi bi-box-arrow-in-right"></i>
-                                            {{-- </span> --}}
                                         </a>
                                     </div>
                                     <div class="wishlist">
-                                        <a href="wishlist.html">
-                                            <span class="hidden-xs">
-                                                <i class="bi bi-heart"></i>
-                                                <span class="wishlist-items">0</span>
-                                            </span>
-                                        </a>
-
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <a :href="route('logout')"
+                                                onclick="event.preventDefault(); this.closest('form').submit();">
+                                           {!! '<i class="bi bi-box-arrow-right"></i>' !!}
+                                            </a>
+                                        </form>
                                     </div>
                                     <div class="search">
-                                        <a href="#">
-                                            <span class="hidden-xs">
+                                        <a>
+                                            <span >
                                                 <i class="bi bi-search"></i>
                                             </span>
                                         </a>
@@ -194,77 +189,6 @@
                                 <li class="level0 parent drop-menu">
                                     <a href="{{ route('home') }}" class=""><span>Trang chủ</span> </a>
                                 </li>
-                                {{-- <li class="level0 parent drop-menu">
-                                    <a href="#"><span>Pages</span> </a>
-                                    <ul style="display: none" class="level1">
-                                        <li class="level1 first">
-                                            <a href="grid.html"> <span>Grid</span></a>
-                                        </li>
-                                        <li class="level1 nav-10-2">
-                                            <a href="list.html"> <span>List</span> </a>
-                                        </li>
-                                        <li class="level1 nav-10-3">
-                                            <a href="product_detail.html">
-                                                <span>Product Detail</span>
-                                            </a>
-                                        </li>
-                                        <li class="level1 nav-10-4">
-                                            <a href="shopping_cart.html">
-                                                <span>Shopping Cart</span>
-                                            </a>
-                                        </li>
-                                        <li class="level1 first parent">
-                                            <a href="checkout.html"> <span>Checkout</span></a>
-                                            <ul class="level2">
-                                                <li class="level2 nav-2-1-1 first">
-                                                    <a href="checkout_method.html"><span>Checkout Method</span></a>
-                                                </li>
-                                                <li class="level2 nav-2-1-5 last">
-                                                    <a href="checkout_billing_info.html"><span>Checkout Billing
-                                                            Info</span></a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="level1 nav-10-5">
-                                            <a href="wishlist.html"> <span>Wishlist</span> </a>
-                                        </li>
-                                        <li class="level1 nav-10-6">
-                                            <a href="dashboard.html"> <span>Dashboard</span> </a>
-                                        </li>
-                                        <li class="level1 nav-10-7">
-                                            <a href="multiple_addresses.html">
-                                                <span>Multiple Addresses</span>
-                                            </a>
-                                        </li>
-                                        <li class="level1 nav-10-8">
-                                            <a href="about_us.html"> <span>About Us</span> </a>
-                                        </li>
-                                        <li class="level1 nav-10-11">
-                                            <a href="faq.html"> <span>FAQ</span> </a>
-                                        </li>
-                                        <li class="level1 nav-10-12">
-                                            <a href="quick_view.html"> <span>Quick View</span> </a>
-                                        </li>
-                                        <li class="level1 nav-10-13">
-                                            <a href="newsletter.html"> <span>Newsletter</span> </a>
-                                        </li>
-                                        <li class="level1 nav-10-14">
-                                            <a href="contact_us.html"> <span>Contact Us</span></a>
-                                        </li>
-                                        <li class="level1 first parent">
-                                            <a href="blog.html"> <span>Blog</span></a>
-                                            <ul class="level2">
-                                                <li class="level2 nav-2-1-1 first">
-                                                    <a href="blog_detail.html"><span>Blog Detail</span></a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li class="level1 nav-10-16">
-                                            <a href="404error.html"> <span>404 Error Page</span></a>
-                                        </li>
-                                    </ul>
-                                </li> --}}
                                 <li class="level0 nav-5 level-top first">
                                     <a href="{{ route('shop') }}" class="level-top">
                                         <span>Sản Phẩm</span>

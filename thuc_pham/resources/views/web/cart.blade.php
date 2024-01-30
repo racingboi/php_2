@@ -110,7 +110,7 @@
                                                     href="#configure/id/15945/"></a>
                                             </td>
                                             <td class="a-right"><span class="cart-price"> <span
-                                                        class="price">{{ number_format($orderDetail->product->price, 2, '.', ',') }}</span>
+                                                        class="price">{{ number_format($orderDetail->product->price) }} đ</span>
                                                 </span></td>
                                             <td class="a-center movewishlist">
                                                 <input class="input-text qty" value="{{ $totalQuantity }}"
@@ -119,7 +119,7 @@
 
                                             <td>{{ $orderDetail->product->unit }}</td>
                                             <td class="a-right movewishlist"><span class="cart-price"> <span
-                                                        class="price">{{ number_format($totalQuantity * $orderDetail->product->price, 2, '.', ',') }}</span>
+                                                        class="price">{{ number_format($totalQuantity * $orderDetail->product->price) }} đ</span>
                                                 </span></td>
                                             <td class="a-center last">
                                                 <form action="{{ route('cart.delete', ['id' => $orderDetail->id]) }}"
@@ -232,7 +232,7 @@
                                                         cộng</strong>
                                                 </td>
                                                 <td class="a-right" style="">
-                                                    <strong><span class="price">$77.38</span></strong>
+                                                    <strong><span class="price total">0 đ</span></strong>
                                                 </td>
                                             </tr>
                                         </tfoot>
@@ -240,13 +240,13 @@
                                             <tr>
                                                 <td colspan="1" class="a-left" style=""> Tổng phụ </td>
                                                 <td class="a-right" style=""><span
-                                                        class="price">{{ number_format($total, 2, '.', ',') }}</span>
+                                                        class="price" id="firstTotal">{{ number_format($total) }} đ</span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="1" class="a-left" style=""> Phi giao hang </td>
+                                                <td colspan="1" class="a-left" style=""> Phi giao hàng </td>
                                                 <td class="a-right" style=""><span class="price"
-                                                        id="GHNfee">0</span>
+                                                        id="GHNfee">0 đ</span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -313,7 +313,7 @@
                                                     <div class="item-content">
                                                         <div class="item-price">
                                                             <div class="price-box"> <span class="regular-price"> <span
-                                                                        class="price">{{ number_format($product->price, 2, '.', ',') }}
+                                                                        class="price">{{ number_format($product->price) }}
                                                                         VND</span> </span> </div>
                                                         </div>
                                                         <div class="rating">
