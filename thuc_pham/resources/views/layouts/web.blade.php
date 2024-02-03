@@ -151,18 +151,28 @@
                                     <div class="wishlist">
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
-                                            <a :href="route('logout')"
+                                            <a title="Logout" :href="route('logout')"
                                                 onclick="event.preventDefault(); this.closest('form').submit();">
-                                           {!! '<i class="bi bi-box-arrow-right"></i>' !!}
+                                                {!! '<i class="bi bi-box-arrow-right"></i>' !!}
                                             </a>
                                         </form>
                                     </div>
                                     <div class="search">
-                                        <a>
-                                            <span >
-                                                <i class="bi bi-search"></i>
-                                            </span>
-                                        </a>
+                                        @forelse($groupedCart as $productId => $items)
+                                        @php
+                                        $orderDetail = $items->first();
+                                                if (isset(Auth::user()->name)) {
+                                                    echo '<a href="' . route('user') . '">';
+                                                    echo '<span>';
+                                                    echo 'Xin Chào' .' '. $orderDetail->order->user->name . '!';
+                                                    echo '</span>';
+                                                    echo '</a>';
+                                                }else{
+                                                    echo "bạn chưa đăng nhập !";
+                                                }
+                                            @endphp
+                                        @empty
+                                        @endforelse
                                     </div>
                                 </div>
                             </div>

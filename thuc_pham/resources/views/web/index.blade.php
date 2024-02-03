@@ -1,9 +1,7 @@
 @extends('layouts.web')
 @section('title', 'GRYFFINDOR - Trang home ')
 @section('header-banner')
-
     <body class="index">
-
     @section('content')
         <div id="thm-slideshow" class="thm-slideshow">
             <div id="rev_slider_4_wrapper" class="rev_slider_wrapper fullwidthbanner-container">
