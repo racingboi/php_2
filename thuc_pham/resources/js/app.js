@@ -4,6 +4,7 @@ import "./bootstrap";
 // import "./web/jquery.flexslider";
 // import "./web/parallax";
 // import "./web/revslider";
+import "./web/api.js";
 import Alpine from "alpinejs";
 
 window.Alpine = Alpine;

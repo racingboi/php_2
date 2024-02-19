@@ -84,7 +84,7 @@
             <div class="col-lg-3 col-sm-6 col-12 d-flex">
                 <div class="dash-count das3">
                     <div class="dash-counts">
-                        {{-- <h4 class="text-white">{{ $order }}</h4> --}}
+                        <h4 class="text-white">{{ $order }}</h4>
                         <h5 class="text-white">Hóa đơn bán hàng</h5>
                     </div>
                     <div class="dash-imgs">
@@ -116,13 +116,13 @@
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <li>
-                                        <a href="javascript:void(0);" class="dropdown-item">2022</a>
+                                        <a href="" class="dropdown-item">2022</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0);" class="dropdown-item">2021</a>
+                                        <a href="" class="dropdown-item">2021</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0);" class="dropdown-item">2020</a>
+                                        <a href="" class="dropdown-item">2020</a>
                                     </li>
                                 </ul>
                             </div>

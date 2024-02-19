@@ -119,8 +119,7 @@
                                     alt="img"><span>
                                     Orders</span> <span class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="quotationList.html">Quotation List</a></li>
-                                <li><a href="addquotation.html">Add Quotation</a></li>
+                                <li><a href="{{route('admin.orders.list')}}">List</a></li>
                             </ul>
                         </li>
                         <li class="submenu">

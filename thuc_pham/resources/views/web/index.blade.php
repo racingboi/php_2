@@ -1,9 +1,7 @@
 @extends('layouts.web')
 @section('title', 'GRYFFINDOR - Trang home ')
 @section('header-banner')
-
     <body class="index">
-
     @section('content')
         <div id="thm-slideshow" class="thm-slideshow">
             <div id="rev_slider_4_wrapper" class="rev_slider_wrapper fullwidthbanner-container">
@@ -138,12 +136,10 @@
                                                             action="{{ route('cart.add', ['productId' => $product->id, 'quantity' => 1]) }}"
                                                             method="post">
                                                             @csrf
-                                                            <!-- Add any hidden input fields as needed -->
                                                             <a class="addcart">
                                                                 <input type="submit" value="Add to cart">
                                                             </a>
                                                         </form>
-
                                                         <a href="quick_view.html" class="quickview">
                                                             <i class="bi bi-search"></i></i> Quick view</a>
                                                     </div>

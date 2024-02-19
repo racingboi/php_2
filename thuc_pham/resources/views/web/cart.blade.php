@@ -110,7 +110,8 @@
                                                     href="#configure/id/15945/"></a>
                                             </td>
                                             <td class="a-right"><span class="cart-price"> <span
-                                                        class="price">{{ number_format($orderDetail->product->price, 2, '.', ',') }}</span>
+                                                        class="price">{{ number_format($orderDetail->product->price) }}
+                                                        đ</span>
                                                 </span></td>
                                             <td class="a-center movewishlist">
                                                 <input class="input-text qty" value="{{ $totalQuantity }}"
@@ -119,7 +120,8 @@
 
                                             <td>{{ $orderDetail->product->unit }}</td>
                                             <td class="a-right movewishlist"><span class="cart-price"> <span
-                                                        class="price">{{ number_format($totalQuantity * $orderDetail->product->price, 2, '.', ',') }}</span>
+                                                        class="price">{{ number_format($totalQuantity * $orderDetail->product->price) }}
+                                                        đ</span>
                                                 </span></td>
                                             <td class="a-center last">
                                                 <form action="{{ route('cart.delete', ['id' => $orderDetail->id]) }}"
@@ -159,15 +161,17 @@
                                                     <div class="input-box">
                                                         <select title="Country" value="" class="validate-select"
                                                             id="province" name="">
+                                                            <option value="" selected>--chọn tỉnh--</option>
                                                         </select>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <label for="district">chọn quận</label>
                                                     <div class="input-box">
-                                                        <select style="" name="" title="State/Province"
-                                                            id="district" value=""
+                                                        <select style="" name="" title="districts"
+                                                            id="districts" value=""
                                                             class="required-entry validate-select">
+                                                            <option value="" selected>--chọn quận/huyện--</option>
                                                         </select>
                                                         {{-- <input type="text" style="display:none;"
                                                             class="input-text required-entry" title="State/Province"
@@ -177,26 +181,20 @@
                                                 <li>
                                                     <label for="ward">chọn phường</label>
                                                     <div class="input-box">
-                                                        <select style="" name="" title="State/Province"
+                                                        <select style="" name="" title="ward"
                                                             id="ward" value=""
                                                             class="required-entry validate-select">
+                                                            <option value="" selected>--chọn phường/xã--</option>
                                                         </select>
                                                         {{-- <input type="text" style="display:none;"
                                                             class="input-text required-entry" title="State/Province"
                                                             value="" name="region" id="region"> --}}
                                                     </div>
                                                 </li>
-                                                <li>
-                                                    <label for="postcode">Mã Zip/Bưu Chính</label>
-                                                    <div class="input-box">
-                                                        <input type="text" value="" name="estimate_postcode"
-                                                            id="postcode" class="input-text validate-postcode">
-                                                    </div>
-                                                </li>
                                             </ul>
                                             <div class="buttons-set11">
-                                                <button class="button get-quote" onclick="coShippingMethodForm.submit()"
-                                                    title="Nhận báo giá" type="button"><span>Nhận báo giá</span></button>
+                                                <button class="button get-quote" id="baogia" title="Nhận báo giá"
+                                                    type="button"><span>Nhận báo giá</span></button>
                                             </div>
                                             <!--buttons-set11-->
                                         </form>
@@ -236,23 +234,39 @@
                                                         cộng</strong>
                                                 </td>
                                                 <td class="a-right" style="">
-                                                    <strong><span class="price">$77.38</span></strong>
+                                                    <strong><span class="price total" id="tong">0 đ</span></strong>
                                                 </td>
                                             </tr>
                                         </tfoot>
                                         <tbody>
                                             <tr>
                                                 <td colspan="1" class="a-left" style=""> Tổng phụ </td>
-                                                <td class="a-right" style=""><span
-                                                        class="price">{{ number_format($total, 2, '.', ',') }}</span>
+                                                <td class="a-right" style=""><span class="price"
+                                                        id="firstTotal">{{ number_format($total) }} đ</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="1" class="a-left" style=""> Phi giao hàng </td>
+                                                <td class="a-right" style=""><span class="price" id="GHNfee">0
+                                                        đ</span>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <ul class="checkout">
                                         <li>
-                                            <button class="button btn-proceed-checkout" title="Tiến hành kiểm tra"
-                                                type="button"><span>Tiến hành kiểm tra</span></button>
+                                            <form action="{{ route('getVNP', ['id' => $orderDetail->id]) }}">
+                                                @method('POST')
+                                                @csrf
+                                                <input type="text" id="yourInputId" value="" />
+                                                <script>
+                                                    var totalValue = $('#tong').val();
+                                                    $('#yourInputId').val(totalValue);
+                                                </script>
+                                                <button class="button btn-proceed-checkout" title="Thanh Toán online"
+                                                    type="submit" name="redirect">Thanh Toán online</button>
+                                            </form>
+
                                         </li>
                                         <br>
                                         <li><a title="Thanh toán với nhiều địa chỉ" href="multiple_addresses.html">Thanh
@@ -264,9 +278,7 @@
 
                             </div>
                         </div>
-
                         <!--cart-collaterals-->
-
                     </div>
                     <div class="crosssel wow bounceInUp animated">
                         <div class="new_title center">
@@ -289,10 +301,16 @@
                                                         </figure>
                                                     </a> </div>
                                                 <div class="product-meta">
-                                                    <div class="product-action"> <a class="addcart"
-                                                            href="shopping_cart.html">
-                                                            <i class="bi bi-cart3"></i> Add to cart
-                                                        </a>
+                                                    <div class="product-action">
+                                                        <form id="addToCartForm"
+                                                            action="{{ route('cart.add', ['productId' => $product->id, 'quantity' => 1]) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <!-- Add any hidden input fields as needed -->
+                                                            <a class="addcart">
+                                                                <input type="submit" value="Add to cart">
+                                                            </a>
+                                                        </form>
                                                         <a href="quick_view.html" class="quickview">
                                                             <i class="bi bi-search"></i></i> Quick view</a>
                                                     </div>
@@ -305,7 +323,7 @@
                                                     <div class="item-content">
                                                         <div class="item-price">
                                                             <div class="price-box"> <span class="regular-price"> <span
-                                                                        class="price">{{ number_format($product->price, 2, '.', ',') }}
+                                                                        class="price">{{ number_format($product->price) }}
                                                                         VND</span> </span> </div>
                                                         </div>
                                                         <div class="rating">

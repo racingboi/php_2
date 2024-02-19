@@ -35,6 +35,30 @@ class index extends Controller
             $query->where('number', 0);
         }])->get();
         $category = Category::with(['subcategories'])->get();
-        return view('web.detail', compact('products', 'product', 'category'));
+        $user_id = auth()->id();
+        $cart = OrderDetail::whereHas('order', function ($query) use ($user_id) {
+            $query->where('users_id', $user_id);
+        })
+            ->with(['order.orderDetails', 'product.image_features'])
+            ->get();
+        $groupedCart = $cart->groupBy('product.id');
+        return view('web.detail', compact('products', 'product', 'category', 'groupedCart'));
+    }
+
+     public function user()
+    {
+        $user_id = auth()->id();
+        $cart = OrderDetail::whereHas('order', function ($query) use ($user_id) {
+            $query->where('users_id', $user_id);
+        })
+            ->with(['order.orderDetails', 'product.image_features'])
+            ->get();
+        $groupedCart = $cart->groupBy('product.id');
+        $category = Category::with(['subcategories'])->get();
+        $products = Products::with(['category', 'subcategory', 'image_features' => function ($query) {
+            $query->where('number', 0);
+        }])->get();
+        return view('web.user',compact('cart', 'groupedCart', 'category', 'products'));
+
     }
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\SubcategoryController;
 use App\Http\Controllers\admin\crawl_data;
 use App\Http\Controllers\admin\DashbardController;
 use  App\Http\Controllers\web\index;
+use  App\Http\Controllers\web\ShopController;
 use  App\Http\Controllers\web\CartController;
 use  App\Http\Controllers\GHNController;
 /*
@@ -92,10 +93,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'CheckAdminRole'])->
         Route::get('list', [OrderController::class, 'index'])->name('list');
         Route::get('create', [OrderController::class, 'create'])->name('create');
         Route::post('/', [OrderController::class, 'store'])->name('store');
+        Route::put('{id}', [OrderController::class, 'Status'])->name('status');
         Route::get('{id}', [OrderController::class, 'show'])->name('show');
         Route::get('{id}/edit', [OrderController::class, 'edit'])->name('edit');
         Route::put('update/{id}', [OrderController::class, 'update'])->name('update');
         Route::delete('delete/{id}', [OrderController::class, 'destroy'])->name('destroy');
+        Route::post('list', [OrderController::class, 'search'])->name('search');
     });
     //Routing Posts
 
@@ -104,9 +107,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'CheckAdminRole'])->
         Route::get('create', [PostsController::class, 'create'])->name('create');
         Route::post('/', [PostsController::class, 'store'])->name('store');
         Route::get('{id}', [PostsController::class, 'show'])->name('show');
+          Route::put('{id}', [UserController::class, 'Status'])->name('status');
         Route::get('{id}/edit', [PostsController::class, 'edit'])->name('edit');
         Route::put('update/{id}', [PostsController::class, 'update'])->name('update');
         Route::delete('delete/{id}', [PostsController::class, 'destroy'])->name('destroy');
+        Route::post('list', [PostsController::class, 'search'])->name('search');
     });
 
     //Routing User
@@ -125,9 +130,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'CheckAdminRole'])->
 Route::get('crawlDataProducts', [crawl_data::class, 'crawlDataProducts']);
 Route::get('crawlDataCategory', [crawl_data::class, 'crawlDataCategory']);
 Route::get('/', [index::class, 'home'])->name('home');
-// Route::match(['get', 'post'], 'detail/{id}', [index::class, 'detail'])->name('detail');
 Route::get('detail/{id}', [index::class, 'detail'])->name('detail');
-
+// shop
+Route::get('shop', [ShopController::class, 'index'])->name('shop');
+route::post('shop/show', [ShopController::class, 'LocSp'])->name('LocSp');
 // cart
 Route::prefix('cart')->middleware('auth')->name('cart.')->group(function () {
     Route::get('/', [CartController::class, 'cart'])->name('list');
@@ -137,6 +143,9 @@ Route::prefix('cart')->middleware('auth')->name('cart.')->group(function () {
     Route::post('add', [CartController::class, 'detail_add'])->name('detail_add');
     Route::post('update', [CartController::class, 'updateCartItem'])->name('update');
 });
+// chi tiet nguoi dung
+route::get('user', [index::class, 'user'])->name('user');
 // Route::get('cart', [CartController::class, 'cart'])->name('list');
-route::get('api/{provinceIds}', [GHNController::class, 'getDistricts']);
-route::get('apis', [GHNController::class, 'getProvinces']);
+route::get('vnp/{id}', [GHNController::class, 'getVNP']);
+route::post('vnp/{id}', [GHNController::class, 'getVNP'])->name('getVNP');
+// route::get('apis', [GHNController::class, 'getProvinces']);
