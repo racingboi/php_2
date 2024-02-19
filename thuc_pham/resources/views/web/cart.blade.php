@@ -110,7 +110,8 @@
                                                     href="#configure/id/15945/"></a>
                                             </td>
                                             <td class="a-right"><span class="cart-price"> <span
-                                                        class="price">{{ number_format($orderDetail->product->price) }} đ</span>
+                                                        class="price">{{ number_format($orderDetail->product->price) }}
+                                                        đ</span>
                                                 </span></td>
                                             <td class="a-center movewishlist">
                                                 <input class="input-text qty" value="{{ $totalQuantity }}"
@@ -119,7 +120,8 @@
 
                                             <td>{{ $orderDetail->product->unit }}</td>
                                             <td class="a-right movewishlist"><span class="cart-price"> <span
-                                                        class="price">{{ number_format($totalQuantity * $orderDetail->product->price) }} đ</span>
+                                                        class="price">{{ number_format($totalQuantity * $orderDetail->product->price) }}
+                                                        đ</span>
                                                 </span></td>
                                             <td class="a-center last">
                                                 <form action="{{ route('cart.delete', ['id' => $orderDetail->id]) }}"
@@ -232,29 +234,39 @@
                                                         cộng</strong>
                                                 </td>
                                                 <td class="a-right" style="">
-                                                    <strong><span class="price total">0 đ</span></strong>
+                                                    <strong><span class="price total" id="tong">0 đ</span></strong>
                                                 </td>
                                             </tr>
                                         </tfoot>
                                         <tbody>
                                             <tr>
                                                 <td colspan="1" class="a-left" style=""> Tổng phụ </td>
-                                                <td class="a-right" style=""><span
-                                                        class="price" id="firstTotal">{{ number_format($total) }} đ</span>
+                                                <td class="a-right" style=""><span class="price"
+                                                        id="firstTotal">{{ number_format($total) }} đ</span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="1" class="a-left" style=""> Phi giao hàng </td>
-                                                <td class="a-right" style=""><span class="price"
-                                                        id="GHNfee">0 đ</span>
+                                                <td class="a-right" style=""><span class="price" id="GHNfee">0
+                                                        đ</span>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <ul class="checkout">
                                         <li>
-                                            <button class="button btn-proceed-checkout" title="Tiến hành kiểm tra"
-                                                type="button"><span>Tiến hành kiểm tra</span></button>
+                                            <form action="{{ route('getVNP', ['id' => $orderDetail->id]) }}">
+                                                @method('POST')
+                                                @csrf
+                                                <input type="text" id="yourInputId" value="" />
+                                                <script>
+                                                    var totalValue = $('#tong').val();
+                                                    $('#yourInputId').val(totalValue);
+                                                </script>
+                                                <button class="button btn-proceed-checkout" title="Thanh Toán online"
+                                                    type="submit" name="redirect">Thanh Toán online</button>
+                                            </form>
+
                                         </li>
                                         <br>
                                         <li><a title="Thanh toán với nhiều địa chỉ" href="multiple_addresses.html">Thanh
@@ -266,9 +278,7 @@
 
                             </div>
                         </div>
-
                         <!--cart-collaterals-->
-
                     </div>
                     <div class="crosssel wow bounceInUp animated">
                         <div class="new_title center">

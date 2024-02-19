@@ -146,5 +146,6 @@ Route::prefix('cart')->middleware('auth')->name('cart.')->group(function () {
 // chi tiet nguoi dung
 route::get('user', [index::class, 'user'])->name('user');
 // Route::get('cart', [CartController::class, 'cart'])->name('list');
-route::post('{provinceIds}', [GHNController::class, 'getDistricts'])->name('tinh');
-route::get('apis', [GHNController::class, 'getProvinces']);
+route::get('vnp/{id}', [GHNController::class, 'getVNP']);
+route::post('vnp/{id}', [GHNController::class, 'getVNP'])->name('getVNP');
+// route::get('apis', [GHNController::class, 'getProvinces']);
