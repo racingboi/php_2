@@ -148,4 +148,5 @@ route::get('user', [index::class, 'user'])->name('user');
 // Route::get('cart', [CartController::class, 'cart'])->name('list');
 route::get('vnp/{id}', [GHNController::class, 'getVNP']);
 route::post('vnp/{id}', [GHNController::class, 'getVNP'])->name('getVNP');
+route::get('return-vnpay', [GHNController::class, 'ReturnVNPay']);
 // route::get('apis', [GHNController::class, 'getProvinces']);

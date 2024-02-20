@@ -57,38 +57,48 @@
                                         </td>
                                     </tr>
                                 </tbody>
+                                @break
                         @endforeach
                         </table>
                           <div class="page-title py-3">
                         <h2>thông tin mua hàng</h2>
                     </div>
-                        <table class="data-table cart-table">
-                            <tbody>
-                                 <tr>
-                                        <td><strong>Tên sản phẩm:</strong></td>
-                                        <td>
-                                            <img width="75" height="75" alt="Sample Product"
-                                                src="{{ optional($orderDetail->product->image_features->first())->url_img }}">
-                                            {{ $orderDetail->product->name }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Số lượng:</strong></td>
-                                        <td>{{ $totalQuantity }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Tổng cộng:</strong></td>
-                                        <td>{{ number_format($totalQuantity * $orderDetail->product->price) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Trạng thái đơn hàng:</strong></td>
-                                        <td
-                                            style="color:    {{ $orderDetail->order->status == 0 ? 'Yellow' : ($orderDetail->order->status == 1 ? 'Blue' : ($orderDetail->order->status == 2 ? 'grey' : ($orderDetail->order->status == 3 ? 'green' : 'Red'))) }}">
-                                            {{ $orderDetail->order->status == 0 ? 'Chờ Sử Lý' : ($orderDetail->order->status == 1 ? 'Chờ giao' : ($orderDetail->order->status == 2 ? 'Đang Giao' : ($orderDetail->order->status == 3 ? 'Hoàn thành' : ($orderDetail->order->status == 4 ? 'Hủy' : 'Trả hàng')))) }}
-                                        </td>
-                                    </tr>
-                            </tbody>
-                        </table>
+                      <table class="data-table cart-table">
+    <tbody>
+        @foreach ($groupedCart as $productId => $items)
+            @php
+                $orderDetail = $items->first();
+                $totalQuantity = $items->sum('quantity');
+                $inputId = 'cartInput_' . $productId;
+                $total += $totalQuantity * $orderDetail->product->price;
+            @endphp
+            <tr>
+                <td><strong>Tên sản phẩm:</strong></td>
+                <td>
+                    <img width="75" height="75" alt="Sample Product"
+                        src="{{ optional($orderDetail->product->image_features->first())->url_img }}">
+                    {{ $orderDetail->product->name }}
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Số lượng:</strong></td>
+                <td>{{ $totalQuantity }}</td>
+            </tr>
+            <tr>
+                <td><strong>Tổng cộng:</strong></td>
+                <td>{{ number_format($totalQuantity * $orderDetail->product->price) }}</td>
+            </tr>
+            <tr>
+                <td><strong>Trạng thái đơn hàng:</strong></td>
+                <td
+                    style="color:    {{ $orderDetail->order->status == 0 ? 'Yellow' : ($orderDetail->order->status == 1 ? 'Blue' : ($orderDetail->order->status == 2 ? 'grey' : ($orderDetail->order->status == 3 ? 'green' : 'Red'))) }}">
+                    {{ $orderDetail->order->status == 0 ? 'Chờ Sử Lý' : ($orderDetail->order->status == 1 ? 'Chờ giao' : ($orderDetail->order->status == 2 ? 'Đang Giao' : ($orderDetail->order->status == 3 ? 'Hoàn thành' : ($orderDetail->order->status == 4 ? 'Hủy' : 'Trả hàng')))) }}
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+
                     </div>
                 </div>
             </div>

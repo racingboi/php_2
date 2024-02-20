@@ -255,22 +255,20 @@
                                     </table>
                                     <ul class="checkout">
                                         <li>
-                                            <form action="{{ route('getVNP', ['id' => $orderDetail->id]) }}">
-                                                @method('POST')
-                                                @csrf
-                                                <input type="text" id="yourInputId" value="" />
-                                                <script>
-                                                    var totalValue = $('#tong').val();
-                                                    $('#yourInputId').val(totalValue);
-                                                </script>
-                                                <button class="button btn-proceed-checkout" title="Thanh Toán online"
-                                                    type="submit" name="redirect">Thanh Toán online</button>
-                                            </form>
+                                            @if (!empty($orderDetail))
+                                                <form action="{{ route('getVNP', ['id' => $orderDetail->id]) }}">
+                                                    @method('POST')
+                                                    @csrf
+                                                    <input type="hidden" id="yourInputId" name="total" />
+                                                    <button class="button btn-proceed-checkout" title="Thanh Toán online"
+                                                        type="submit" name="redirect">Thanh Toán VNPAY</button>
+                                                </form>
+                                            @endif
 
                                         </li>
                                         <br>
-                                        <li><a title="Thanh toán với nhiều địa chỉ" href="multiple_addresses.html">Thanh
-                                                toán với nhiều địa chỉ</a> </li>
+                                        <li><a title="Thanh toán với nhiều địa chỉ" href="">Thanh
+                                                toán Khi nhận hàng</a></li>
                                         <br>
                                     </ul>
                                 </div>
