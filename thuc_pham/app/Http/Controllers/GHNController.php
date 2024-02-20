@@ -5,21 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
-
+use App\Models\Products;
+use App\Models\Category;
+use App\Models\Subcategory;
+use App\Models\Order;
+use App\Models\OrderDetail;
 class GHNController extends Controller
 {
-    function getVNP($id)
+    function getVNP(Request $request , $id)
     {
+        $total = $request->total;
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "http://127.0.0.1:8000/cart";
+        $vnp_Returnurl = "http://127.0.0.1:8000/return-vnpay";
         $vnp_TmnCode = "LUNOX45E"; //Mã website tại VNPAY
         $vnp_HashSecret = "NTFQKMOLJYQEICDFEZGCOAXQSTQBXKLL"; //Chuỗi bí mật
         $vnp_TxnRef = $_POST['order_id'] = $id; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_OrderInfo = $_POST['order_desc'] = 'thanh toan text';
         $vnp_OrderType = $_POST['order_type'] = 'billpayment';
-        $vnp_Amount = $_POST['amount'] = 123 * 100;
+        $vnp_Amount = $_POST['amount'] = $total*100;
         $vnp_Locale = $_POST['language'] = 'vn';
-        $vnp_BankCode = '';
+        $vnp_BankCode = 'NCB';
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
         //Add Params of 2.0.1 Version
 // $vnp_ExpireDate = $_POST['txtexpire'];
@@ -68,11 +73,26 @@ class GHNController extends Controller
             'data' => $vnp_Url
         );
         if (isset($_POST['redirect'])) {
-            header('Location:' . $vnp_Url);
-            die();
+            return redirect()->away($vnp_Url);
             } else {
-            return $returnData;
+            // return $returnData;
+            return redirect()->away($vnp_Url);
             }
+        }
+        function ReturnVNPay(){
+        $products = Products::with(['category', 'subcategory', 'image_features' => function ($query) {
+            $query->where('number', 0);
+        }])->get();
+        $category = Category::with(['subcategories'])->get();
+        // return view('web.index', compact('products', 'category', 'subcategory'));
+        $user_id = auth()->id();
+        $cart = OrderDetail::whereHas('order', function ($query) use ($user_id) {
+            $query->where('users_id', $user_id);
+        })
+            ->with(['order.orderDetails', 'product.image_features'])
+            ->get();
+        $groupedCart = $cart->groupBy('product.id');
+        return view('web.VNP', compact('products', 'category', 'groupedCart'));
         }
     }
 

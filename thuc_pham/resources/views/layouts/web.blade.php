@@ -171,8 +171,11 @@
                                                     echo "bạn chưa đăng nhập !";
                                                 }
                                             @endphp
+                                            @break
                                         @empty
+
                                         @endforelse
+
                                     </div>
                                 </div>
                             </div>

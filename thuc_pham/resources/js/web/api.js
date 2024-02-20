@@ -151,7 +151,10 @@ $(document).ready(function () {
        console.log(total);
        var formattedFee = numberFormat.format(fee);
        feeHtml.text(formattedFee);
-      $(".total").text(numberFormat.format(total)); // Sửa đổi dòng này để đặt giá trị của total
+       $(".total").text(numberFormat.format(total));
+        var formattedTotal = numberFormat.format(total);
+         var numericValue = formattedTotal.replace(/\D/g, "");
+      $("#yourInputId").val(numericValue);
    }
 
 
