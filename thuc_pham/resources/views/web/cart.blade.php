@@ -35,6 +35,7 @@
                                 @php
                                     $total = 0;
                                     $id_oders = [];
+                                    $order_id='';
                                 @endphp
                                 @foreach ($groupedCart as $productId => $items)
                                     @php
@@ -43,8 +44,12 @@
                                         $inputId = 'cartInput_' . $productId;
                                         $total += $totalQuantity * $orderDetail->product->price;
                                         $id_oders[] = $orderDetail->id;
+                                        $order_id=$orderDetail->order->id;
                                     @endphp
                                 @endforeach
+                                {{-- @php
+                                 dd($productId);
+                               @endphp --}}
                                 <thead>
                                     <tr>
                                         <th rowspan="1">&nbsp;</th>
@@ -74,6 +79,7 @@
                                             <form action="{{ route('cart.deleteTC') }}" method="POST">
                                                 @csrf
                                                 {{-- @method('DELETE') --}}
+                                                <input type="hidden" name="order_id" value="{{$order_id}}">
                                                 @foreach ($id_oders as $id)
                                                     <input type="hidden" name="ids[]" value="{{ $id }}">
                                                 @endforeach
@@ -87,12 +93,21 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-
-
-                                    @forelse($groupedCart as $productId => $items)
+                                    {{-- @forelse($groupedCart as $productId => $items)
                                         @php
                                             $orderDetail = $items->first();
+                                        @endphp --}}
+                                        @php
+                                            $totals = 0;
                                         @endphp
+                                          @forelse ($groupedCart as $productId => $items)
+                                    @php
+                                        $orderDetail = $items->first();
+                                        $totalQuantity = $items->sum('quantity');
+                                        $inputId = 'cartInput_' . $productId;
+                                        $totals += $totalQuantity * $orderDetail->product->price;
+                                        $id_oders[] = $orderDetail->id;
+                                    @endphp
                                         <tr>
                                             <td class="image">
                                                 <a class="product-image" title="Sample Product" href="">
@@ -114,8 +129,12 @@
                                                         đ</span>
                                                 </span></td>
                                             <td class="a-center movewishlist">
+                                                {{-- <div class="dec qty"
+                                                    onclick="decrementQuantity('{{ $inputId }}')">-</div> --}}
                                                 <input class="input-text qty" value="{{ $totalQuantity }}"
                                                     id="{{ $inputId }}">
+                                                {{-- <div class="inc qty"
+                                                    onclick="incrementQuantity('{{ $inputId }}')">+</div> --}}
                                             </td>
 
                                             <td>{{ $orderDetail->product->unit }}</td>
@@ -242,7 +261,7 @@
                                             <tr>
                                                 <td colspan="1" class="a-left" style=""> Tổng phụ </td>
                                                 <td class="a-right" style=""><span class="price"
-                                                        id="firstTotal">{{ number_format($total) }} đ</span>
+                                                        id="firstTotal">{{ number_format($totals) }} đ</span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -256,7 +275,7 @@
                                     <ul class="checkout">
                                         <li>
                                             @if (!empty($orderDetail))
-                                                <form action="{{ route('getVNP', ['id' => $orderDetail->id]) }}">
+                                                <form action="{{ route('getVNP', ['id' => $orderDetail->order->id]) }}">
                                                     @method('POST')
                                                     @csrf
                                                     <input type="hidden" id="yourInputId" name="total" />
@@ -266,6 +285,17 @@
                                             @endif
 
                                         </li>
+                                        {{-- <li class="p-3">
+                                             @if (!empty($orderDetail))
+                                                <form action="{{ route('momo')}}">
+                                                    @method('POST')
+                                                    @csrf
+                                                    <input type="hidden" id="yourInputId" name="total" />
+                                                    <button class=" button btn-proceed-checkout" title="Thanh Toán online"
+                                                        type="submit" name="payUrl">Thanh Toán MoMo</button>
+                                                </form>
+                                            @endif
+                                        </li> --}}
                                         <br>
                                         <li><a title="Thanh toán với nhiều địa chỉ" href="">Thanh
                                                 toán Khi nhận hàng</a></li>
@@ -349,20 +379,39 @@
         </section>
     @endsection
     <script>
+        // // Tăng Quantity
+        // function incrementQuantity(inputId) {
+        //     var input = document.getElementById(inputId);
+        //     var currentValue = parseInt(input.value);
+        //     input.value = currentValue + 1;
+        // }
+        // // Giảm Quantity
+        // function decrementQuantity(inputId) {
+        //     var input = document.getElementById(inputId);
+        //     var currentValue = parseInt(input.value);
+        //     if (currentValue > 0) {
+        //         input.value = currentValue - 1;
+        //     }
+        // }
+        // Cập nhật Quantity
         function updateQuantity() {
             var inputs = document.querySelectorAll('.input-text.qty');
             // let url = inputs.getAttribute('data-url');
             // console.log(url);
             var updatedQuantities = [];
+            // console.log(updatedQuantities);
             inputs.forEach(function(input) {
                 var productId = input.id.split('_')[1];
+                // console.log(productId);
                 var quantity = parseInt(input.value);
                 updatedQuantities.push({
                     productId: productId,
                     quantity: quantity
                 });
             });
+            console.log(updatedQuantities);
             location.reload();
+            // break;
             fetch('cart/update', {
                     method: 'POST',
                     headers: {
