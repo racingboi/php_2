@@ -68,6 +68,7 @@ class CartController extends Controller
     }
     public function updateCartItem(Request $request)
     {
+        $total = 0;
         $request->validate([
             'updatedQuantities' => 'required|array',
             'updatedQuantities.*.productId' => 'required|exists:products,id',
@@ -78,28 +79,30 @@ class CartController extends Controller
             $quantity = $updatedQuantity['quantity'];
             $orderDetail = OrderDetail::where('product_id', $productId)->first();
             $product = Products::where('id', $productId)->first();
+
             if ($orderDetail) {
                 $orderDetail->update(['quantity' => $quantity]);
             }
+              $total += $quantity * $product->price;
         }
         $orderId = $orderDetail->order_id;
         $order = Order::find($orderId);
         if ($order) {
-            $order->update(['total' => $product->price]);
+            $order->update(['total' => $total]);
         }
         return response()->json(['success' => 'Cập nhật giỏ hàng thành công']);
     }
     public function deleteTC(Request $request)
     {
         $orderIds = $request->input('ids');
-
+        $order_id=$request->input('order_id');
         foreach ($orderIds as $orderId) {
             // Delete related order details first
             OrderDetail::where('id', $orderId)->delete();
 
             // // Then, delete the orders
-            // Order::where('id', $orderId)->delete();
         }
+        Order::where('id', $order_id)->delete();
 
         session()->flash('success', 'Xóa đơn hàng thành công');
         return redirect()->route('cart.list');
@@ -128,7 +131,7 @@ class CartController extends Controller
         $product = Products::findOrFail($id);
         $order = Order::firstOrCreate([
             'users_id' => auth()->id(),
-            'status' => 'chưa chọn phương thức thanh toán',
+            'status' => '0',
         ], [
             'order_date' => now(),
             'total' => 0,

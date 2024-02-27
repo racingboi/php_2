@@ -95,45 +95,29 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-7 col-sm-12 col-12 d-flex">
+            <div class="col-lg-6 col-sm-12 col-12 d-flex">
                 <div class="card flex-fill">
                     <div class="card-header pb-0 d-flex justify-content-between align-items-center">
                         <h5 class="card-title mb-0">Mua & Bán</h5>
-                        <div class="graph-sets">
-                            <ul>
-                                <li>
-                                    <span>Mua</span>
-                                </li>
-                                <li>
-                                    <span>Bán</span>
-                                </li>
-                            </ul>
-                            <div class="dropdown">
-                                <button class="btn btn-white btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    2022 <img src="{{ asset('assets/dashboard/img/icons/dropdown.svg') }}" alt="img"
-                                        class="ms-2">
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li>
-                                        <a href="" class="dropdown-item">2022</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="dropdown-item">2021</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="dropdown-item">2020</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                     <div class="card-body">
-                        <div id="sales_charts"></div>
+                        {{-- <div id="sales_charts"></div> --}}
+                        <canvas id="myChart"></canvas>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5 col-sm-12 col-12 d-flex">
+            <div class="col-lg-6 col-sm-12 col-12 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Mua & Bán</h5>
+                    </div>
+                    <div class="card-body">
+                        {{-- <div id="sales_charts"></div> --}}
+                        <canvas id="myChartLine"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-sm-12 col-12 d-flex">
                 <div class="card flex-fill">
                     <div class="card-header pb-0 d-flex justify-content-between align-items-center">
                         <h4 class="card-title mb-0">Sản phẩm mới thêm</h4>
@@ -233,4 +217,5 @@
             </div>
         </div>
     </div>
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @endsection

@@ -15,24 +15,6 @@ use  App\Http\Controllers\web\index;
 use  App\Http\Controllers\web\ShopController;
 use  App\Http\Controllers\web\CartController;
 use  App\Http\Controllers\GHNController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -42,8 +24,9 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 // route dashboard
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'CheckAdminRole'])->group(function () {
-    Route::get('dashboard', [DashbardController::class, 'index'])->middleware(['auth', 'verified'])
+    Route::get('dashboard', [DashbardController::class, 'index'])
         ->name('dashboard');
+    route::get('dashboard/chart', [DashbardController::class, 'getData'])->name('chart');
     // Routing product
     Route::prefix('products')->name('products.')->group(function () {
         Route::get('list', [ProductController::class, 'index'])->name('list');
@@ -150,3 +133,6 @@ route::get('vnp/{id}', [GHNController::class, 'getVNP']);
 route::post('vnp/{id}', [GHNController::class, 'getVNP'])->name('getVNP');
 route::get('return-vnpay', [GHNController::class, 'ReturnVNPay']);
 // route::get('apis', [GHNController::class, 'getProvinces']);
+route::get('momo', [GHNController::class, 'momoPayment']);
+route::post('momo', [GHNController::class, 'momoPayment'])->name('momo');
+

@@ -54,7 +54,7 @@ $(document).ready(function () {
             "https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee";
         var apiKey = "7293aab0-b9b0-11ee-b38e-f6f098158c7e"; // Replace with your actual API key
 
-        console.log(district, ward);
+        console.log(district, ward, serviceId);
         $.ajax({
             url: apiUrl,
             method: "GET",
@@ -148,7 +148,7 @@ $(document).ready(function () {
        var formattedValue = document.getElementById("firstTotal").innerText;
        var firstTotalValue = parseFloat(formattedValue.replace(/,/g, ""));
        var total = firstTotalValue + fee; // Sửa đổi dòng này để thêm fee vào firstTotalValue
-       console.log(total);
+    //    console.log(total);
        var formattedFee = numberFormat.format(fee);
        feeHtml.text(formattedFee);
        $(".total").text(numberFormat.format(total));
@@ -232,7 +232,7 @@ $(document).ready(function () {
            success: function(data) {
                 if (data.data && data.data.length > 0) {
                     const firstService = data.data[0];
-                    console.log(firstService, ward, district);
+                    // console.log(firstService, ward, district);
                     const retrievedServiceId = firstService.service_id;
                      fetchFee(ward, district, retrievedServiceId);
                 } else {
@@ -252,7 +252,7 @@ $(document).ready(function () {
         if (ward !== "") {
             fetchService(district)
             fetchFee(ward, district, serviceId);
-            console.log(ward, district, serviceId);
+            // console.log(ward, district, serviceId);
 
             // Handle the case when serviceId is null or not available
         }

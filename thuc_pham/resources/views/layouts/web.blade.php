@@ -61,9 +61,19 @@
                                             {{-- <i class="fa fa-shopping-bag"></i> --}}
                                             <i class="bi bi-bag"></i>
                                             <div class="cart-box">
-                                                @php
+                                                {{-- @php
                                                     $totalProductsInCart = count($groupedCart);
+                                                @endphp --}}
+                                                @php
+                                                    // Kiểm tra xem biến đã được khai báo hay chưa
+                                                    if (isset($groupedCart)) {
+                                                        $totalProductsInCart = is_countable($groupedCart) ? count($groupedCart) : 0;
+                                                    } else {
+                                                        $totalProductsInCart = 0; // Hoặc giá trị mặc định khác tùy vào logic của bạn
+                                                    }
                                                 @endphp
+
+
                                                 <span id="cart-total">{{ $totalProductsInCart }}</span>
                                             </div>
                                         </a>
@@ -75,7 +85,7 @@
                                                 @php
                                                     $total = 0;
                                                 @endphp
-                                                @forelse($groupedCart as $productId => $items)
+                                              @forelse($groupedCart ?? [] as $productId => $items)
                                                     <li class="item last odd">
                                                         @php
                                                             $orderDetail = $items->first();
@@ -158,22 +168,22 @@
                                         </form>
                                     </div>
                                     <div class="search">
-                                        @forelse($groupedCart as $productId => $items)
-                                        @php
-                                        $orderDetail = $items->first();
+                                       @forelse($groupedCart ?? [] as $productId => $items)
+                                            @php
+                                                $orderDetail = $items->first();
                                                 if (isset(Auth::user()->name)) {
                                                     echo '<a href="' . route('user') . '">';
                                                     echo '<span>';
-                                                    echo 'Xin Chào' .' '. $orderDetail->order->user->name . '!';
+                                                    echo 'Xin Chào' . ' ' . $orderDetail->order->user->name . '!';
                                                     echo '</span>';
                                                     echo '</a>';
-                                                }else{
-                                                    echo "bạn chưa đăng nhập !";
+                                                } else {
+                                                    echo 'bạn chưa đăng nhập !';
                                                 }
                                             @endphp
-                                            @break
-                                        @empty
+                                        @break
 
+                                        @empty
                                         @endforelse
 
                                     </div>
@@ -642,11 +652,11 @@
                                 </li> --}}
                             <li class="level0 nav-7 level-top parent">
                                 <a class="level-top" href="#/electronics.html">
-                                    <span>Snacks</span>
+                                    <span></span>
                                 </a>
                             </li>
                             <li class="nav-custom-link level0 level-top parent">
-                                <a class="level-top" href="#"><span>Custom</span></a>
+                                <a class="level-top" href="#"><span></span></a>
                             </li>
                         </ul>
                     </div>
